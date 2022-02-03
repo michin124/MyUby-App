@@ -1,0 +1,7 @@
+{
+  "name": "proboso",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
