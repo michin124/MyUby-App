@@ -1,0 +1,145 @@
+
+.header2{
+    display: grid;
+    grid-template:  auto/10px auto auto;
+    color:#ffffff;
+    border-bottom: 2px solid rgb(202, 153, 153);
+    border-bottom-left-radius: 5mm  ;
+    border-bottom-right-radius: 5mm  ;
+    background: #E06C7B;
+}
+.x{
+    grid-row: 1/2;
+    grid-column: 1/2;
+    margin-top: 6px;
+    
+}
+.x2{
+    grid-row: 1/2;
+    grid-column: 2/3;
+    font-family: "Arial",red serif;
+    font-size: 30px;
+    margin-left:40px ;
+}
+.x3{
+    text-align: right;
+    justify-content: right;
+    margin-left:-20px ;
+    grid-column: 3/4;
+    grid-row: 1/2;
+    font-family: "Arial",serif;
+    
+}
+.buscador{
+    margin-top: 10px;
+    border: 2px solid #5c1914ef;
+    border-radius: 5mm;
+    color: rgb(0, 0, 0);
+    
+    margin-left: 30px;
+    margin-right: 30px;
+    display: grid;
+    grid-template:  40px/220px  10px;
+    text-align: center;
+    justify-content: center;
+    background: #ffffffef;
+    font-size: 20px;
+}
+.lupa{
+    text-align: left;
+    margin-left: -10px;
+    justify-content: left;
+    color:rgb(0, 0, 0);
+}
+
+.titulo1{
+    font-family: Calibri, Candara, Segoe, Segoe UI, Optima, Arial, sans-serif;
+    color: #000000;
+    text-align: left;
+    margin-left: -10px;
+    justify-content: left;
+    margin-bottom: 10px;
+    
+}
+.titulo1 h2,.titulo2 h2{
+    font-family: Calibri, Candara, Segoe, Segoe UI, Optima, Arial, sans-serif;
+    margin-left: 40px;
+    font-size: 30px;
+}
+.titulo2{
+    font-family: Calibri, Candara, Segoe, Segoe UI, Optima, Arial, sans-serif;
+    text-align: center;
+    margin-left: -190PX;
+    justify-content: center;
+    color: #000000ef;
+    
+
+}
+@media only screen and (max-width: 500px) {
+    /* For mobile phones: */
+    [class*="col-"] {
+      width: 50%;
+    }
+  }
+.logos{
+    border: 2px solid #5c1914ef;
+    border-radius: 5mm;
+    color: #ffffff;
+    background: linear-gradient(to bottom, rgb(255, 255, 255), rgb(255, 231, 231));
+    margin-left: 10%;
+    margin-right: 10%;
+    font-size: 45px;
+    text-align: center;
+    justify-content: center;
+    display: grid;
+    grid-template:  auto  auto/ auto  auto  auto  auto;
+    overflow: hidden;
+    overflow-x:scroll;
+    padding-left: 30%;
+    padding-right: 5%;
+    
+}
+.logoslist
+{
+    background-color:#e06c7bb2;
+    
+    color: #fc1403;
+    text-align: center;
+    justify-content: center;
+    border: 2px solid #000000ef;
+    border-radius: 5mm;
+    margin-left: 10%;
+    margin-right: 10%;
+    padding: 10px;
+    overflow: hidden;
+    overflow-y:scroll;
+    height: 130px;
+}
+
+
+.logoslist ion-list{
+    background-color: #e45f5f00;
+}
+
+.logoslist .blist{
+    background-color: rgb(248, 236, 236);
+    width:200px;
+    height: 30px;
+    padding: auto;
+    border: 2px solid rgb(248, 236, 236);
+    border-radius: 5mm;
+    margin-bottom: -0.1px;
+}
+
+.logoslist p{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    color: rgb(0, 0, 0);
+}
+
+.logo1,.logo2,.logo3 ,.logo4 ,.logo5 ,.logo6 ,.logo7 ,.logo8{
+    
+    color: #E06C7B;
+}
+
+

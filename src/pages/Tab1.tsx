@@ -1,22 +1,143 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonTitle,IonToggle,IonRadio,IonCheckbox, IonToolbar,IonButton,IonInput, IonItem, IonLabel, IonList, IonItemDivider, IonGrid, IonRow, IonCol } from '@ionic/react';
 import ExploreContainer from '../components/ExploreContainer';
-import './Tab1.css';
+import { IoBeer } from "react-icons/io5";
+import React, { useState ,useRef } from 'react';
+import { Wrapper, Status } from "@googlemaps/react-wrapper";
+import { LoadScript, GoogleMap, Marker } from "@react-google-maps/api";
 
-const Tab1: React.FC = () => {
+
+import MyComponent from '../helpers/maps';
+import { FcGlobe} from "react-icons/fc";
+import { FiCoffee} from "react-icons/fi";
+import { FaBed} from "react-icons/fa";
+import { BsSearch} from "react-icons/bs";
+import { FaPencilRuler} from "react-icons/fa";
+import { FaBriefcase} from "react-icons/fa";
+import { MdPets} from "react-icons/md";
+import { AiOutlineQuestionCircle} from "react-icons/ai";
+import { MdOutlineStorefront} from "react-icons/md";
+
+import './Tab1.css';
+import { useParams } from 'react-router';
+import { Console } from 'console';
+import { useHistory, useLocation} from 'react-router';
+
+
+let lati:any
+let long:any
+
+const Tab1= (el:any) => {
+
+//mapa mijo
+  const options = {
+    //enableHighAccuracy: true,
+    timeout: 5000,
+    maximumAge: 0
+  };
+  const success=(pos:any)=> {
+    const crd = pos.coords;
+    long=crd.longitude
+    lati=crd.latitude
+    return(lati)
+    return(long)
+  }
+  function error(err:any) {
+    console.warn(`ERROR(${err.code}): ${err.message}`);
+  } 
+  {navigator.geolocation.getCurrentPosition(success, error, options)}
+
+
+
+//mapear las tiendas de otros
+  let history=useHistory();
+    const [text, setText] = useState<string>();
+    let { ini }:any =useParams();
+    const otros=[];
+    {for(let i = 7; i < el.data.length; i++) {
+      otros[i]=el.data[i]
+      
+     } }
+  
+  
+  
   return (
+    
+    
     <IonPage>
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle>Tab 1</IonTitle>
-        </IonToolbar>
+      
+      <IonHeader class='header'>
+      <IonRow class='header2'>
+      <IonCol class="x"><FcGlobe size="50"></FcGlobe></IonCol>
+      <IonCol class="x2"><h2>ADRESS</h2></IonCol>
+      <IonCol class="x3"><h2>MYUBY</h2></IonCol>
+      </IonRow>  
       </IonHeader>
+
+
       <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Tab 1</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        <ExploreContainer name="Tab 1 page" />
+      <IonRow class="buscador">
+        <IonCol size="large"className="ion-align-self-center" ><IonInput value={text} placeholder="¿QUE NECESITAS?" onIonChange={e => setText(e.detail.value!)}></IonInput></IonCol>
+        <IonCol class="lupa"><BsSearch size="30"></BsSearch></IonCol>
+      </IonRow>
+     
+      {ini==null &&
+        <IonRow class="titulo1">
+          <h2> Categorias Populares</h2>
+        </IonRow>
+      }
+      
+      {ini=="MAS" &&
+        <IonRow class="titulo1">
+          <h2>Otras Categorias</h2>
+        </IonRow>
+      }
+      
+      {ini==null &&
+      <IonRow class="logos">
+      <IonButton href="tab1/logo/BARES?idcategori=1" color="white" expand="full" fill="clear" size='large'><IonCol class="logo1" ><IoBeer size="50"></IoBeer></IonCol></IonButton> 
+      <IonButton href="tab1/logo/RESTAURANTES?idcategori=2" color="white" expand="full" fill="clear" size='large'><IonCol class="logo2"><MdOutlineStorefront size="50"></MdOutlineStorefront></IonCol></IonButton> 
+      <IonButton href="tab1/logo/ESTADEROS?idcategori=3" color="white" expand="full" fill="clear" size='large'><IonCol class="logo3"><FaBed size="50"></FaBed></IonCol></IonButton> 
+      <IonButton href="tab1/logo/CAFETERIAS?idcategori=4" color="white" expand="full" fill="clear" size='large'><IonCol class="logo4"><FiCoffee size="50"></FiCoffee></IonCol></IonButton> 
+      <IonButton href="tab1/logo/PAPELERIAS?idcategori=5" color="white" expand="full" fill="clear" size='large'><IonCol class="logo5"><FaPencilRuler size="50"></FaPencilRuler></IonCol></IonButton> 
+      <IonButton href="tab1/logo/FERRETERIAS?idcategori=6" color="white" expand="full" fill="clear" size='large'><IonCol class="logo6"><FaBriefcase size="50"></FaBriefcase></IonCol></IonButton> 
+      <IonButton href="tab1/logo/VETERINARIAS?idcategori=7" color="white" expand="full" fill="clear" size='large'><IonCol class="logo7"><MdPets size="50"></MdPets></IonCol></IonButton> 
+      <IonButton href="/tab1/MAS" color="white" expand="full" fill="clear" size='large'><IonCol class="logo8"><AiOutlineQuestionCircle size="50"></AiOutlineQuestionCircle></IonCol></IonButton>
+      </IonRow>
+      }
+      {ini=="MAS" &&
+        <IonRow class="logoslist">
+          <IonList>
+          
+          {otros.map((info:any) => {
+            
+            let url=`tab1/logo/${info.tipocategoria}?idcategori=${info.id}`;
+            return(<>
+            
+            <IonButton href={url} class="blist" color="white" expand="full" fill="clear"  size='large'><p>{info.tipocategoria}</p></IonButton>
+            
+            
+            </>)
+          
+        })} 
+        </IonList>
+        </IonRow>
+       
+      }
+      
+     
+      <IonRow class="titulo2">
+        <h2>Tienes Cerca</h2>
+      </IonRow>
+      <IonRow class="mapa">
+        <IonCol class="mapas">
+        <MyComponent latitude={lati} Longitude={long} Categorias={''}
+        />
+        
+         </IonCol>
+ 
+      </IonRow>
+      
+
       </IonContent>
     </IonPage>
   );

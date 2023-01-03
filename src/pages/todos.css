@@ -1,0 +1,79 @@
+.tiendas{
+    margin-top: 15px;
+    margin-left: 10px;
+    text-align: center;
+    justify-content: center;
+    display: grid;
+    grid-template: 110px 20px 110px 20px 110px 20px 110px 20px/170px 170px ;
+    background: #ffffffef;
+}
+
+
+.t1 ,.t2,.t3,.t4,.t5,.t6{
+    width: 150px;
+    height: 100px;
+    border: 2px solid #5c1914ef; 
+}
+.ext1{
+    color:rgb(141, 141, 5);
+    display: grid;
+    grid-template: 10px/90px 40px;
+    margin-top: -10px;
+}
+.ext1 h3{
+    margin-top: -5px;
+}
+.botoneseleccion{
+    
+    margin-top: 20px;
+    margin-left: 30px;
+    margin-right: 30px;
+    border: 2px solid #ffffffef;
+    border-radius: 5mm;
+    text-align: center;
+    justify-content: center;
+    font-size: 40px;
+    display: grid;
+    grid-template: 30px/80px 80px 80px;
+}
+p{
+    margin-top: 20px;
+    color: white;
+    font-size: 10px;
+}
+.todos{
+    background-color: #db4756;
+    margin-left: -30px;
+    width: 100px;
+    height: 35px;
+    margin-top: -2px;
+    color: #ffffff;
+    font-size: 10PX;
+    border: 2px solid #070707ef;
+    border-radius: 5mm;
+}
+.descuentos{
+    background-color: #db4756;
+    width: 100px;
+    height: 35px;
+    margin-top: -2px;
+    font-size: 10PX;
+    color: #ffffff;
+    margin-left: -10px;
+    border: 2px solid #070707ef;
+    border-radius: 5mm;
+}
+.promociones{
+    background-color: #db4756;
+    margin-left: 10px;
+    width: 100px;
+    height: 35px;
+    font-size: 10PX;
+    color: #ffffff;
+    margin-top: -2px;
+    border: 2px solid #070707ef;
+    border-radius: 5mm;
+}
+    
+
+

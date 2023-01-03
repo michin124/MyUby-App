@@ -1,0 +1,102 @@
+.titulodis{
+    text-align: center;
+    justify-content: center;
+    color:green;
+}
+
+a{
+    
+    color: black;
+   
+    font-size: 2px;
+    border: 2px solid #070707ef;
+    border-radius: 5mm;
+    text-decoration: none;
+    background-color:#f89d9def ;
+    text-align: center;
+    justify-content: center;
+    padding-bottom: 55px;
+    color: black;
+}
+.fototienda{
+    border: 2px solid #5c1914ef;
+    border-radius: 5mm;
+    color: #ff5e52;
+    margin-left: 40px;
+    margin-right: 40px;
+    font-size: 45px;
+    text-align: center;
+    justify-content: center;
+    height: 200px;
+}
+.estrellastienda{
+    display: grid;
+    color:rgb(141, 141, 5);
+    grid-template: 40px/40px 40px 40px 40px 40px ;
+    text-align: center;
+    justify-content: center;
+}
+.nombretienda{
+    margin-left: -100px;
+    text-align: center;
+    justify-content: center;
+    font-family: monospace;
+    font-size:40px;
+}
+
+.infotienda{
+    color: black;
+    width:  150px;
+    margin-top: -2px;
+    width:  158px;
+    height: 34px;
+    font-size: 1px;
+    margin-left: -3px;
+    
+    background-color:#f89d9def   ;
+    border: 2px solid #070707ef;
+    border-radius: 5mm;
+    text-decoration: none;
+    
+}
+.productost{
+    display: grid;
+    grid-template: 110px 110px 110px/150px 150px ;
+    margin-left: 70px;
+    margin-right: 40px;
+    text-align: center;
+    justify-content: center;
+}
+.pro1,.pro2,.pro3,.pro4,.pro5,.pro6{
+
+    margin-top: 15px;
+    width: 120px;
+    height: 100px;
+    border: 2px solid #5c1914ef; 
+}
+.vamos{
+    
+    margin-top: -30px;
+    text-align: center;
+    justify-content: center;  
+}
+.vamosb{
+    display: grid;
+    color: #ff5e52;
+    grid-template: 170px /150px;  
+}
+.abajo2{
+    height: 100px;  
+}
+a{
+    text-decoration: none;
+}
+a:visited{
+    width:  150px;
+    height: 34px;
+    color: #000000;
+}
+
+
+
+

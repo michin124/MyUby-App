@@ -1,0 +1,22 @@
+{
+    "santos":[
+        {
+            "id":1,
+            "name":"seiya",
+            "constellation":"pegaso"
+        },
+        {
+            "id":2,   
+            "name":"seya",
+            "constellation":"pegaso"
+        },
+        {
+            "id":3,
+            "name":"sya",
+            "constellation":"pegaso"
+        }
+
+
+
+    ]
+}
