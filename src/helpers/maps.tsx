@@ -103,7 +103,7 @@ function MyComponent(props:any) {
 
         if(!res.err){
           setdbt(res.tiendas)
-          console.log(res)
+          
           setErrort(null)
         }else{
           setdbt([])

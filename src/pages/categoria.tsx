@@ -27,7 +27,7 @@ const Categoria= (el:any) => {
   let cuenta=el.data?.length || 0;
   let history=useHistory();
   let { categori }:any =useParams();
-  
+  let image=require.context('../images/',true)
   let {search}=useLocation();
   let query=new URLSearchParams(search);
   let idcategori=query.get("idcategori");
@@ -90,11 +90,12 @@ const Categoria= (el:any) => {
       
      
       <IonRow class="categoria">
-
+      
         {cuenta>0 ?(el.data.map((info:any) => {
+         
           let url=`/productostienda?idcategori=${idcategori}`+`&idtienda=${info.id}`;
           return(<>
-          <IonCol class="tcate1" ><IonRow ><IonButton href={url} className='fototiendas' color="white" expand="full" fill="clear" size='large'></IonButton></IonRow><IonRow  class="nombre">{info.nombretienda}</IonRow></IonCol>
+          <IonCol class="Categorias" ><IonRow ><IonButton href={url} className='fototiendas' color="white" expand="full" fill="clear" size='large'></IonButton></IonRow><IonRow  class="nombre">{info.nombretienda}</IonRow></IonCol>
           </>)
         
       })):

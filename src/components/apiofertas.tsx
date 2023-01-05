@@ -68,6 +68,7 @@ const initialDb=[
             if(!res.err){
           
             setdb3(res.companies)
+            
             setError3(null)
             
           
