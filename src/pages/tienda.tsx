@@ -55,7 +55,7 @@ const Tienda= (el:any=0) => {
       
         return(<>
         
-        <IonCol class="tcate1" ><IonRow ><IonButton href={url1} className='fototiendas' color="white" expand="full" fill="clear" size='large'></IonButton></IonRow><IonRow  class="nombre">{info.nombreproducto}</IonRow></IonCol> 
+        <IonCol class="Categorias" ><IonRow ><IonButton href={url1} className='fototiendas' color="white" expand="full" fill="clear" size='large'></IonButton></IonRow><IonRow  class="nombre">{info.nombreproducto}</IonRow></IonCol> 
         </>)
       })):(       
         <h2></h2>
