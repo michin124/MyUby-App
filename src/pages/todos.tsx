@@ -18,7 +18,15 @@ import { image } from 'ionicons/icons';
 
 
 const Tab2= (el:any) => {
-  let img1=require(`${'../images/5.jpg'}`)
+
+  const otros=[];
+  {for(let i = 0; i < el.dataO.length; i++) {
+    otros[i]=el.dataO[i]
+    
+   } }
+   
+  ///ruta imagenes
+  let image=require.context('../images/',true)
   let cuenta=el.data?.length || 0;
   let cuenta2=el.dataD?.length || 0;
   let cuenta3=el.dataO?.length || 0;
@@ -47,56 +55,60 @@ const Tab2= (el:any) => {
         </IonRow>
 
         <IonRow class ="titulol">
-        <h1>{filtro}</h1>
-      </IonRow>
+          <h1>{filtro}</h1>
+        </IonRow>
+        
+
+
+
         <IonRow class="categoria">
 
-        
-          {filtro=="Todos" &&
+        {filtro=="Todos" &&
+          
+          cuenta>0 ?(el.data.map((info1:any) => {
             
-            cuenta>1 ?(el.data.map((info1:any) => {
+            let url=`/productostienda?idtienda=${info1.id}`;
+            return(<>
+            
+            <IonCol class="Categorias" ><IonRow ><IonButton href={url} className='fototiendas' color="white" expand="full" fill="clear" size='large'></IonButton></IonRow><IonRow  class="nombre">{info1.nombretienda}</IonRow></IonCol>
+            </>)
 
-              let url=`/productostienda?idtienda=${info1.id}`;
-              let imgg='./src/images/7.jpg'
-              
-              return(<>
-             
-              <IonCol class="tcate1" ><IonRow ><IonButton href={url} className='fototiendas' expand="full" fill="clear" size='large'><img src={require(`${'../images/7.jpg'}`)} sizes={'100'} alt="Logo" /></IonButton></IonRow><IonRow  class="nombre">{info1.nombretienda}</IonRow></IonCol>
-              </>)
-          
-            })):(       
-              'ups'
-            )
-          }
-          
-          {filtro=="Descuentos" &&
-                cuenta>0 ?(el.dataD.map((info2:any) => {
-                  
-                  let url=`/productostienda?idtienda=${info2.id}`;
-                  return(<>
-                  
-                  <IonCol class="tcate1" ><IonRow ><IonButton href={url} className='fototiendas' color="white" expand="full" fill="clear" size='large'></IonButton></IonRow><IonRow  class="nombre">{info2.nombretienda}</IonRow></IonCol>
-                  </>)
-          
-            })):(       
-              null
-            )
-          }
-          {filtro=="Promociones" &&
-                cuenta>0 ?(el.dataO.map((info3:any) => {
-                  
-                  let url=`/productostienda?idtienda=${info3.id}`;
-                  return(<>
-                  
-                  <IonCol class="tcate1" ><IonRow ><IonButton href={url} className='fototiendas' color="white" expand="full" fill="clear" size='large'></IonButton></IonRow><IonRow  class="nombre">{info3.nombretienda}</IonRow></IonCol>
-                  </>)
-              
-                })):(       
-             null
-            )
-          }       
-          
-        </IonRow>
+          })):
+          (
+            filtro=="Descuentos" &&
+              cuenta>0 ?(el.dataD.map((info2:any) => {
+                
+                let url=`/productostienda?idtienda=${info2.id}`;
+                return(<>
+                
+                <IonCol class="Categorias" ><IonRow ><IonButton href={url} className='fototiendas' color="white" expand="full" fill="clear" size='large'></IonButton></IonRow><IonRow  class="nombre">{info2.nombretienda}</IonRow></IonCol>
+                </>)
+
+          })):
+          (
+            filtro=="Promociones" &&
+              cuenta>0 ?(el.dataO.map((info3:any) => {
+                
+                let url=`/productostienda?idtienda=${info3.id}`;
+                return(<>
+                
+                <IonCol class="Categorias" ><IonRow ><IonButton href={url} className='fototiendas' color="white" expand="full" fill="clear" size='large'></IonButton></IonRow><IonRow  class="nombre">{info3.nombretienda}</IonRow></IonCol>
+                </>)
+            
+              })):
+              (
+                <h2></h2>
+              )
+
+          )
+
+          )
+        }
+
+</IonRow>
+
+
+
       
       
       </IonContent>
