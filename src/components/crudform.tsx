@@ -9,6 +9,9 @@ import { CgProfile } from "react-icons/cg";
 
 import { RiStarSFill, RiStarSLine } from "react-icons/ri";
 import { Console } from 'console';
+import { image } from 'ionicons/icons';
+import { helphttp } from '../helpers/helphttp';
+
 
 const guerrero={
  
@@ -23,14 +26,16 @@ const guerrero={
   especialidad: "",
   lat:0,
   lng:0,
-  descripcion:""
-      
-    
-  
+  descripcion:"",
+  categoria:"",
+  imagen:undefined
 };
 
+
+
 const CrudForm = (props:any) =>{
-  
+ 
+
   const mapRef:any = useRef(null);
   const [position, setPosition] = useState({
     lat: 4.578283266357103,
@@ -57,10 +62,17 @@ const CrudForm = (props:any) =>{
     
   }
 
- 
+  let api=helphttp();
+    
+  let url='http://localhost:8000/images/'
 
 
 
+  const [imagen, setImagen] = useState<File>();
+  const subirImagenes=(e:any)=>{
+    setImagen(e)
+
+  }
   const[form,setForm]=useState(guerrero)
  
   useEffect(()=>{
@@ -73,6 +85,9 @@ const CrudForm = (props:any) =>{
       setForm(guerrero);
     }
   },[props.dataToedit])
+
+
+
 
   const handlechange=(e:any)=>{
     setForm({
@@ -90,13 +105,31 @@ const CrudForm = (props:any) =>{
     }
     if(form.id===null)
     {
-      props.createData(form);
+      form.foto=imagen!.name
+      const f=new FormData();
+      f.append('file',imagen!);
+      //para traer el json es una cabecera
+        
+      fetch(url, {
+        method: 'POST',
+        body: f,
+
+        // 👇 Set headers manually for single file upload
+      })
+        .then((res) => res.json())
+        .then((data) => console.log(data))
+        .catch((err) => console.error(err));
+console.log(form)
+        props.createData(form);
+     
     }else{
       props.updateData(form);
     }
     
     
     handlereset(e);
+
+    
   }
   const handlereset = (e:any) =>{
     
@@ -104,6 +137,8 @@ const CrudForm = (props:any) =>{
     props.setDataToedit(null);
     
   }
+
+  
   
     return(
         
@@ -152,9 +187,14 @@ const CrudForm = (props:any) =>{
                 {form.lng=position.lng}
                 <input type="text" name='lng' placeholder='lng'onChange={handlechange} value={form.lng}/>
                 <input type="text" name='lat' placeholder='lat'onChange={handlechange} value={form.lat}/>
-                
+                <input
+                  type="file"
+                  name='imagen'
+                  placeholder='imagen'
+                  multiple onChange={(e:any) => subirImagenes(e.target.files[0])}
+                />
                 <input type="text" name='nombretienda' placeholder='nombre de la tienda'onChange={handlechange} value={form.nombretienda}/>
-                <input type="text" name='foto' placeholder='foto'onChange={handlechange} value={form.foto}/>
+                <input type="text" name='foto' placeholder='foto'onChange={handlechange} value={imagen?.name}/>
                 <input type="text" name='telefono' placeholder='telefono'onChange={handlechange} value={form.telefono}/>
                 <input type="text" name='direccion' placeholder='direccion'onChange={handlechange} value={form.direccion}/>
                 <input type="text" name='horario' placeholder='horario'onChange={handlechange} value={form.horario}/>
@@ -167,27 +207,24 @@ const CrudForm = (props:any) =>{
 
 
 
-                <input placeholder='CATEGORIA' list="browsers" name="CATEGORIA"/>
+                
                 <datalist id="browsers">
                 {props.data1.map((info:any) => {
-            
-                
                 return(<>
                     <option value={info.tipocategoria}/>
-                
+
                   </>)
-              
                 })} 
+                
                 </datalist>
 
-
-
-
+                <input placeholder='CATEGORIA' list="browsers" name="categoria" onChange={handlechange} />
+                
                 <input type="button" value="enviar" onClick={handlesubmit}/>
                 <input type="reset" value="limpiar" onClick={handlereset}/>
               </form>
-              
-
+             
+              {console.log(imagen)}
               <h2>CRUDD APP</h2>
 
              

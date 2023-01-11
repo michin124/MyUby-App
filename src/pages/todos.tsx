@@ -18,15 +18,9 @@ import { image } from 'ionicons/icons';
 
 
 const Tab2= (el:any) => {
-
-  const otros=[];
-  {for(let i = 0; i < el.dataO.length; i++) {
-    otros[i]=el.dataO[i]
-    
-   } }
-   
+  
+  let UrlI='http://127.0.0.1:8000/media/images/'
   ///ruta imagenes
-  let image=require.context('../images/',true)
   let cuenta=el.data?.length || 0;
   let cuenta2=el.dataD?.length || 0;
   let cuenta3=el.dataO?.length || 0;
@@ -63,49 +57,65 @@ const Tab2= (el:any) => {
 
         <IonRow class="categoria">
 
-        {filtro=="Todos" &&
+        
+          {filtro=="Todos" &&
+            
+            cuenta>=0 ?(el.data.map((info1:any) => {
+
+              let url=`/productostienda?idtienda=${info1.id}`;
+              
+              
+              return(<>
+
+                {info1.foto!='' &&
+                
+                  <IonCol class="Categorias" ><IonRow ><IonButton href={url} className='fototiendas' expand="full" fill="clear" size='large'><img src={`${UrlI}${info1.foto}`} sizes={'100'} alt="Logo" /></IonButton></IonRow><IonRow  class="nombre">{info1.nombretienda}</IonRow></IonCol>
+                }
+              </>)
           
-          cuenta>0 ?(el.data.map((info1:any) => {
-            
-            let url=`/productostienda?idtienda=${info1.id}`;
-            return(<>
-            
-            <IonCol class="Categorias" ><IonRow ><IonButton href={url} className='fototiendas' color="white" expand="full" fill="clear" size='large'></IonButton></IonRow><IonRow  class="nombre">{info1.nombretienda}</IonRow></IonCol>
-            </>)
+            })):(       
+              null
+            )
+          }
+          
+          {filtro=="Descuentos" &&
+          
+                cuenta2>0 ?(el.dataD.map((info2:any) => {
+                  
+                  let url=`/productostienda?idtienda=${info2.id}`;
+                  return(<>
 
-          })):
-          (
-            filtro=="Descuentos" &&
-              cuenta>0 ?(el.dataD.map((info2:any) => {
+                    {info2.foto!='' &&
+                    
+                      <IonCol class="Categorias" ><IonRow ><IonButton href={url} className='fototiendas' expand="full" fill="clear" size='large'><img src={`${UrlI}${info2.foto}`} sizes={'100'} alt="Logo" /></IonButton></IonRow><IonRow  class="nombre">{info2.nombretienda}</IonRow></IonCol>
+                    }
+                  </>)
+          
+            })):(       
+              null
+            )
+          }
+          {filtro=="Promociones" &&
+                cuenta3>0 ?(el.dataO.map((info3:any) => {
+                  
+                  let url=`/productostienda?idtienda=${info3.id}`;
+                  
+                  return(<>
+
+                    {info3.foto!='' &&
+                    
+                      <IonCol class="Categorias" ><IonRow ><IonButton href={url} className='fototiendas' expand="full" fill="clear" size='large'><img src={`${UrlI}${info3.foto}`} sizes={'100'} alt="Logo" /></IonButton></IonRow><IonRow  class="nombre">{info3.nombretienda}</IonRow></IonCol>
+                    }
+                  </>)
+              
+                })):(       
+             null
+            )
+          }  
                 
-                let url=`/productostienda?idtienda=${info2.id}`;
-                return(<>
-                
-                <IonCol class="Categorias" ><IonRow ><IonButton href={url} className='fototiendas' color="white" expand="full" fill="clear" size='large'></IonButton></IonRow><IonRow  class="nombre">{info2.nombretienda}</IonRow></IonCol>
-                </>)
+          
+        </IonRow>
 
-          })):
-          (
-            filtro=="Promociones" &&
-              cuenta>0 ?(el.dataO.map((info3:any) => {
-                
-                let url=`/productostienda?idtienda=${info3.id}`;
-                return(<>
-                
-                <IonCol class="Categorias" ><IonRow ><IonButton href={url} className='fototiendas' color="white" expand="full" fill="clear" size='large'></IonButton></IonRow><IonRow  class="nombre">{info3.nombretienda}</IonRow></IonCol>
-                </>)
-            
-              })):
-              (
-                <h2></h2>
-              )
-
-          )
-
-          )
-        }
-
-</IonRow>
 
 
 

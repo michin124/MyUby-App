@@ -23,11 +23,10 @@ let lati:any
 let long:any
 
 const Categoria= (el:any) => {
- 
+  let UrlI='http://127.0.0.1:8000/media/images/'
   let cuenta=el.data?.length || 0;
   let history=useHistory();
   let { categori }:any =useParams();
-  let image=require.context('../images/',true)
   let {search}=useLocation();
   let query=new URLSearchParams(search);
   let idcategori=query.get("idcategori");
@@ -95,7 +94,11 @@ const Categoria= (el:any) => {
          
           let url=`/productostienda?idcategori=${idcategori}`+`&idtienda=${info.id}`;
           return(<>
-          <IonCol class="Categorias" ><IonRow ><IonButton href={url} className='fototiendas' color="white" expand="full" fill="clear" size='large'></IonButton></IonRow><IonRow  class="nombre">{info.nombretienda}</IonRow></IonCol>
+
+            {info.foto!='' &&
+            
+              <IonCol class="Categorias" ><IonRow ><IonButton href={url} className='fototiendas' expand="full" fill="clear" size='large'><img src={`${UrlI}${info.foto}`} sizes={'100'} alt="Logo" /></IonButton></IonRow><IonRow  class="nombre">{info.nombretienda}</IonRow></IonCol>
+            }
           </>)
         
       })):
@@ -112,12 +115,23 @@ const Categoria= (el:any) => {
 
       <IonRow class="mapa">
         <IonCol class="mapas">
-        <Mapcat latitude={lati} Longitude={long} Categorias={idcategori}
-        />
         
+        
+        {lati==undefined &&
+          
+          <Mapcat refresh={true} reload={true}
+          />
+          
+        }
+        {lati!=undefined &&
+          
+          <Mapcat latitude={lati} Longitude={long} Categorias={idcategori}
+          />
+        }
          </IonCol>
  
       </IonRow>
+      
 
       </IonContent>
     </IonPage>

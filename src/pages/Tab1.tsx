@@ -21,13 +21,17 @@ import './Tab1.css';
 import { useParams } from 'react-router';
 import { Console } from 'console';
 import { useHistory, useLocation} from 'react-router';
+import { reload } from 'ionicons/icons';
 
 
 let lati:any
 let long:any
 
 const Tab1= (el:any) => {
-
+  const [refresh, setRefresh] = React.useState(0)
+  function refreshPage() {
+    window.location.reload();
+  }
 //mapa mijo
   const options = {
     //enableHighAccuracy: true,
@@ -45,8 +49,7 @@ const Tab1= (el:any) => {
     console.warn(`ERROR(${err.code}): ${err.message}`);
   } 
   {navigator.geolocation.getCurrentPosition(success, error, options)}
-
-
+  
 
 //mapear las tiendas de otros
   let history=useHistory();
@@ -130,8 +133,18 @@ const Tab1= (el:any) => {
       </IonRow>
       <IonRow class="mapa">
         <IonCol class="mapas">
-        <MyComponent latitude={lati} Longitude={long} Categorias={''}
-        />
+        {lati==undefined &&
+          
+          <MyComponent refresh={true} reload={true}
+          />
+          
+        }
+        {lati!=undefined &&
+          
+          <MyComponent latitude={lati} Longitude={long} Categorias={''}
+          />
+          
+        }
         
          </IonCol>
  
