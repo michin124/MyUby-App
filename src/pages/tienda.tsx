@@ -11,10 +11,9 @@ import { useHistory, useLocation, useParams } from 'react-router';
 import { search } from 'ionicons/icons';
 
 const Tienda= (el:any=0) => {
-  
+  let UrlI='http://127.0.0.1:8000/media/images/'
   let history=useHistory(); 
   let cuenta=el.data2?.length || 0;
-  
   let {nombretienda,foto,telefono,direccion,horario,domicilio,parqueadero,especialidad,id}=el.data[0];
   let url1=`/productostienda?idtienda=${el.idtienda}`
   let url2=`/infotienda?idtienda=${el.idtienda}`
@@ -32,9 +31,11 @@ const Tienda= (el:any=0) => {
         <IonRow class='titulodis'>
             <h3>abierto</h3>
         </IonRow>
-        <IonRow class='fototienda'>
-
-        </IonRow>
+        {foto!='' &&
+          <IonRow class='fototienda'>
+            <img src={`${UrlI}${foto}`} sizes={'100'} alt="Logo" />
+          </IonRow>
+        }
         <IonRow class='estrellastienda'>
         <RiStarSFill size="40"></RiStarSFill><RiStarSLine size="40"></RiStarSLine><RiStarSLine size="40"></RiStarSLine><RiStarSLine size="40"></RiStarSLine><RiStarSLine size="40"></RiStarSLine>
         </IonRow>
@@ -53,12 +54,15 @@ const Tienda= (el:any=0) => {
       <IonRow class="categoria">
       {cuenta>0 ?(el.data2.map((info:any) => {
       
-        return(<>
+      return(<>
+
+        {info.foto!='' &&
         
-        <IonCol class="Categorias" ><IonRow ><IonButton href={url1} className='fototiendas' color="white" expand="full" fill="clear" size='large'></IonButton></IonRow><IonRow  class="nombre">{info.nombreproducto}</IonRow></IonCol> 
-        </>)
+          <IonCol class="Categorias" ><IonRow ><IonButton href={url1} className='fototiendas' expand="full" fill="clear" size='large'><img src={`${UrlI}${info.foto}`} sizes={'100'} alt="Logo" /></IonButton></IonRow><IonRow  class="nombre">{info.nombretienda}</IonRow></IonCol>
+        }
+      </>)
       })):(       
-        <h2></h2>
+        null
       )}
 
       

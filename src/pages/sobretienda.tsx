@@ -13,8 +13,9 @@ import './sobretienda.css';
 import { colorFill } from 'ionicons/icons';
 
 const Sobretienda= (el:any) => {
-
+  let UrlI='http://127.0.0.1:8000/media/images/'
   let history=useHistory();
+  let image=require.context('../images/',true)
   let { categori }:any =useParams();
   let {nombretienda,foto,telefono,direccion,horario,domicilio,parqueadero,especialidad,id}=el.data[0];
 
@@ -50,9 +51,11 @@ const Sobretienda= (el:any) => {
         <IonRow class='titulodis'>
             <h3>abierto</h3>
         </IonRow>
-        <IonRow class='fototienda'>
-
-        </IonRow>
+        {foto!='' &&
+          <IonRow class='fototienda'>
+            <img src={`${UrlI}${foto}`} sizes={'100'} alt="Logo" />
+          </IonRow>
+        }
         <IonRow class='estrellastienda'>
         <RiStarSFill size="40"></RiStarSFill><RiStarSLine size="40"></RiStarSLine><RiStarSLine size="40"></RiStarSLine><RiStarSLine size="40"></RiStarSLine><RiStarSLine size="40"></RiStarSLine>
         </IonRow>

@@ -27,7 +27,9 @@ const initialDb=[
     especialidad: "asd",
     lat:0,
     lng:0,
-    descripcion:""
+    descripcion:"",
+    categoria:"",
+    imagen:undefined
       
   }
 ]
