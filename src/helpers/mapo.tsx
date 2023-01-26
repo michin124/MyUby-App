@@ -9,6 +9,7 @@ import { isLatLngLiteral } from "@googlemaps/typescript-guards";
 import { Wrapper, Status } from "@googlemaps/react-wrapper";
 import { RiMarkPenFill } from 'react-icons/ri';
 import { helphttp } from '../helpers/helphttp';
+import Categoria from '../pages/categoria';
 
 type Mapmarker=google.maps.Marker
 const containerStyle = {
@@ -32,7 +33,27 @@ const initialDbt=[
       
   }
 ]
+
+let lati:any
+let long:any
 function Mapcat(props:any) {
+  const options = {
+    //enableHighAccuracy: true,
+    timeout: 10000,
+    maximumAge: 0
+  };
+  const success=(pos:any)=> {
+    const crd = pos.coords;
+    long=crd.longitude
+    lati=crd.latitude
+    return(long+lati)
+    
+    
+  }
+  function error(err:any) {
+    console.warn(`ERROR(${err.code}): ${err.message}`);
+  } 
+  navigator.geolocation.getCurrentPosition(success, error, options)
   const Categorias=props.Categorias
   const mapRef=useRef(null)
   const [clicks, setClicks] = React.useState<google.maps.LatLng[]>([]);
@@ -43,12 +64,9 @@ function Mapcat(props:any) {
   });
   
   const cent=({
-    lat:props.latitude,
-    lng:props.Longitude})
+    lat:lati,
+    lng:long})
   
-  const cento=({
-    lat:props.latitude,
-    lng:props.Longitude})
 
  
   
@@ -82,6 +100,7 @@ function Mapcat(props:any) {
 
   
     const [dbt,setdbt]=useState(initialDbt)
+    const [dbtO,setdbtO]=useState(initialDbt)
     const [dataToeditt,setDataToeditt]=useState(null);
     const[errort,setErrort]=useState(null);
     const [dataToedit,setDataToedit]=useState(null);
@@ -90,36 +109,87 @@ function Mapcat(props:any) {
    
 
     
+    let urlCerca=""
+    let urlCercaO=""
     
-    let urltiendas="http://127.0.0.1:8000/Tiendasback/Tiendas/"
 
+  
+    urlCerca="http://127.0.0.1:8000/Tiendasback/TiendaDirCat/"
 
     
   
-   useEffect(()=>{
-    let guno=`${urltiendas}${Categorias}`;
+  
+    urlCercaO="http://127.0.0.1:8000/Tiendasback/TiendaDirCatO/"
+    
+  
+  useEffect(()=>{
+    let guno=`${urlCerca}${cent.lat}/${cent.lng}/${Categorias}`;
+   
       helphttp()
       .get(guno).then((res)=>{
-
+          if(!res.err){
+            setdbt(res.companies)
+            
+            setErrort(null)
+          }else{
+            setdbt([])
+            setErrort(res)
+          }  
+        })
+        
+  },[urlCerca]);
+  let gun=""
+  if(props.Filtro>1){
+    gun=`${urlCercaO}${cent.lat}/${cent.lng}/${Categorias}/${props.Filtro}`;
+  }
+  useEffect(()=>{
+    
+    
+      helphttp()
+      
+      .get(gun).then((res)=>{
+        
         if(!res.err){
-          setdbt(res.companies)
-          
+          setdbtO(res.companiess)
+          console.log(gun)
           setErrort(null)
         }else{
           setdbt([])
           setErrort(res)
         }
       })
-  },[urltiendas]);
+  },[urlCercaO]);
   
   
-
   const Tloc=[];
-    {for(let i = 0; i < dbt.length; i++) {
-      Tloc[i]=dbt[i]
-      
-    }}
+ 
+    if(props.Filtro==1){
+      for(let i = 0; i < props.Otros1.length; i++) {
+        Tloc[i]=props.Otros1[i]
+        
+      }
+    }
 
+    if(props.Filtro==2){
+      for(let i = 0; i < props.Otros2.length; i++) {
+        Tloc[i]=props.Otros2[i]
+        
+      }
+    }
+    if(props.Filtro==3){
+      for(let i = 0; i < props.Otros3.length; i++) {
+        Tloc[i]=props.Otros3[i]
+        
+      }
+    }
+    
+    
+
+    
+  
+    console.log(Tloc)
+  
+    
   return isLoaded ? (
     <div>
       <GoogleMap
@@ -139,7 +209,7 @@ function Mapcat(props:any) {
       >
         {<Marker position={cent} animation={google.maps.Animation.BOUNCE} opacity={0.8}/>}
         
-        {dbt.map((info:any) => {
+        {Tloc.map((info:any) => {
 
           
             const cento=({

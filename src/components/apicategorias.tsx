@@ -13,7 +13,7 @@ import { useHistory, useLocation, useParams } from 'react-router';
 import CrudTabla from './crudtabla';
 import { Console } from 'console';
 import { helphttp } from '../helpers/helphttp';
-import { options } from 'ionicons/icons';
+import { fileTray, options } from 'ionicons/icons';
 
 const initialDb=[
   {
@@ -40,121 +40,194 @@ const initialDb=[
     let {search}=useLocation();
     let query=new URLSearchParams(search);
     let idcategori=query.get("idcategori");
+    let lat=query.get("lat");
+    let long=query.get("longs");
+    let filter=query.get("filter")
     
-    const [db,setdb]=useState(initialDb)
-    const [dataToedit,setDataToedit]=useState(null);
+    
+    const [dbcer0,setdbcer0]=useState(initialDb)
+    const [dbprom0,setdbprom0]=useState(initialDb)
+    const [dbdesc0,setdbdesc0]=useState(initialDb)
+    const [dbdom0,setdbdom0]=useState(initialDb)
+    const [dbpresbaj0,setdbpresbaj0]=useState(initialDb)
+    const [dbpresjus0,setdbpresjus0]=useState(initialDb)
+    const [dbjoyas0,setdbjoyas0]=useState(initialDb)
+    const [dbelegs0,setdbelg0]=useState(initialDb)
+    const [dbpetf0,setdbpetf0]=useState(initialDb)
+
+
     const[error,setError]=useState(null);
     let api=helphttp();
-    let url="http://127.0.0.1:8000/Tiendasback/Tiendas/"
+
+    //apicerca
+    let urlCerca="http://127.0.0.1:8000/Tiendasback/TiendaDirCat/"
 
     useEffect(()=>{
-    let guno=`${url}${idcategori}`;
+    let guno=`${urlCerca}${lat}/${long}/${idcategori}/${filter}/`;
+    
       helphttp()
       .get(guno).then((res)=>{
           if(!res.err){
-            setdb(res.companies)
+            setdbcer0(res.companies)
+           
             setError(null)
           }else{
-            setdb([])
+            setdbcer0([])
             setError(res)
           }  
         })
         
-  },[url]);
+  },[urlCerca]);
   
-  
+  //apiprom
+  let urlcercaPromo="http://127.0.0.1:8000/Tiendasback/TiendaDirCatO/"
 
-//crear nuevo registro
-const createData = (data:any) => {
-  
-  data.id=Date.now();
-  //para traer el json es una cabecera
-    let options={
-      body:data,
-        headers:{"content-type":"aplication/json"},
-    }
-    //put en vez de post(funcion que reconoce la base)
-    api.post(url,options).then((res)=>{
-
-   
-      if(!res.err){
-        //db lo conbina con res osea el contenido
-        setdb([...db,res]);
-        
-      }else
-      {
-        //si res es un error pues lo manifiesta como un mago
-        setError(res);
-      }
-    });
-  //let newData=db.map(el =>el.id===data.id?data:el);
-  //
-};
-//actualizar un registro o cambiarlo 
-const updateData = (data:any) => {
-  //union de la url con el id con el fin de editar el que es
-  let endpoint=`${url}${data.id}`;
-  
-    let options={
-      body:data,
-      headers:{"content-type":"aplication/json"},
-    }
-    //put en vez de post(funcion que reconoce la base)
-    api.put(endpoint,options).then((res)=>{
-
-   
-      if(!res.err){
-        //detectar cual es el id que viene, osea lo encuentre y lo actualice
-        let newData=db.map(el =>el.id===data.id?data:el);
-        //db lo conbina con res osea el contenido
-        setdb(newData);
-        
-      }else
-      {
-        //si res es un error pues lo manifiesta como un mago
-        setError(res);
-      }
-    });
-  //let newData=db.map(el =>el.id===data.id?data:el);
-  //
-};
-
-const deleteData = (id:any) => {
-
-  
-
-  let isDelete= window.confirm('estas seguro de eliminar el usuario con id '+id+'?');
-
-  if(isDelete)
-  {
-    let endpoint=`${url}${id}`;
-    //no necesita id a eliminar porque el id es especifico
-    let options={
+    useEffect(()=>{
+    let gun=`${urlcercaPromo}${lat}/${long}/${idcategori}/2/${filter}/`;
+    
+      helphttp()
       
-      headers:{"content-type":"aplication/json"},
-    }
-
-    //aqui en endpoint
-    api.del(endpoint,options).then((res)=>{
-      if(!res.err){
-        //detectar cual es el id que necesitamos, lo quitamos de nuestra veariable de estado 
-        let newData=db.filter(el =>el.id!==id);
-        //db lo conbina con res osea el contenido
-        setdb(newData);
+      .get(gun).then((res)=>{
+          if(!res.err){
+            setdbprom0(res.companies)
+            setError(null)
+          }else{
+            setdbprom0([])
+            setError(res)
+          }  
+        })
         
-      }else
-      {
-        //si res es un error pues lo manifiesta como un mago
-        setError(res);
-      }
+  },[urlcercaPromo]);
+  
+
+  //apidescuentos
+  let urlcercaDesc="http://127.0.0.1:8000/Tiendasback/TiendaDirCatO/"
+
+    useEffect(()=>{
+    let gus=`${urlcercaDesc}${lat}/${long}/${idcategori}/3/${filter}/`;
+      helphttp()
+      .get(gus).then((res)=>{
+          if(!res.err){
+            setdbdesc0(res.companies)
+            setError(null)
+          }else{
+            setdbdesc0([])
+            setError(res)
+          }  
+        })
+        
+  },[urlcercaDesc]);
+  
+  ////apidomicilio
+  let urlcercaDomicilios="http://127.0.0.1:8000/Tiendasback/TiendaDirCatDom/"
+
+  useEffect(()=>{
+  let gus=`${urlcercaDomicilios}${lat}/${long}/${idcategori}/1/${filter}/`;
+    helphttp()
+    .get(gus).then((res)=>{
+        if(!res.err){
+          setdbdom0(res.companies)
+          setError(null)
+        }else{
+          setdbdom0([])
+          setError(res)
+        }  
+      })
       
+},[urlcercaDomicilios]);
+
+////apipresiobajos
+let urlcercaPresbaj="http://127.0.0.1:8000/Tiendasback/TiendaDirCatDest/"
+
+useEffect(()=>{
+let gus=`${urlcercaPresbaj}${lat}/${long}/${idcategori}/2/${filter}/`;
+  helphttp()
+  .get(gus).then((res)=>{
+      if(!res.err){
+        setdbpresbaj0(res.companies)
+        setError(null)
+      }else{
+        setdbpresbaj0([])
+        setError(res)
+      }  
     })
+    
+},[urlcercaPresbaj]);
 
-    let newData=db.filter(el=>el.id!==id);
-      setdb(newData);
+//apipresiojusto
+let urlcercaPresjus="http://127.0.0.1:8000/Tiendasback/TiendaDirCatDest/"
 
-  }
-};
+useEffect(()=>{
+let gus=`${urlcercaPresbaj}${lat}/${long}/${idcategori}/1/${filter}/`;
+  helphttp()
+  .get(gus).then((res)=>{
+      if(!res.err){
+        setdbpresjus0(res.companies)
+        setError(null)
+      }else{
+        setdbpresjus0([])
+        setError(res)
+      }  
+    })
+    
+},[urlcercaPresjus]);
+
+////apijoyas
+let urlcercajoyas="http://127.0.0.1:8000/Tiendasback/TiendaDirCatJoy/"
+
+useEffect(()=>{
+let gus=`${urlcercajoyas}${lat}/${long}/${idcategori}/1/${filter}/`;
+  helphttp()
+  .get(gus).then((res)=>{
+      if(!res.err){
+        setdbjoyas0(res.companies)
+        setError(null)
+      }else{
+        setdbjoyas0([])
+        setError(res)
+      }  
+    })
+    
+},[urlcercajoyas]);
+
+////apielegantes
+let urlelegan="http://127.0.0.1:8000/Tiendasback/TiendaDirCatDest/"
+
+useEffect(()=>{
+  let gus=`${urlcercaPresbaj}${lat}/${long}/${idcategori}/10/${filter}/`;
+  helphttp()
+  .get(gus).then((res)=>{
+      if(!res.err){
+        setdbelg0(res.companies)
+        setError(null)
+      }else{
+        setdbelg0([])
+        setError(res)
+      }  
+    })
+    
+},[urlelegan]);
+
+/////apipetfriend
+let urlpetf="http://127.0.0.1:8000/Tiendasback/TiendaDirCatPet/"
+
+useEffect(()=>{
+let gus=`${urlpetf}${lat}/${long}/${idcategori}/1/${filter}/`;
+  helphttp()
+  .get(gus).then((res)=>{
+      if(!res.err){
+        setdbpetf0(res.companies)
+        setError(null)
+      }else{
+        setdbpetf0([])
+        setError(res)
+      }  
+    })
+    
+},[urlpetf]);
+
+
+
 
     return(
           <div>
@@ -162,11 +235,11 @@ const deleteData = (id:any) => {
 
             <Categoria
               
-              data={db}
-              createData={createData} 
-              updateData={updateData}
-              dataToedit={dataToedit}
-              setDataToedit={setDataToedit}
+              data={dbcer0}
+              dataprom={dbprom0}
+              datadesc={dbdesc0}
+              
+              
              />
              
            

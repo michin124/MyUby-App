@@ -1,5 +1,6 @@
-import { IonContent, IonHeader,IonButton, IonPage, IonTitle, IonToolbar,IonInput, IonItem, IonLabel, IonList, IonItemDivider, IonGrid, IonRow, IonCol, IonImg } from '@ionic/react';
+import {IonPopover, IonContent, IonHeader,IonButton, IonPage, IonTitle, IonToolbar,IonInput, IonItem, IonLabel, IonList, IonItemDivider, IonGrid, IonRow, IonCol, IonImg, IonSelect, IonSelectOption } from '@ionic/react';
 import ExploreContainer from '../components/ExploreContainer';
+
 import { IoBeer, IoNavigate } from "react-icons/io5";
 import React, { useState } from 'react';
 import Mapcat from '../helpers/mapo';
@@ -14,6 +15,7 @@ import { AiOutlineQuestionCircle} from "react-icons/ai";
 import { MdOutlineStorefront} from "react-icons/md";
 import { RiStarSFill, RiStarSLine } from "react-icons/ri";
 
+
 import './categoria.css';
 import { useHistory, useLocation, useParams } from 'react-router';
 import { info } from 'console';
@@ -23,30 +25,164 @@ let lati:any
 let long:any
 
 const Categoria= (el:any) => {
+  const [range, setCurrentRange] = useState('');
+  const [filter, setCurrentFilter] = useState('');
+  
+  
+
   let UrlI='http://127.0.0.1:8000/media/images/'
-  let cuenta=el.data?.length || 0;
-  let history=useHistory();
+  let cuenta
+  
   let { categori }:any =useParams();
   let {search}=useLocation();
   let query=new URLSearchParams(search);
   let idcategori=query.get("idcategori");
+  let lat=query.get("lat");
+  let long=query.get("longs");
+  let filters=query.get("filter")
+
   const options = {
     //enableHighAccuracy: true,
-    timeout: 5000,
+    timeout: 6000,
     maximumAge: 0
   };
+  
+  
+  const [logs, setLogs] = useState('')
+  const pushRange = (msg: any) => {
+    setCurrentRange(msg);
+    
+  };
+  const pushFilt = (msg: any) => {
+    setCurrentFilter(msg);
+    <a href="as">g</a>
+    
+  };
+  
+  const otros=[];
+  
+  let filtro=1
+
+  
+
+if(range=="Mascercanos"){
+  
+  if(filter=="Todos"){
+    
+    filtro=1
+    cuenta=el.data?.length || 0;
+    {if(el.data?.length>1){
+      for(let i = 0; i < el.data?.length; i++) {
+        otros[i]=el.data[i]
+      }
+     } 
+    }
+    
+    
+  }
+  if(filter=="Descuentos"){
+    
+    filtro=1
+    cuenta=el.data?.length || 0;
+    {if(el.data?.length>1){
+      for(let i = 0; i < el.data?.length; i++) {
+        otros[i]=el.data[i]
+      }
+     } 
+    }
+    
+    
+  }
+  if(filter=="Promociones"){
+    
+    filtro=1
+    cuenta=el.data?.length || 0;
+    {if(el.data?.length>1){
+      for(let i = 0; i < el.data?.length; i++) {
+        otros[i]=el.data[i]
+      }
+     } 
+    }
+    
+    
+  }
+  if(filter=="Domicilios"){
+    
+    filtro=1
+    cuenta=el.data?.length || 0;
+    {if(el.data?.length>1){
+      for(let i = 0; i < el.data?.length; i++) {
+        otros[i]=el.data[i]
+      }
+     } 
+    }
+    
+    
+  }
+  if(filter=="Menoresprecios"){
+    
+    filtro=1
+    cuenta=el.data?.length || 0;
+    {if(el.data?.length>1){
+      for(let i = 0; i < el.data?.length; i++) {
+        otros[i]=el.data[i]
+      }
+     } 
+    }
+    
+    
+  }
+  if(filter=="Mayoresprecios"){
+    
+    filtro=1
+    cuenta=el.data?.length || 0;
+    {if(el.data?.length>1){
+      for(let i = 0; i < el.data?.length; i++) {
+        otros[i]=el.data[i]
+      }
+     } 
+    }
+    
+    
+  }
+  if(filter=="Populares"){
+    
+    filtro=1
+    cuenta=el.data?.length || 0;
+    {if(el.data?.length>1){
+      for(let i = 0; i < el.data?.length; i++) {
+        otros[i]=el.data[i]
+      }
+     } 
+    }
+    
+    
+  }
+  
+}
+
+
+
   const success=(pos:any)=> {
     const crd = pos.coords;
     long=crd.longitude
     lati=crd.latitude
-    return(lati)
-    return(long)
+    return(lati+long)
+    
   }
+  navigator.geolocation.getCurrentPosition(success, error, options)
   function error(err:any) {
     console.warn(`ERROR(${err.code}): ${err.message}`);
   } 
-  {navigator.geolocation.getCurrentPosition(success, error, options)}
+  navigator.geolocation.getCurrentPosition(success, error, options)
+ 
   
+
+ 
+  
+  
+
+
   return (
     <IonPage>
       
@@ -86,54 +222,92 @@ const Categoria= (el:any) => {
       <IonRow class ="titulol">
         <h3><b>{categori}</b></h3>
       </IonRow>
+      <IonRow class='selector'>
+          
+        <IonCol className='colFilterOne'>
+          <IonCol >
+            <IonLabel>Rango:</IonLabel>
+          </IonCol>
+          <IonSelect placeholder="Seleccionar" className='filtro1' onIonChange={(e) => pushRange(`${e.detail.value}`)}>
+            <IonSelectOption className='select' value="Mascercanos">Mas cercanos</IonSelectOption>
+            <IonSelectOption className='select' value="De 1 a 3km" >De 1 a 3km</IonSelectOption>
+            <IonSelectOption className='select' value="De 3 a 6km">De 3 a 6km</IonSelectOption>
+            <IonSelectOption className='select' value="De 6 a 10km" >De 6 a 10km</IonSelectOption>
+            <IonSelectOption className='select' value="Mas de 10km">Mas de 10km</IonSelectOption>
+          </IonSelect>
+        </IonCol>
+        <IonCol className='colFiltertwo'>
+          <IonCol >
+            <IonLabel>Ordenar Por:</IonLabel>
+          </IonCol>
+          <IonSelect placeholder="Seleccionar" className='filtro2' onIonChange={(ev) => pushFilt(`${ev.detail.value}`)}>
+            <IonSelectOption className='select' value="Todos" >Todos</IonSelectOption>
+            <IonSelectOption className='select' value="Descuentos" >Descuentos</IonSelectOption>
+            <IonSelectOption className='select' value="Promociones" >Promociones</IonSelectOption>
+            <IonSelectOption className='select' value="Domicilios">Domicilios</IonSelectOption>
+            <IonSelectOption className='select' value="Menoresprecios" >Menores Precios</IonSelectOption>
+            <IonSelectOption className='select' value="Mayoresprecios" >Mayores Precios</IonSelectOption>
+            <IonSelectOption className='select' value="Populares">Populares</IonSelectOption>
+          </IonSelect>
+        </IonCol>
+        
+       
+        
+        
+
+
+      </IonRow>
       
-     
+      
       <IonRow class="categoria">
-      
-        {cuenta>0 ?(el.data.map((info:any) => {
-         
-          let url=`/productostienda?idcategori=${idcategori}`+`&idtienda=${info.id}`;
-          return(<>
-
-            {info.foto!='' &&
+      {cuenta>0&&
+          
+          cuenta>0 ?(otros.map((info:any) => {
             
-              <IonCol class="Categorias" ><IonRow ><IonButton href={url} className='fototiendas' expand="full" fill="clear" size='large'><img src={`${UrlI}${info.foto}`} sizes={'100'} alt="Logo" /></IonButton></IonRow><IonRow  class="nombre">{info.nombretienda}</IonRow></IonCol>
-            }
-          </>)
-        
-      })):
-      (
-        <h2></h2>
-      )
+            let url=`/productostienda?idcategori=${idcategori}`+`&idtienda=${info.id}`;
+            return(<>
 
-    }
-      </IonRow>
-      
-      <IonRow class="titulo3">
-        <h3><b>{categori}</b> CERCA TUYO</h3>
-      </IonRow>
+              {info.foto!='' &&
+              <IonRow>
+                <IonCol class="Categorias" ><IonRow ><IonButton href={url} className='fototiendas' expand="full" fill="clear" size='large'><img src={`${UrlI}${info.foto}`} sizes={'100'} alt="Logo" /></IonButton></IonRow><IonRow  class="nombre">{info.nombretienda}</IonRow></IonCol>
 
-      <IonRow class="mapa">
-        <IonCol class="mapas">
+              </IonRow>
+                }
+            </>)
+          
+          })):
+          (
+            <h2 className='errorcategorias'>Ups parece que no tienes {categori} cerca tuyo....</h2>
+          )
+
+          
         
+
+      }
         
-        {lati==undefined &&
-          
-          <Mapcat refresh={true} reload={true}
-          />
-          
-        }
-        {lati!=undefined &&
-          
-          <Mapcat latitude={lati} Longitude={long} Categorias={idcategori}
-          />
-        }
-         </IonCol>
- 
       </IonRow>
-      
+      {cuenta>1&&
+        <IonRow>
+            <IonRow class="titulo3">
+              <h3><b>{categori}</b> EN EL MAPA</h3>
+            </IonRow>
+
+
+            <IonRow class="mapa">
+              <IonCol class="mapas">
+                <Mapcat latitude={lati} Longitude={long} Categorias={idcategori} Filtro={filtro} Otros1={el.data} Otros2={el.dataprom} Otros3={el.datadesc} 
+                />
+              
+              </IonCol>
+
+            </IonRow>
+        </IonRow>
+      }
+
+
 
       </IonContent>
+      
     </IonPage>
   );
 };

@@ -35,20 +35,21 @@ const Tab1= (el:any) => {
 //mapa mijo
   const options = {
     //enableHighAccuracy: true,
-    timeout: 5000,
+    timeout: 10000,
     maximumAge: 0
   };
   const success=(pos:any)=> {
     const crd = pos.coords;
     long=crd.longitude
     lati=crd.latitude
-    return(lati)
     return(long)
+    return(lati)
+    
   }
   function error(err:any) {
     console.warn(`ERROR(${err.code}): ${err.message}`);
   } 
-  {navigator.geolocation.getCurrentPosition(success, error, options)}
+  navigator.geolocation.getCurrentPosition(success, error, options)
   
 
 //mapear las tiendas de otros
@@ -96,24 +97,26 @@ const Tab1= (el:any) => {
       }
       
       {ini==null &&
+      
       <IonRow class="logos">
-      <IonButton href="tab1/logo/BARES?idcategori=1" color="white" expand="full" fill="clear" size='large'><IonCol class="logo1" ><IoBeer size="50"></IoBeer></IonCol></IonButton> 
-      <IonButton href="tab1/logo/RESTAURANTES?idcategori=2" color="white" expand="full" fill="clear" size='large'><IonCol class="logo2"><MdOutlineStorefront size="50"></MdOutlineStorefront></IonCol></IonButton> 
-      <IonButton href="tab1/logo/ESTADEROS?idcategori=3" color="white" expand="full" fill="clear" size='large'><IonCol class="logo3"><FaBed size="50"></FaBed></IonCol></IonButton> 
-      <IonButton href="tab1/logo/CAFETERIAS?idcategori=4" color="white" expand="full" fill="clear" size='large'><IonCol class="logo4"><FiCoffee size="50"></FiCoffee></IonCol></IonButton> 
-      <IonButton href="tab1/logo/PAPELERIAS?idcategori=5" color="white" expand="full" fill="clear" size='large'><IonCol class="logo5"><FaPencilRuler size="50"></FaPencilRuler></IonCol></IonButton> 
-      <IonButton href="tab1/logo/FERRETERIAS?idcategori=6" color="white" expand="full" fill="clear" size='large'><IonCol class="logo6"><FaBriefcase size="50"></FaBriefcase></IonCol></IonButton> 
-      <IonButton href="tab1/logo/VETERINARIAS?idcategori=7" color="white" expand="full" fill="clear" size='large'><IonCol class="logo7"><MdPets size="50"></MdPets></IonCol></IonButton> 
+      <IonButton href={`tab1/logo/BARES?lat=${lati}`+`&longs=${long}`+`&idcategori=1`+`&filter=0`} color="white" expand="full" fill="clear" size='large'><IonCol class="logo1" ><IoBeer size="50"></IoBeer></IonCol></IonButton> 
+      <IonButton href={`tab1/logo/RESTAURANTES?lat=${lati}`+`&longs=${long}`+`&idcategori=2`+`&filter=0`} color="white" expand="full" fill="clear" size='large'><IonCol class="logo2"><MdOutlineStorefront size="50"></MdOutlineStorefront></IonCol></IonButton> 
+      <IonButton href={`tab1/logo/ESTADEROS?lat=${lati}`+`&longs=${long}`+`&idcategori=3`+`&filter=0`} color="white" expand="full" fill="clear" size='large'><IonCol class="logo3"><FaBed size="50"></FaBed></IonCol></IonButton> 
+      <IonButton href={`tab1/logo/CAFETERIAS?lat=${lati}`+`&longs=${long}`+`&idcategori=4`+`&filter=0`} color="white" expand="full" fill="clear" size='large'><IonCol class="logo4"><FiCoffee size="50"></FiCoffee></IonCol></IonButton> 
+      <IonButton href={`tab1/logo/PAPELERIAS?lat=${lati}`+`&longs=${long}`+`&idcategori=5`+`&filter=0`} color="white" expand="full" fill="clear" size='large'><IonCol class="logo5"><FaPencilRuler size="50"></FaPencilRuler></IonCol></IonButton> 
+      <IonButton href={`tab1/logo/FERRETERIAS?lat=${lati}`+`&longs=${long}`+`&idcategori=6`+`&filter=0`} color="white" expand="full" fill="clear" size='large'><IonCol class="logo6"><FaBriefcase size="50"></FaBriefcase></IonCol></IonButton> 
+      <IonButton href={`tab1/logo/VETERINARIAS?lat=${lati}`+`&longs=${long}`+`&idcategori=7`+`&filter=0`}color="white" expand="full" fill="clear" size='large'><IonCol class="logo7"><MdPets size="50"></MdPets></IonCol></IonButton> 
       <IonButton href="/tab1/MAS" color="white" expand="full" fill="clear" size='large'><IonCol class="logo8"><AiOutlineQuestionCircle size="50"></AiOutlineQuestionCircle></IonCol></IonButton>
       </IonRow>
       }
       {ini=="MAS" &&
         <IonRow class="logoslist">
-          <IonList>
+          <IonList class='listoIni'>
           
           {otros.map((info:any) => {
             
-            let url=`tab1/logo/${info.tipocategoria}?idcategori=${info.id}`;
+            let url=`tab1/logo/${info.tipocategoria}?lat=${lati}`+`&longs=${long}`+`&idcategori=${info.id}`+`&filter=0`;
+            {console.log(url)}
             return(<>
             
             <IonButton href={url} class="blist" color="white" expand="full" fill="clear"  size='large'><p>{info.tipocategoria}</p></IonButton>

@@ -13,6 +13,7 @@ import { image } from 'ionicons/icons';
 import { helphttp } from '../helpers/helphttp';
 
 
+
 const guerrero={
  
   id: null,
