@@ -9,6 +9,7 @@ import { isLatLngLiteral } from "@googlemaps/typescript-guards";
 import { Wrapper, Status } from "@googlemaps/react-wrapper";
 import { RiMarkPenFill } from 'react-icons/ri';
 import { helphttp } from '../helpers/helphttp';
+import Categoria from '../pages/categoria';
 
 type Mapmarker=google.maps.Marker
 const containerStyle = {
@@ -32,28 +33,39 @@ const initialDbt=[
       
   }
 ]
+
+
 function Mapcat(props:any) {
-  const Categorias=props.Categorias
+  var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
+ 
+  const [lati,setLati]=React.useState(1)  
+  const [long,setLong]=React.useState(1)  
+  const options = {
+    //enableHighAccuracy: true,
+    timeout: 10000,
+    maximumAge: 0
+  };
+  const success=(pos:any)=> {
+    const crd = pos.coords;
+    setLong(crd.longitude)
+    setLati(crd.latitude) 
+  }
+  function error(err:any) {
+    console.warn(`ERROR(${err.code}): ${err.message}`);
+  } 
+  navigator.geolocation.getCurrentPosition(success, error, options)
   const mapRef=useRef(null)
   const [clicks, setClicks] = React.useState<google.maps.LatLng[]>([]);
   let [center, setCenter] = React.useState<google.maps.LatLngLiteral>({
-    lat: 4.578283266357103,
-    lng: -74.11971172280586,
+    lat: parseFloat(props.latitud),
+    lng: parseFloat(props.Longitud),
     
   });
   
-  const cent=({
-    lat:props.latitude,
-    lng:props.Longitude})
   
-  const cento=({
-    lat:props.latitude,
-    lng:props.Longitude})
+  
 
  
-  
-
-    
 
   const onClick = (e: google.maps.MapMouseEvent) => {
     // avoid directly mutating state
@@ -81,49 +93,75 @@ function Mapcat(props:any) {
   }, [])
 
   
-    const [dbt,setdbt]=useState(initialDbt)
-    const [dataToeditt,setDataToeditt]=useState(null);
-    const[errort,setErrort]=useState(null);
-    const [dataToedit,setDataToedit]=useState(null);
-    
-    let api=helphttp();
    
-
-    
-    
-    let urltiendas="http://127.0.0.1:8000/Tiendasback/Tiendas/"
-
-
-    
-  
-   useEffect(()=>{
-    let guno=`${urltiendas}${Categorias}`;
-      helphttp()
-      .get(guno).then((res)=>{
-
-        if(!res.err){
-          setdbt(res.companies)
-          
-          setErrort(null)
-        }else{
-          setdbt([])
-          setErrort(res)
-        }
-      })
-  },[urltiendas]);
-  
-  
-
+   
+   
+//dependiendo el filtro aparecen las tiendas
   const Tloc=[];
-    {for(let i = 0; i < dbt.length; i++) {
-      Tloc[i]=dbt[i]
-      
-    }}
+ {
+    if(props.Filtro==1){
+      for(let i = 0; i < props.todos.length; i++) {
+        Tloc[i]=props.todos[i]
+        
+      }
+    }
 
+    if(props.Filtro==2){
+      for(let i = 0; i < props.prom.length; i++) {
+        Tloc[i]=props.prom[i]
+        
+      }
+    }
+    if(props.Filtro==3){
+      for(let i = 0; i < props.desc.length; i++) {
+        Tloc[i]=props.desc[i]
+        
+      }
+    }
+    if(props.Filtro==4){
+      for(let i = 0; i < props.domi.length; i++) {
+        Tloc[i]=props.domi[i]
+        
+      }
+    }
+    if(props.Filtro==5){
+      for(let i = 0; i < props.menos.length; i++) {
+        Tloc[i]=props.menos[i]
+        
+      }
+    }
+    if(props.Filtro==6){
+      for(let i = 0; i < props.just.length; i++) {
+        Tloc[i]=props.just[i]
+        
+      }
+    }
+    if(props.Filtro==7){
+      for(let i = 0; i < props.pet.length; i++) {
+        Tloc[i]=props.pet[i]
+        
+      }
+    }
+    if(props.Filtro==8){
+      for(let i = 0; i < props.eleg.length; i++) {
+        Tloc[i]=props.eleg[i]
+        
+      }
+    }
+    if(props.Filtro==9){
+      for(let i = 0; i < props.joy.length; i++) {
+        Tloc[i]=props.joy[i]
+        
+      }
+    }
+    
+    
+  }
+     
   return isLoaded ? (
     <div>
       <GoogleMap
-      center={cent}
+      center={center}
       onClick={onClick}
       onLoad={handleLoad} 
       zoom={16}
@@ -133,27 +171,19 @@ function Mapcat(props:any) {
       options={{
         mapId:"3653ed0218e9613",
         maxZoom:19,
-        minZoom:15.5,
+        minZoom:16.5,
         mapTypeControl:false
       }}
       >
-        {<Marker position={cent} animation={google.maps.Animation.BOUNCE} opacity={0.8}/>}
+        {<Marker position={center} animation={google.maps.Animation.BOUNCE} opacity={1} icon={iconBase + 'parking_lot_maps.png'}/>}
         
-        {dbt.map((info:any) => {
-
-          
+        {Tloc.map((info:any) => {
             const cento=({
               lat:parseFloat(info.lat),
               lng:parseFloat(info.lng)})
-            
-            
-            
             return(<>
-           
               {<Marker position={cento} opacity={0.8}/>}
-              
-            </>)
-          
+            </>) 
         })} 
         
       </GoogleMap>

@@ -13,6 +13,7 @@ import { image } from 'ionicons/icons';
 import { helphttp } from '../helpers/helphttp';
 
 
+
 const guerrero={
  
   id: null,
@@ -119,7 +120,7 @@ const CrudForm = (props:any) =>{
         .then((res) => res.json())
         .then((data) => console.log(data))
         .catch((err) => console.error(err));
-console.log(form)
+        console.log(form)
         props.createData(form);
      
     }else{

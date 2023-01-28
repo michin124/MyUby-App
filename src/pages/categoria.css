@@ -18,7 +18,8 @@
 
 .categoria{
     margin-top: 0px;
-    margin-left: 0px;
+    margin-left: auto;
+    margin-right: auto;
     margin-bottom: 0px;
     display: grid;
     grid-template: 140px /180px 180px ;
@@ -51,10 +52,14 @@
 }
 
 
+
+  
+
 .titulo3{
     font-size: 10px;
     font-family: Verdana, Arial, Helvetica, sans-serif;
-    margin-left: -70px;
+    margin-left: 5px;
+    margin-top: 50px;
     font-family: monospace;
     text-align: center;
     justify-content: center;
@@ -78,6 +83,103 @@
     height: 310px;
     border: 2px solid #5c1914ef;
     
+}
+
+.errorcategorias{
+    text-align: center;
+    justify-content: center;
+    width: 360px;
+    height: 310px;
+    margin-right:auto;
+    margin-left: auto;
+
 
 }
+
+/*filtro 2 */
+.filtro2{
+    background: #ff9999;
+    border: 0.5px solid #ffffffef;
+    color: rgb(0, 0, 0);
+    border-radius: 20px;
+    height: 30px;
+    width: 160px;
+    align-items:center  ;
+}
+.alert-radio-group.sc-ion-alert-md, .alert-checkbox-group.sc-ion-alert-md {
+    position: relative;
+    max-height: 266px;
+    border-top: 1px solid #ff9999;
+    border-bottom: 1px solid #ff9999;
+    overflow: auto;
+}
+.alert-head.sc-ion-alert-md {
+    padding-left: 0px; 
+    padding-right: 0px;
+    padding-top: 0px;
+    padding-bottom:0px;
+    text-align: start;
+    height: 30px;
+    background-color: #ffabab;
+}
+.alert-button-group.sc-ion-alert-md {
+    
+    
+    padding-top: 0px;
+    padding-bottom: 5px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -ms-flex-wrap: wrap-reverse;
+    flex-wrap: wrap-reverse;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+}
+ion-select::part(icon) {
+    
+    color: #fff8f8;
+    opacity: 1;
+    
+    
+  }
+ion-select::part(text) {
+
+color: #ffffff;
+font-size: medium;
+
+}
+  
+
+/*filtro 1 */
+.filtro1{
+    background: #ff9999;
+    border: 0.5px solid #ffffffef;
+    color: rgb(0, 0, 0);
+    border-radius: 20px;
+    height: 30px;
+    width: 140px;
+    align-items:center  ;
+    margin-left: -2px;
+} 
+
+
+ion-select {
+    --placeholder-color: #ffffff;
+    --placeholder-opacity: 1; 
+}
+
+.colFilterOne{
+    margin-left: 17px;
+}
+.colFiltertwo{
+    margin-left: -10px;
+}
+  
+  
+  
+
+  
+  
+
+
+
 

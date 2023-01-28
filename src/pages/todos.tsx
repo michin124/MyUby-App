@@ -1,4 +1,4 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar,IonButton,IonInput, IonItem, IonLabel, IonList, IonItemDivider, IonGrid, IonRow, IonCol } from '@ionic/react';
+import { IonContent, IonHeader,IonButton, IonPage, IonTitle, IonToolbar,IonInput, IonItem, IonLabel, IonList, IonItemDivider, IonGrid, IonRow, IonCol, IonImg, IonSelect, IonSelectOption } from '@ionic/react';
 import React, { useState } from 'react';
 import ExploreContainer from '../components/ExploreContainer';
 import './todos.css';
@@ -27,7 +27,63 @@ const Tab2= (el:any) => {
   let history=useHistory();
   const [text, setText] = useState<string>();
   let { filtro }:any =useParams();
+  const [logs, setLogs] = useState('')
+  const pushLog = (msg: any) => {
+    setLogs(msg);
+    
+  };
+  const otros=[];
   
+  let filt=1
+
+if(logs==""){
+  filt=1
+  cuenta=el.data?.length || 0;
+  {if(el.data?.length>1){
+    for(let i = 0; i < el.data?.length; i++) {
+      otros[i]=el.data[i]
+    }
+   } 
+  }
+  
+  
+}
+if(logs=="Cercanas"){
+  filt=1
+  cuenta=el.data?.length || 0;
+  {if(el.data?.length>1){
+    for(let i = 0; i < el.data?.length; i++) {
+      otros[i]=el.data[i]
+    }
+   } 
+  }
+  
+  
+}
+if(logs=="Cercanas con promociones"){
+  filt=2
+  cuenta=el.dataprom?.length || 0;
+  {if(el.dataprom?.length>1){
+    for(let i = 0; i < el.dataprom?.length; i++) {
+      otros[i]=el.dataprom[i]
+    }
+   } 
+  }
+ 
+}
+
+if(logs=="Cercanas con descuentos"){
+  filt=3
+  
+  cuenta=el.datadesc?.length || 0;
+  {if(el.datadesc?.length>1){
+    for(let i = 0; i < el.datadesc?.length; i++) {
+      otros[i]=el.datadesc[i]
+    }
+   } 
+  }
+  
+}
 
   return (
     <IonPage>
@@ -52,7 +108,21 @@ const Tab2= (el:any) => {
           <h1>{filtro}</h1>
         </IonRow>
         
+        <IonRow class='selector'>
+        <IonList className='listo'>
+          <IonItem className='selecto'>
+            <IonSelect  className='select' placeholder='Cercanas' interface="popover" onIonChange={(e) => pushLog(`${e.detail.value}`)}>
+              <IonSelectOption className='select' value="Cercanas" >Cercanos</IonSelectOption>
+              <IonSelectOption className='select' value="Cercanas con promociones" >Cercanos con promociones</IonSelectOption>
+              <IonSelectOption className='select' value="Cercanas con descuentos">Cercanos con descuentos</IonSelectOption>
+            </IonSelect>
+          </IonItem>
+        </IonList>
+        
+        
 
+
+      </IonRow> 
 
 
         <IonRow class="categoria">
