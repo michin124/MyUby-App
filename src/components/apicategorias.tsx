@@ -69,7 +69,7 @@ const initialDb=[
       .get(guno).then((res)=>{
           if(!res.err){
             setdbcer0(res.companies)
-           
+           console.log(dbcer0)
             setError(null)
           }else{
             setdbcer0([])
@@ -126,7 +126,7 @@ const initialDb=[
     helphttp()
     .get(gus).then((res)=>{
         if(!res.err){
-          setdbdom0(res.companies)
+          setdbdom0(res.CatDom)
           setError(null)
         }else{
           setdbdom0([])
@@ -144,7 +144,7 @@ let gus=`${urlcercaPresbaj}${lat}/${long}/${idcategori}/2/${filter}/`;
   helphttp()
   .get(gus).then((res)=>{
       if(!res.err){
-        setdbpresbaj0(res.companies)
+        setdbpresbaj0(res.CatDom)
         setError(null)
       }else{
         setdbpresbaj0([])
@@ -162,7 +162,7 @@ let gus=`${urlcercaPresbaj}${lat}/${long}/${idcategori}/1/${filter}/`;
   helphttp()
   .get(gus).then((res)=>{
       if(!res.err){
-        setdbpresjus0(res.companies)
+        setdbpresjus0(res.CatDom)
         setError(null)
       }else{
         setdbpresjus0([])
@@ -180,7 +180,7 @@ let gus=`${urlcercajoyas}${lat}/${long}/${idcategori}/1/${filter}/`;
   helphttp()
   .get(gus).then((res)=>{
       if(!res.err){
-        setdbjoyas0(res.companies)
+        setdbjoyas0(res.CatDom)
         setError(null)
       }else{
         setdbjoyas0([])
@@ -198,7 +198,7 @@ useEffect(()=>{
   helphttp()
   .get(gus).then((res)=>{
       if(!res.err){
-        setdbelg0(res.companies)
+        setdbelg0(res.CatDom)
         setError(null)
       }else{
         setdbelg0([])
@@ -216,7 +216,7 @@ let gus=`${urlpetf}${lat}/${long}/${idcategori}/1/${filter}/`;
   helphttp()
   .get(gus).then((res)=>{
       if(!res.err){
-        setdbpetf0(res.companies)
+        setdbpetf0(res.CatDom)
         setError(null)
       }else{
         setdbpetf0([])
@@ -238,6 +238,12 @@ let gus=`${urlpetf}${lat}/${long}/${idcategori}/1/${filter}/`;
               data={dbcer0}
               dataprom={dbprom0}
               datadesc={dbdesc0}
+              dbdom0={dbdom0}
+              dbpresbaj0={dbpresbaj0}
+              dbpresjus0={dbpresjus0}
+              dbpetf0={dbpetf0}
+              dbelegs0={dbelegs0}
+              dbjoyas0={dbjoyas0}
               
               
              />

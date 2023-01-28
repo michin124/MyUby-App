@@ -7,72 +7,110 @@ import Mapcat from '../helpers/mapo';
 import { FcGlobe} from "react-icons/fc";
 import { FiCoffee} from "react-icons/fi";
 import { FaBed} from "react-icons/fa";
-import { BsSearch} from "react-icons/bs";
+
 import { FaPencilRuler} from "react-icons/fa";
 import { FaBriefcase} from "react-icons/fa";
 import { MdPets} from "react-icons/md";
-import { AiOutlineQuestionCircle} from "react-icons/ai";
+
 import { MdOutlineStorefront} from "react-icons/md";
-import { RiStarSFill, RiStarSLine } from "react-icons/ri";
 
 
 import './categoria.css';
 import { useHistory, useLocation, useParams } from 'react-router';
 import { info } from 'console';
+import { refresh } from 'ionicons/icons';
 
 
-let lati:any
-let long:any
 
 const Categoria= (el:any) => {
   const [range, setCurrentRange] = useState('');
   const [filter, setCurrentFilter] = useState('');
-  
-  
-
+  let history =useHistory()
   let UrlI='http://127.0.0.1:8000/media/images/'
   let cuenta
-  
   let { categori }:any =useParams();
   let {search}=useLocation();
   let query=new URLSearchParams(search);
   let idcategori=query.get("idcategori");
-  let lat=query.get("lat");
-  let long=query.get("longs");
-  let filters=query.get("filter")
-
-  const options = {
-    //enableHighAccuracy: true,
-    timeout: 6000,
-    maximumAge: 0
-  };
+  let lat=query.get("lat")
+  let long=query.get("longs")
+  let Nfiltro1=query.get("namefiltro1")||"seleccionar";
+  let Nfiltro2=query.get("namefiltro2")||"seleccionar";
+  
+  if(range=='')
+  {
+    if(Nfiltro1!=undefined)
+    {
+      setCurrentRange(Nfiltro1)
+    }
+    
+  }
+  
+  if(filter=='')
+  {
+    if(Nfiltro2!=undefined)
+    {
+      setCurrentFilter(Nfiltro2)
+    }
+    
+  }
   
   
-  const [logs, setLogs] = useState('')
+  
   const pushRange = (msg: any) => {
     setCurrentRange(msg);
+    window.location.reload()
     
   };
   const pushFilt = (msg: any) => {
-    setCurrentFilter(msg);
-    <a href="as">g</a>
-    
+    setCurrentFilter(msg); 
   };
-  
+
+ 
+
   const otros=[];
   
   let filtro=1
 
+  if(range=="Mas cercanos"){
+   
+    history.push({search:`?lat=${lat}`+`&longs=${long}`+`&idcategori=${idcategori}`+`&filter=${"0"}`+`&namefiltro1=${range}`+`&namefiltro2=${filter}`})
+    setCurrentRange('l')
+  }
+  if(range=="De 1 a 3km"){    
+    history.push({search:`?lat=${lat}`+`&longs=${long}`+`&idcategori=${idcategori}`+`&filter=${1}`+`&namefiltro1=${range}`+`&namefiltro2=${filter}`})
+    setCurrentRange("l")
+  }
+  
+  if(range=="De 3 a 6km"){
+    history.push({search:`?lat=${lat}`+`&longs=${long}`+`&idcategori=${idcategori}`+`&filter=${2}`+`&namefiltro1=${range}`+`&namefiltro2=${filter}`})
+    setCurrentRange("l")
+  }
+  
+  if(range=="De 6 a 10km"){  
+    history.push({search:`?lat=${lat}`+`&longs=${long}`+`&idcategori=${idcategori}`+`&filter=${3}`+`&namefiltro1=${range}`+`&namefiltro2=${filter}`})
+    setCurrentRange("l")
+  }
+  
+  if(range=="Mas de 10km"){
+    history.push({search:`?lat=${lat}`+`&longs=${long}`+`&idcategori=${idcategori}`+`&filter=${4}`+`&namefiltro1=${range}`+`&namefiltro2=${filter}`})
+    setCurrentRange("l")
+  }
+  if(range=="Menos de 1km"){
+    history.push({search:`?lat=${lat}`+`&longs=${long}`+`&idcategori=${idcategori}`+`&filter=${5}`+`&namefiltro1=${range}`+`&namefiltro2=${filter}`})
+    setCurrentRange("l")
+  }
+ 
   
 
-if(range=="Mascercanos"){
+
   
-  if(filter=="Todos"){
+  if(filter=="seleccionar"){
     
     filtro=1
     cuenta=el.data?.length || 0;
     {if(el.data?.length>1){
-      for(let i = 0; i < el.data?.length; i++) {
+      for(let i = 0; i < (el.data?.length)/2; i++) {
         otros[i]=el.data[i]
       }
      } 
@@ -80,12 +118,13 @@ if(range=="Mascercanos"){
     
     
   }
-  if(filter=="Descuentos"){
+
+  if(filter=="Todos"){
     
     filtro=1
     cuenta=el.data?.length || 0;
     {if(el.data?.length>1){
-      for(let i = 0; i < el.data?.length; i++) {
+      for(let i = 0; i < (el.data?.length)/2; i++) {
         otros[i]=el.data[i]
       }
      } 
@@ -95,11 +134,24 @@ if(range=="Mascercanos"){
   }
   if(filter=="Promociones"){
     
-    filtro=1
-    cuenta=el.data?.length || 0;
-    {if(el.data?.length>1){
-      for(let i = 0; i < el.data?.length; i++) {
-        otros[i]=el.data[i]
+    filtro=2
+    cuenta=el.dataprom?.length || 0;
+    {if(el.dataprom?.length>1){
+      for(let i = 0; i < (el.dataprom?.length)/2; i++) {
+        otros[i]=el.dataprom[i]
+      }
+     } 
+    }
+    
+    
+  }
+  if(filter=="Descuentos"){
+    
+    filtro=3
+    cuenta=el.datadesc?.length || 0;
+    {if(el.datadesc?.length>1){
+      for(let i = 0; i < (el.datadesc?.length)/2; i++) {
+        otros[i]=el.datadesc[i]
       }
      } 
     }
@@ -108,11 +160,11 @@ if(range=="Mascercanos"){
   }
   if(filter=="Domicilios"){
     
-    filtro=1
-    cuenta=el.data?.length || 0;
-    {if(el.data?.length>1){
-      for(let i = 0; i < el.data?.length; i++) {
-        otros[i]=el.data[i]
+    filtro=4
+    cuenta=el.dbdom0?.length || 0;
+    {if(el.dbdom0?.length>1){
+      for(let i = 0; i < (el.dbdom0?.length)/2; i++) {
+        otros[i]=el.dbdom0[i]
       }
      } 
     }
@@ -121,37 +173,63 @@ if(range=="Mascercanos"){
   }
   if(filter=="Menoresprecios"){
     
-    filtro=1
-    cuenta=el.data?.length || 0;
-    {if(el.data?.length>1){
-      for(let i = 0; i < el.data?.length; i++) {
-        otros[i]=el.data[i]
+    filtro=5
+    cuenta=el.dbpresbaj0?.length || 0;
+    {if(el.dbpresbaj0?.length>1){
+      for(let i = 0; i < (el.dbpresbaj0?.length)/2; i++) {
+        otros[i]=el.dbpresbaj0[i]
       }
      } 
     }
     
     
   }
-  if(filter=="Mayoresprecios"){
+  if(filter=="Preciosjustos"){
     
-    filtro=1
-    cuenta=el.data?.length || 0;
-    {if(el.data?.length>1){
-      for(let i = 0; i < el.data?.length; i++) {
-        otros[i]=el.data[i]
+    filtro=6
+    cuenta=el.dbpresjus0?.length || 0;
+    {if(el.dbpresjus0?.length>1){
+      for(let i = 0; i < (el.dbpresjus0?.length)/2; i++) {
+        otros[i]=el.dbpresjus0[i]
       }
      } 
     }
     
     
   }
-  if(filter=="Populares"){
+  if(filter=="PetFriendly"){
     
-    filtro=1
-    cuenta=el.data?.length || 0;
-    {if(el.data?.length>1){
-      for(let i = 0; i < el.data?.length; i++) {
-        otros[i]=el.data[i]
+    filtro=7
+    cuenta=el.dbpetf0?.length || 0;
+    {if(el.dbpetf0?.length>1){
+      for(let i = 0; i < (el.dbpetf0?.length)/2; i++) {
+        otros[i]=el.dbpetf0[i]
+      }
+     } 
+    }
+    
+    
+  }
+  if(filter=="Elegantes"){
+    
+    filtro=8
+    cuenta=el.dbelegs0?.length || 0;
+    {if(el.dbelegs0?.length>1){
+      for(let i = 0; i < (el.dbelegs0?.length)/2; i++) {
+        otros[i]=el.dbelegs0[i]
+      }
+     } 
+    }
+    
+    
+  }
+  if(filter=="Joyas"){
+    
+    filtro=9
+    cuenta=el.dbjoyas0?.length || 0;
+    {if(el.dbjoyas0?.length>1){
+      for(let i = 0; i < (el.dbjoyas0?.length)/2; i++) {
+        otros[i]=el.dbjoyas0[i]
       }
      } 
     }
@@ -159,22 +237,11 @@ if(range=="Mascercanos"){
     
   }
   
-}
 
 
 
-  const success=(pos:any)=> {
-    const crd = pos.coords;
-    long=crd.longitude
-    lati=crd.latitude
-    return(lati+long)
-    
-  }
-  navigator.geolocation.getCurrentPosition(success, error, options)
-  function error(err:any) {
-    console.warn(`ERROR(${err.code}): ${err.message}`);
-  } 
-  navigator.geolocation.getCurrentPosition(success, error, options)
+
+ 
  
   
 
@@ -228,26 +295,31 @@ if(range=="Mascercanos"){
           <IonCol >
             <IonLabel>Rango:</IonLabel>
           </IonCol>
-          <IonSelect placeholder="Seleccionar" className='filtro1' onIonChange={(e) => pushRange(`${e.detail.value}`)}>
-            <IonSelectOption className='select' value="Mascercanos">Mas cercanos</IonSelectOption>
-            <IonSelectOption className='select' value="De 1 a 3km" >De 1 a 3km</IonSelectOption>
+          
+          <IonSelect placeholder={Nfiltro1} className='filtro1' ok-text="Okay" onIonChange={(e) => pushRange(`${e.detail.value}`)}>
+            <IonSelectOption className='select' value="Mas cercanos">Mas cercanos</IonSelectOption>
+            <IonSelectOption className='select' value="Menos de 1km">Menos de 1km</IonSelectOption>
+            <IonSelectOption className='select' value="De 1 a 3km">De 1 a 3km</IonSelectOption>
             <IonSelectOption className='select' value="De 3 a 6km">De 3 a 6km</IonSelectOption>
-            <IonSelectOption className='select' value="De 6 a 10km" >De 6 a 10km</IonSelectOption>
+            <IonSelectOption className='select' value="De 6 a 10km">De 6 a 10km</IonSelectOption>
             <IonSelectOption className='select' value="Mas de 10km">Mas de 10km</IonSelectOption>
+            
           </IonSelect>
         </IonCol>
         <IonCol className='colFiltertwo'>
           <IonCol >
             <IonLabel>Ordenar Por:</IonLabel>
           </IonCol>
-          <IonSelect placeholder="Seleccionar" className='filtro2' onIonChange={(ev) => pushFilt(`${ev.detail.value}`)}>
+          <IonSelect placeholder={Nfiltro2} className='filtro2' onIonChange={(ev) => pushFilt(`${ev.detail.value}`)}>
             <IonSelectOption className='select' value="Todos" >Todos</IonSelectOption>
             <IonSelectOption className='select' value="Descuentos" >Descuentos</IonSelectOption>
             <IonSelectOption className='select' value="Promociones" >Promociones</IonSelectOption>
             <IonSelectOption className='select' value="Domicilios">Domicilios</IonSelectOption>
             <IonSelectOption className='select' value="Menoresprecios" >Menores Precios</IonSelectOption>
-            <IonSelectOption className='select' value="Mayoresprecios" >Mayores Precios</IonSelectOption>
-            <IonSelectOption className='select' value="Populares">Populares</IonSelectOption>
+            <IonSelectOption className='select' value="Preciosjustos" >Precios justos</IonSelectOption>
+            <IonSelectOption className='select' value="PetFriendly">PetFriendly</IonSelectOption>
+            <IonSelectOption className='select' value="Elegantes">Lujosos</IonSelectOption>
+            <IonSelectOption className='select' value="Joyas">Joyas</IonSelectOption>
           </IonSelect>
         </IonCol>
         
@@ -295,7 +367,7 @@ if(range=="Mascercanos"){
 
             <IonRow class="mapa">
               <IonCol class="mapas">
-                <Mapcat latitude={lati} Longitude={long} Categorias={idcategori} Filtro={filtro} Otros1={el.data} Otros2={el.dataprom} Otros3={el.datadesc} 
+                <Mapcat latitud={lat} Longitud={long} Categorias={idcategori} Filtro={filtro} todos={el.data} prom={el.dataprom} desc={el.datadesc} domi={el.dbdom0} menos={el.dbpresbaj0} just={el.dbpresjus0} pet={el.dbpetf0} eleg={el.dbelegs0} joy={el.dbjoyas0}
                 />
               
               </IonCol>

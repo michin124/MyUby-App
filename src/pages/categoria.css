@@ -164,7 +164,7 @@ font-size: medium;
 
 ion-select {
     --placeholder-color: #ffffff;
-    --placeholder-opacity: 0.8; 
+    --placeholder-opacity: 1; 
 }
 
 .colFilterOne{

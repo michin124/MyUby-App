@@ -24,10 +24,11 @@ import { useHistory, useLocation} from 'react-router';
 import { reload } from 'ionicons/icons';
 
 
-let lati:any
-let long:any
 
 const Tab1= (el:any) => {
+  
+  const [lati,setLati]=React.useState('')  
+  const [long,setLong]=React.useState('')  
   const [refresh, setRefresh] = React.useState(0)
   function refreshPage() {
     window.location.reload();
@@ -40,11 +41,8 @@ const Tab1= (el:any) => {
   };
   const success=(pos:any)=> {
     const crd = pos.coords;
-    long=crd.longitude
-    lati=crd.latitude
-    return(long)
-    return(lati)
-    
+    setLong(crd.longitude)
+    setLati(crd.latitude)
   }
   function error(err:any) {
     console.warn(`ERROR(${err.code}): ${err.message}`);

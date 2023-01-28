@@ -45,10 +45,6 @@ function MyComponent(props:any) {
   const cent=({
     lat:props.latitude,
     lng:props.Longitude})
-  
-  const cento=({
-    lat:props.latitude,
-    lng:props.Longitude})
 
  
   
@@ -82,15 +78,10 @@ function MyComponent(props:any) {
 
   
     const [dbt,setdbt]=useState(initialDbt)
-    const [dataToeditt,setDataToeditt]=useState(null);
     const[errort,setErrort]=useState(null);
-    const [dataToedit,setDataToedit]=useState(null);
     
     let api=helphttp();
    
-
-    
-    
     let urltiendas="http://127.0.0.1:8000/Tiendasback/Tiendas/"
 
 
@@ -103,7 +94,6 @@ function MyComponent(props:any) {
 
         if(!res.err){
           setdbt(res.tiendas)
-          
           setErrort(null)
         }else{
           setdbt([])
@@ -114,11 +104,6 @@ function MyComponent(props:any) {
   
   
 
-  const Tloc=[];
-    {for(let i = 0; i < dbt.length; i++) {
-      Tloc[i]=dbt[i]
-      
-    }}
 
   return isLoaded ? (
     <div>
@@ -133,7 +118,7 @@ function MyComponent(props:any) {
       options={{
         mapId:"3653ed0218e9613",
         maxZoom:19,
-        minZoom:15.5,
+        minZoom:16.5,
         mapTypeControl:false
       }}
       >
