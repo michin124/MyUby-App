@@ -35,7 +35,7 @@ const Tab1= (el:any) => {
   }
 //mapa mijo
   const options = {
-    //enableHighAccuracy: true,
+    enableHighAccuracy: true,
     timeout: 10000,
     maximumAge: 0
   };
@@ -84,13 +84,13 @@ const Tab1= (el:any) => {
      
       {ini==null &&
         <IonRow class="titulo1">
-          <h2> Categorias Populares</h2>
+          <h3><b>Categorias populares:</b></h3>
         </IonRow>
       }
       
       {ini=="MAS" &&
         <IonRow class="titulo1">
-          <h2>Otras Categorias</h2>
+           <h3><b>Otras categorias:</b></h3>
         </IonRow>
       }
       
@@ -130,26 +130,30 @@ const Tab1= (el:any) => {
       
      
       <IonRow class="titulo2">
-        <h2>Tienes Cerca</h2>
+      <h3><b>Tienes cerca:</b></h3>
       </IonRow>
-      <IonRow class="mapa">
-        <IonCol class="mapas">
-        {lati==undefined &&
+      <IonRow class='MapaRow'>
+        <IonRow class="mapa">
+          <IonCol class="mapas">
+          {lati==undefined &&
+            
+            <MyComponent refresh={true} reload={true}
+            />
+            
+          }
+          {lati!=undefined &&
+            
+            <MyComponent latitude={lati} Longitude={long} Categorias={''}
+            />
+            
+          }
           
-          <MyComponent refresh={true} reload={true}
-          />
-          
-        }
-        {lati!=undefined &&
-          
-          <MyComponent latitude={lati} Longitude={long} Categorias={''}
-          />
-          
-        }
-        
-         </IonCol>
- 
+          </IonCol>
+  
+        </IonRow>
+
       </IonRow>
+      
       
 
       </IonContent>

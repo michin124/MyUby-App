@@ -34,8 +34,8 @@ const Categoria= (el:any) => {
   let idcategori=query.get("idcategori");
   let lat=query.get("lat")
   let long=query.get("longs")
-  let Nfiltro1=query.get("namefiltro1")||"seleccionar";
-  let Nfiltro2=query.get("namefiltro2")||"seleccionar";
+  let Nfiltro1=query.get("namefiltro1")||"Todas";
+  let Nfiltro2=query.get("namefiltro2")||"Seleccionar";
   
   if(range=='')
   {
@@ -72,7 +72,7 @@ const Categoria= (el:any) => {
   
   let filtro=1
 
-  if(range=="Mas cercanos"){
+  if(range=="Todas"){
    
     history.push({search:`?lat=${lat}`+`&longs=${long}`+`&idcategori=${idcategori}`+`&filter=${"0"}`+`&namefiltro1=${range}`+`&namefiltro2=${filter}`})
     setCurrentRange('l')
@@ -119,7 +119,20 @@ const Categoria= (el:any) => {
     
   }
 
-  if(filter=="Todos"){
+  if(filter=="Seleccionar"){
+    
+    filtro=1
+    cuenta=el.data?.length || 0;
+    {if(el.data?.length>1){
+      for(let i = 0; i < (el.data?.length)/2; i++) {
+        otros[i]=el.data[i]
+      }
+     } 
+    }
+    
+    
+  }
+  if(filter=="Todas"){
     
     filtro=1
     cuenta=el.data?.length || 0;
@@ -289,6 +302,7 @@ const Categoria= (el:any) => {
       <IonRow class ="titulol">
         <h3><b>{categori}</b></h3>
       </IonRow>
+      
       <IonRow class='selector'>
           
         <IonCol className='colFilterOne'>
@@ -297,7 +311,7 @@ const Categoria= (el:any) => {
           </IonCol>
           
           <IonSelect placeholder={Nfiltro1} className='filtro1' ok-text="Okay" onIonChange={(e) => pushRange(`${e.detail.value}`)}>
-            <IonSelectOption className='select' value="Mas cercanos">Mas cercanos</IonSelectOption>
+            <IonSelectOption className='select' value="Todas">Todas</IonSelectOption>
             <IonSelectOption className='select' value="Menos de 1km">Menos de 1km</IonSelectOption>
             <IonSelectOption className='select' value="De 1 a 3km">De 1 a 3km</IonSelectOption>
             <IonSelectOption className='select' value="De 3 a 6km">De 3 a 6km</IonSelectOption>
@@ -308,10 +322,10 @@ const Categoria= (el:any) => {
         </IonCol>
         <IonCol className='colFiltertwo'>
           <IonCol >
-            <IonLabel>Ordenar Por:</IonLabel>
+            <IonLabel>Tiendas con:</IonLabel>
           </IonCol>
           <IonSelect placeholder={Nfiltro2} className='filtro2' onIonChange={(ev) => pushFilt(`${ev.detail.value}`)}>
-            <IonSelectOption className='select' value="Todos" >Todos</IonSelectOption>
+            <IonSelectOption className='select' value="Seleccionar" >Todas</IonSelectOption>
             <IonSelectOption className='select' value="Descuentos" >Descuentos</IonSelectOption>
             <IonSelectOption className='select' value="Promociones" >Promociones</IonSelectOption>
             <IonSelectOption className='select' value="Domicilios">Domicilios</IonSelectOption>
@@ -359,7 +373,7 @@ const Categoria= (el:any) => {
         
       </IonRow>
       {cuenta>1&&
-        <IonRow>
+        <IonRow class='MapaRow'>
             <IonRow class="titulo3">
               <h3><b>{categori}</b> EN EL MAPA</h3>
             </IonRow>
@@ -367,7 +381,7 @@ const Categoria= (el:any) => {
 
             <IonRow class="mapa">
               <IonCol class="mapas">
-                <Mapcat latitud={lat} Longitud={long} Categorias={idcategori} Filtro={filtro} todos={el.data} prom={el.dataprom} desc={el.datadesc} domi={el.dbdom0} menos={el.dbpresbaj0} just={el.dbpresjus0} pet={el.dbpetf0} eleg={el.dbelegs0} joy={el.dbjoyas0}
+                <Mapcat  latitud={lat} Longitud={long} Categorias={idcategori} Filtro={filtro} todos={el.data} prom={el.dataprom} desc={el.datadesc} domi={el.dbdom0} menos={el.dbpresbaj0} just={el.dbpresjus0} pet={el.dbpetf0} eleg={el.dbelegs0} joy={el.dbjoyas0}
                 />
               
               </IonCol>
