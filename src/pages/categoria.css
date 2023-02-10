@@ -86,14 +86,14 @@
     
     display: grid;
     grid-template: 5% 95% / 100% ;
-    margin-bottom: 5%;
+    margin-bottom: 1%;
 }
 .mapas{
     text-align: center;
     justify-content: center;
     
     height: 310px;
-    border: 2px solid #5c1914ef;
+    
     
 }
 

@@ -36,7 +36,9 @@ const Categoria= (el:any) => {
   let long=query.get("longs")
   let Nfiltro1=query.get("namefiltro1")||"Todas";
   let Nfiltro2=query.get("namefiltro2")||"Seleccionar";
-  
+  const otros=[];
+  let filtro=1
+
   if(range=='')
   {
     if(Nfiltro1!=undefined)
@@ -68,9 +70,6 @@ const Categoria= (el:any) => {
 
  
 
-  const otros=[];
-  
-  let filtro=1
 
   if(range=="Todas"){
    
@@ -375,7 +374,7 @@ const Categoria= (el:any) => {
       {cuenta>1&&
         <IonRow class='MapaRow'>
             <IonRow class="titulo3">
-              <h3><b>{categori}</b> EN EL MAPA</h3>
+              <h3><b>{categori}</b><b> EN EL MAPA</b> </h3>
             </IonRow>
 
 
