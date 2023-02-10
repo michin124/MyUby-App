@@ -18,18 +18,17 @@
 
 .categoria{
     margin-top: 0px;
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 5%;
+    margin-right: 5%;
     margin-bottom: 0px;
     display: grid;
-    grid-template: 140px /180px 180px ;
+    grid-template: 50% /50% 50% ;
     background: #ffffffef;
 }
 .fototiendas{
     border: 2px solid #5c1914ef;
     margin-left: -0px;
-    width: 175px;
-    height: 100px;
+    height: 100%;
 }
 .nombre{
     font-family: Verdana, Arial, Helvetica, sans-serif;
@@ -46,8 +45,7 @@
    
     margin-top: 0px;
     margin-bottom: -10px;
-    width: 300px;
-    height: 150px;
+   
     
 }
 
@@ -61,27 +59,41 @@
     margin-left: 5px;
     margin-top: 50px;
     font-family: monospace;
-    text-align: center;
-    justify-content: center;
     color: #ff9999;
     
    
 
 }
-
-.mapa{
+.MapaRow{
+    justify-content:center;
     text-align: center;
-    justify-content: center;
+}
+
+
+
+
+.selector{
+    
     display: grid;
-    grid-template: auto auto / auto ;
-    margin-bottom: 10px;
+    grid-template: 100% / 50% 50% ;
+    margin-bottom: 5%;
+
+}
+.mapa{
+    
+    justify-content:center;
+    text-align: center;
+    
+    display: grid;
+    grid-template: 5% 95% / 100% ;
+    margin-bottom: 1%;
 }
 .mapas{
     text-align: center;
     justify-content: center;
-    width: 360px;
+    
     height: 310px;
-    border: 2px solid #5c1914ef;
+    
     
 }
 
@@ -98,12 +110,13 @@
 
 /*filtro 2 */
 .filtro2{
+    
     background: #ff9999;
     border: 0.5px solid #ffffffef;
     color: rgb(0, 0, 0);
     border-radius: 20px;
     height: 30px;
-    width: 160px;
+    width: 91%;
     align-items:center  ;
 }
 .alert-radio-group.sc-ion-alert-md, .alert-checkbox-group.sc-ion-alert-md {
@@ -156,7 +169,7 @@ font-size: medium;
     color: rgb(0, 0, 0);
     border-radius: 20px;
     height: 30px;
-    width: 140px;
+    width: 90%;
     align-items:center  ;
     margin-left: -2px;
 } 
@@ -168,11 +181,9 @@ ion-select {
 }
 
 .colFilterOne{
-    margin-left: 17px;
+    margin-left: 10%;
 }
-.colFiltertwo{
-    margin-left: -10px;
-}
+
   
   
   

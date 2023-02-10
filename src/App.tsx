@@ -63,7 +63,7 @@ const App: React.FC = () => (
           <Route path="/necesitasa" component={necesitasa} />
           <Route path="/holu" component={Inicion} />
           <Route path="/tab3" component={Tab3} exact={true} />
-          <Route path="/tab2/:id" component={Apiofertas} />
+          
           <Route path="/tab1/" component={Apinicio} exact={true} />
           <Route path="/tab1/:ini" component={Apinicio} exact={true} />
           
@@ -87,7 +87,7 @@ const App: React.FC = () => (
             <AiOutlineHome size="50"></AiOutlineHome>
             <IonLabel>HOME</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="tab2" href="/todos/Todos" className="abajo">
+          <IonTabButton tab="tab2" href="/todos/0" className="abajo">
             <AiTwotoneTags size="50"></AiTwotoneTags>
             <IonLabel>OFFERS</IonLabel>
           </IonTabButton>
