@@ -14,7 +14,7 @@ import CrudTabla from './crudtabla';
 import { Console } from 'console';
 import { helphttp } from '../helpers/helphttp';
 import { options } from 'ionicons/icons';
-import Tab2 from '../pages/todos';
+import Tab2 from '../pages/Tab2';
 
 const initialDb=[
   {

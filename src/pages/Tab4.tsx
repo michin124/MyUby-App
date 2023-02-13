@@ -2,7 +2,7 @@ import { IonContent, IonHeader,IonButton, IonPage,IonRefresherContent,IonRefresh
 
 import React, { useEffect, useState } from 'react';
 import ExploreContainer from '../components/ExploreContainer';
-import './todos.css';
+import './Tab4.css';
 import { useParams } from 'react-router';
 import { FcGlobe} from "react-icons/fc";
 import { RiStarSFill, RiStarSLine } from "react-icons/ri";
@@ -32,7 +32,7 @@ const initialDb=[
 ]
 
 
-const Tab2= (el:any) => {
+const Tab4= (el:any) => {
   const [lati,setLati]=React.useState(-1)  
   const [long,setLong]=React.useState(-1) 
   const [dbprom0,setdbprom0]=useState(initialDb)
@@ -158,99 +158,12 @@ const Tab2= (el:any) => {
       
       <IonHeader class='header'>
       <IonRow class='header2'>
-      <IonCol class="x"><FcGlobe size="50"></FcGlobe></IonCol>
-      <IonCol class="x2"><h2>ADRESS</h2></IonCol>
-      <IonCol class="x3"><h2>MYUBY</h2></IonCol>
+      <IonCol class="x3"><b className="x3">MyUby</b></IonCol>
       </IonRow>  
       </IonHeader>
 
       <IonContent fullscreen>
 
-      <IonRow >
-          <h3 ><b>Productos con:</b></h3>
-     </IonRow>
-
-     
-
-      <IonRow class='slider'>
-        <IonSegment color="primary" value={fil} onIonChange={(e) => pushRange(`${e.detail.value}`)}>
-          <IonSegmentButton class='seccion' value="Descuentos">
-            <HiReceiptPercent size="25"></HiReceiptPercent>
-            <IonLabel class='subseccion'>Descuentos</IonLabel>
-          </IonSegmentButton>
-          <IonSegmentButton class='seccion' value="Promociones">
-          <BsPatchCheckFill size="25"></BsPatchCheckFill>
-            <IonLabel class='subseccion' >Promociones</IonLabel>
-          </IonSegmentButton>
-        </IonSegment>
-
-      </IonRow>
-      <IonRow>
-      <IonCol className='colFilterOneT'>
-         
-            <h4 className='TitleF'>Rango:</h4>
-          
-          
-          <IonSelect placeholder={Nfiltro1} className='filtroT' ok-text="Okay" onIonChange={(ev) => pushFilt(`${ev.detail.value}`)}>
-            <IonSelectOption className='select' value="Todos">Todos</IonSelectOption>
-            <IonSelectOption className='select' value="Menos de 1km">Menos de 1km</IonSelectOption>
-            <IonSelectOption className='select' value="De 1 a 3km">De 1 a 3km</IonSelectOption>
-            <IonSelectOption className='select' value="De 3 a 6km">De 3 a 6km</IonSelectOption>
-            <IonSelectOption className='select' value="De 6 a 10km">De 6 a 10km</IonSelectOption>
-            <IonSelectOption className='select' value="Mas de 10km">Mas de 10km</IonSelectOption>
-            
-          </IonSelect>
-        </IonCol>
-     </IonRow>
-
-      <IonRow class="categoria">
-
-      
-        
-        {fil=="Descuentos" &&
-            
-              cuenta2>0 ?(otrosDesc.map((info2:any) => {
-                
-                let url=`/productostienda?idtienda=${info2.id}`;
-                
-                return(<>
-
-                  {info2.foto!='' &&
-                    
-                    <IonCol class="Categorias" ><IonRow ><IonButton href={url} className='fototiendas' expand="full" fill="clear" size='large'><img src={`${UrlI}${info2.foto}`} sizes={'100'} alt="Logo" /></IonButton></IonRow><IonRow  class="nombre">{info2.nombreproducto}</IonRow></IonCol>
-                  }
-                </>)
-        
-          })):(       
-            null
-          )
-        }
-       
-        {fil=="Promociones" &&
-              cuenta3>0 ?(otrosProm.map((info3:any) => {
-                
-                let url=`/productostienda?idtienda=${info3.id}`;
-                
-                return(<>
-
-                  {info3.foto!='' &&
-                  
-                    <IonCol class="Categorias" ><IonRow ><IonButton href={url} className='fototiendas' expand="full" fill="clear" size='large'><img src={`${UrlI}${info3.foto}`} sizes={'100'} alt="Logo" /></IonButton></IonRow><IonRow  class="nombre">{info3.nombreproducto}</IonRow></IonCol>
-                  }
-                </>)
-            
-              })):(       
-            null
-          )
-        }  
-              
-        
-      </IonRow>
-
-
-
-
-      
       
       </IonContent>
 
@@ -261,4 +174,4 @@ const Tab2= (el:any) => {
 
 
 
-export default Tab2;
+export default Tab4;

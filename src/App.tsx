@@ -14,9 +14,10 @@ import { ellipse, square, triangle } from 'ionicons/icons';
 import { FcHome} from "react-icons/fc";
 import { AiTwotoneTags,AiOutlineHome} from "react-icons/ai";
 import { CgProfile} from "react-icons/cg";
+import { MdEvent} from "react-icons/md";
 import '../src/appo.css';
 import Tab1 from './pages/Tab1';
-import todos from './pages/todos';
+import todos from './pages/Tab2';
 import Inicion from './pages/login'
 import Tab3 from './pages/Tab3';
 
@@ -51,6 +52,7 @@ import Apinicio from './components/apinicio';
 import Apicategorias from './components/apicategorias';
 import Apisobretienda from './components/apisobretienda';
 import Apiofertas from './components/apiofertas';
+import Tab4 from './pages/Tab4';
 
 setupIonicReact();
 
@@ -61,20 +63,16 @@ const App: React.FC = () => (
         <IonRouterOutlet>
           <Route path="/todos/:filtro" component={Apiofertas} exact={true} />
           <Route path="/necesitasa" component={necesitasa} />
-          <Route path="/holu" component={Inicion} />
+          <Route path="/log" component={Inicion} />
           <Route path="/tab3" component={Tab3} exact={true} />
-          
           <Route path="/tab1/" component={Apinicio} exact={true} />
           <Route path="/tab1/:ini" component={Apinicio} exact={true} />
-          
           <Route path="/productostienda" component={Apitienda}/>
           <Route path="/infotienda" component={Apisobretienda}/>
           <Route path="/tab1/logo/:categori" component={Apicategorias}/>
-          <Route path="/logo6" component={Tab3} />
           <Route path="/mydatos" component={mydatos} />
-         
           <Route path="/inicio" component={inicio} />
-          
+          <Route path="/tab4" component={Tab4} exact={true} />
           <Route path="/tab3">
             <Tab3 />
           </Route>
@@ -84,16 +82,20 @@ const App: React.FC = () => (
         
         <IonTabBar slot="bottom" className="abajo">
           <IonTabButton tab="tab1" href="/tab1/" className="abajo">
-            <AiOutlineHome size="50"></AiOutlineHome>
-            <IonLabel>HOME</IonLabel>
+            <AiOutlineHome size="32"></AiOutlineHome>
+            <IonLabel>Inicio</IonLabel>
           </IonTabButton>
           <IonTabButton tab="tab2" href="/todos/0" className="abajo">
-            <AiTwotoneTags size="50"></AiTwotoneTags>
-            <IonLabel>OFFERS</IonLabel>
+            <AiTwotoneTags size="32"></AiTwotoneTags>
+            <IonLabel>Ofertas</IonLabel>
+          </IonTabButton>
+          <IonTabButton tab="tab4" href="/tab4/" className="abajo">
+            <MdEvent size="32"></MdEvent>
+            <IonLabel>Eventos</IonLabel>
           </IonTabButton>
           <IonTabButton tab="tab3" href="/tab3/" className="abajo">
-            <CgProfile size="50"></CgProfile>
-            <IonLabel>PERFIL</IonLabel>
+            <CgProfile size="32"></CgProfile>
+            <IonLabel>My</IonLabel>
           </IonTabButton>
 
         </IonTabBar>

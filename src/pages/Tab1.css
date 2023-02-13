@@ -1,4 +1,13 @@
 
+ion-header {
+    display: block;
+    position:unset;
+    -ms-flex-order: -1;
+    order: -1;
+    width: 100%;
+    z-index: 10;
+}
+
 .header2{
     display: grid;
     grid-template:  auto/10px auto auto;
@@ -22,12 +31,15 @@
     margin-left:15% ;
 }
 .x3{
-    text-align: right;
+    text-align: center;
+    margin-top: 2%;
+    margin-bottom: 2%;
     justify-content: right;
-    margin-left:-20px ;
-    grid-column: 3/4;
-    grid-row: 1/2;
-    font-family: "Arial",serif;
+    font-size: 30px;
+    
+    grid-column: 1/4;
+    grid-row: 0/3;
+    font-family: "Lucida Handwriting",cursive;
     
 }
 .buscador{
@@ -62,6 +74,7 @@
     
 }
 
+
 .titulo2{
     font-family: Calibri, Candara, Segoe, Segoe UI, Optima, Arial, sans-serif;
     text-align: left;
@@ -85,14 +98,13 @@
     margin-left: 10%;
     margin-right: 10%;
     font-size: 45px;
-    text-align: center;
-    justify-content: center;
+   
     display: grid;
     grid-template:  auto  auto/ auto  auto  auto  auto;
     overflow: hidden;
     overflow-x:scroll;
-    padding-left: 30%;
-    padding-right: 5%;
+    padding-left: 0%;
+    padding-right: 0%;
     
 }
 .logoslist
@@ -134,8 +146,21 @@
 }
 
 .logo{
-    
+    display: grid;
+    grid-template:  50px  10px/ 40px;
+    color: #E06C7B;
+    justify-content: center;
+    justify-items: center;
+}
+.Namelogo{
+   
+    font-size: 10px;
+   color: #000000;
+
+}
+.logoCategoria{
     color: #E06C7B;
 }
+
 
 

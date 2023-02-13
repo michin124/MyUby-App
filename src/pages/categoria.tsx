@@ -252,49 +252,39 @@ const Categoria= (el:any) => {
 
 
 
-
- 
- 
-  
-
- 
-  
-  
-
-
   return (
     <IonPage>
       
       <IonHeader class='header'>
       <IonRow class='header2'>
-      <IonCol class="x"><FcGlobe size="50"></FcGlobe></IonCol>
-      <IonCol class="x2"><h2>ADRESS</h2></IonCol>
-      <IonCol class="x3"><h2>MYUBY</h2></IonCol>
+      {/* <IonCol class="x"><FcGlobe size="50"></FcGlobe></IonCol>
+      <IonCol class="x2"><h2>ADRESS</h2></IonCol> */}
+      <IonCol class="x3"><b className="x3">MyUby</b></IonCol>
       </IonRow>  
       </IonHeader>
       <IonContent fullscreen>
 
       <IonRow class ="tipol">
       {categori=="BARES" &&
-         <IonCol class="logo1" ><IoBeer size="100"></IoBeer></IonCol>
+         <IonCol class="logoCategoria" ><IoBeer size="100"></IoBeer></IonCol>
       }
         {categori=="RESTAURANTES" &&
-         <IonCol class="logo1" ><MdOutlineStorefront size="90"></MdOutlineStorefront></IonCol>
+         <IonCol class="logoCategoria" ><MdOutlineStorefront size="90"></MdOutlineStorefront></IonCol>
       }
       {categori=="ESTADEROS" &&
-         <IonCol class="logo1" ><FaBed size="90"></FaBed></IonCol>
+         <IonCol class="logoCategoria" ><FaBed size="90"></FaBed></IonCol>
       }
       {categori=="PAPELERIAS" &&
-         <IonCol class="logo1" ><FaPencilRuler size="90"></FaPencilRuler></IonCol>
+         <IonCol class="logoCategoria" ><FaPencilRuler size="90"></FaPencilRuler></IonCol>
       }
       {categori=="FERRETERIAS" &&
-         <IonCol class="logo1" ><FaBriefcase size="90"></FaBriefcase></IonCol>
+         <IonCol class="logoCategoria" ><FaBriefcase size="90"></FaBriefcase></IonCol>
       }
       {categori=="VETERINARIAS" &&
-         <IonCol class="logo1" ><MdPets size="90"></MdPets></IonCol>
+         <IonCol class="logoCategoria" ><MdPets size="90"></MdPets></IonCol>
       }
       {categori=="CAFETERIAS" &&
-         <IonCol class="logo1" ><FiCoffee size="90"></FiCoffee></IonCol>
+         <IonCol class="logoCategoria" ><FiCoffee size="90"></FiCoffee></IonCol>
       }
       
       </IonRow>

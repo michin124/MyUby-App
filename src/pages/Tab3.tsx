@@ -14,9 +14,8 @@ const Tab3: React.FC = () => {
     <IonPage>
       <IonHeader class='header'>
       <IonRow class='header2'>
-      <IonCol class="x"><FcGlobe size="50"></FcGlobe></IonCol>
-      <IonCol class="x2"><h2>ADRESS</h2></IonCol>
-      <IonCol class="x3"><h2>MYUBY</h2></IonCol>
+      
+      <IonCol class="x3"><b className="x3">MyUby</b></IonCol>
       </IonRow>  
       </IonHeader>
       <IonContent fullscreen>
