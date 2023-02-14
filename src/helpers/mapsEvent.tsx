@@ -8,12 +8,12 @@ import { MdPets} from "react-icons/md";
 import { isLatLngLiteral } from "@googlemaps/typescript-guards";
 import { Wrapper, Status } from "@googlemaps/react-wrapper";
 import { RiMarkPenFill } from 'react-icons/ri';
-import { helphttp } from '../helpers/helphttp';
+import { helphttp } from './helphttp';
 
 type Mapmarker=google.maps.Marker
 const containerStyle = {
   width: '350px',
-  height: '300px'
+  height: '230px'
 };
 const initialDbt=[
   {
@@ -33,15 +33,11 @@ const initialDbt=[
   }
 ]
 
-function MyComponent(props:any) {
+function EvenMap(props:any) {
   const Categorias=props.Categorias
   const mapRef=useRef(null)
   const [clicks, setClicks] = React.useState<google.maps.LatLng[]>([]);
-  let [center, setCenter] = React.useState<google.maps.LatLngLiteral>({
-    lat: 4.578283266357103,
-    lng: -74.11971172280586,
-    
-  });
+ 
   
   const cent=({
     lat:props.latitude,
@@ -52,29 +48,14 @@ function MyComponent(props:any) {
 
     
 
-  const onClick = (e: google.maps.MapMouseEvent) => {
-    // avoid directly mutating state
-    
-    setClicks([...clicks, e.latLng!]);
-  };
  
-
-  function onIdle(m: google.maps.Map){
-    
-    setCenter(m.getCenter()!.toJSON());
-  };
-
-  function handleLoad(map:any) {
-    mapRef.current = map;
-  }
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: "AIzaSyAoKzza6IcVFgGB8tYVQDL1PaG1eQXAez4",
     
   })
   const onLoad = React.useCallback(function callback(map) {
-    const bounds = new window.google.maps.LatLngBounds(center,null);
-    map.fitBounds(bounds);
+    mapRef.current = map;
   }, [])
 
   
@@ -110,17 +91,16 @@ function MyComponent(props:any) {
     <div>
       <GoogleMap
       center={cent}
-      onClick={onClick}
-      onLoad={handleLoad} 
-      zoom={16}
+      onLoad={onLoad} 
+      zoom={17.5}
       mapContainerStyle={containerStyle}
       mapTypeId='3653ed0218e9613'
     
       options={{
         mapId:"3653ed0218e9613",
         maxZoom:19,
-        minZoom:16.5,
-        mapTypeControl:false
+        minZoom:15.5,
+        mapTypeControl:true
       }}
       >
         {<Marker position={cent} animation={google.maps.Animation.BOUNCE} opacity={0.8}/>}
@@ -148,4 +128,4 @@ function MyComponent(props:any) {
   
 }
 
-export default MyComponent
+export default EvenMap

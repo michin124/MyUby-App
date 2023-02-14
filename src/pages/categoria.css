@@ -78,6 +78,12 @@
     grid-template: 5% 95% / 100% ;
     margin-bottom: 1%;
 }
+.mapasEve{
+    text-align: center;
+    justify-content: center;
+    height: 240px;
+
+}
 .mapas{
     text-align: center;
     justify-content: center;
@@ -105,7 +111,7 @@
     color: rgb(0, 0, 0);
     border-radius: 20px;
     height: 30px;
-    width: 90%;
+    width: 95%;
     align-items:center  ;
 }
 .alert-radio-group.sc-ion-alert-md, .alert-checkbox-group.sc-ion-alert-md {
@@ -170,7 +176,10 @@ ion-select {
 }
 
 .colFilterOne{
-    margin-left: 10%;
+    margin-right: 10%;
+}
+.colFiltertwo{
+    margin-left: 5%;
 }
 
   

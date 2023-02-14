@@ -293,22 +293,6 @@ const Categoria= (el:any) => {
       </IonRow>
       
       <IonRow class='selector'>
-          
-        <IonCol className='colFilterOne'>
-          <IonCol >
-            <IonLabel>Rango:</IonLabel>
-          </IonCol>
-          
-          <IonSelect placeholder={Nfiltro1} className='filtro1' ok-text="Okay" onIonChange={(e) => pushRange(`${e.detail.value}`)}>
-            <IonSelectOption className='select' value="Todas">Todas</IonSelectOption>
-            <IonSelectOption className='select' value="Menos de 1km">Menos de 1km</IonSelectOption>
-            <IonSelectOption className='select' value="De 1 a 3km">De 1 a 3km</IonSelectOption>
-            <IonSelectOption className='select' value="De 3 a 6km">De 3 a 6km</IonSelectOption>
-            <IonSelectOption className='select' value="De 6 a 10km">De 6 a 10km</IonSelectOption>
-            <IonSelectOption className='select' value="Mas de 10km">Mas de 10km</IonSelectOption>
-            
-          </IonSelect>
-        </IonCol>
         <IonCol className='colFiltertwo'>
           <IonCol >
             <IonLabel>Tiendas con:</IonLabel>
@@ -325,6 +309,22 @@ const Categoria= (el:any) => {
             <IonSelectOption className='select' value="Joyas">Joyas</IonSelectOption>
           </IonSelect>
         </IonCol>
+        <IonCol className='colFilterOne'>
+          <IonCol >
+            <IonLabel>Rango:</IonLabel>
+          </IonCol>
+          
+          <IonSelect placeholder={Nfiltro1} className='filtro1' ok-text="Okay" onIonChange={(e) => pushRange(`${e.detail.value}`)}>
+            <IonSelectOption className='select' value="Todas">Todas</IonSelectOption>
+            <IonSelectOption className='select' value="Menos de 1km">Menos de 1km</IonSelectOption>
+            <IonSelectOption className='select' value="De 1 a 3km">De 1 a 3km</IonSelectOption>
+            <IonSelectOption className='select' value="De 3 a 6km">De 3 a 6km</IonSelectOption>
+            <IonSelectOption className='select' value="De 6 a 10km">De 6 a 10km</IonSelectOption>
+            <IonSelectOption className='select' value="Mas de 10km">Mas de 10km</IonSelectOption>
+            
+          </IonSelect>
+        </IonCol>
+        
         
        
         

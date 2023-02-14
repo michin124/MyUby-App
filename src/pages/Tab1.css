@@ -147,15 +147,15 @@ ion-header {
 
 .logo{
     display: grid;
-    grid-template:  50px  10px/ 40px;
+    grid-template:  40px  10px/ 40px;
     color: #E06C7B;
     justify-content: center;
     justify-items: center;
 }
 .Namelogo{
-   
+    
     font-size: 10px;
-   color: #000000;
+    color: #000000;
 
 }
 .logoCategoria{

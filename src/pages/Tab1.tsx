@@ -1,11 +1,10 @@
 import { IonContent, IonHeader, IonPage, IonTitle,IonToggle,IonRadio,IonCheckbox, IonToolbar,IonButton,IonInput, IonItem, IonLabel, IonList, IonItemDivider, IonGrid, IonRow, IonCol } from '@ionic/react';
 import ExploreContainer from '../components/ExploreContainer';
-import { IoBeer } from "react-icons/io5";
 import React, { useState ,useRef } from 'react';
 import { Wrapper, Status } from "@googlemaps/react-wrapper";
 import { LoadScript, GoogleMap, Marker } from "@react-google-maps/api";
 
-
+import { IoBeer } from "react-icons/io5";
 import MyComponent from '../helpers/maps';
 import { FcGlobe} from "react-icons/fc";
 import { FiCoffee} from "react-icons/fi";
@@ -97,14 +96,14 @@ const Tab1= (el:any) => {
       {ini==null &&
       
       <IonRow class="logos">
-        <IonButton href={`tab1/logo/BARES?lat=${lati}`+`&longs=${long}`+`&idcategori=1`+`&filter=0`} color="white" expand="full" fill="clear" size='large' ><IonCol class="logo" ><IoBeer size="50"></IoBeer><b className='Namelogo'>Bares</b></IonCol></IonButton> 
-        <IonButton href={`tab1/logo/RESTAURANTES?lat=${lati}`+`&longs=${long}`+`&idcategori=2`+`&filter=0`} color="white" expand="full" fill="clear" size='large'><IonCol class="logo"><MdOutlineStorefront size="50"></MdOutlineStorefront><b className='Namelogo'>Restaurantes</b></IonCol></IonButton> 
+        <IonButton href={`tab1/logo/BARES?lat=${lati}`+`&longs=${long}`+`&idcategori=1`+`&filter=0`} color="white" expand="full" fill="clear" size='large' ><IonCol class="logo" ><IoBeer size="37"></IoBeer><b className='Namelogo'>Bares</b></IonCol></IonButton> 
+        <IonButton href={`tab1/logo/RESTAURANTES?lat=${lati}`+`&longs=${long}`+`&idcategori=2`+`&filter=0`} color="white" expand="full" fill="clear" size='large'><IonCol class="logo"><MdOutlineStorefront size="40"></MdOutlineStorefront><b className='Namelogo'>Restaurantes</b></IonCol></IonButton> 
         <IonButton href={`tab1/logo/ESTADEROS?lat=${lati}`+`&longs=${long}`+`&idcategori=3`+`&filter=0`} color="white" expand="full" fill="clear" size='large'><IonCol class="logo"><FaBed size="40"></FaBed><b className='Namelogo'>Estaderos</b></IonCol></IonButton> 
-        <IonButton href={`tab1/logo/CAFETERIAS?lat=${lati}`+`&longs=${long}`+`&idcategori=4`+`&filter=0`} color="white" expand="full" fill="clear" size='large'><IonCol class="logo"><FiCoffee size="40"></FiCoffee><b className='Namelogo'>Cafeterias</b></IonCol></IonButton> 
-        <IonButton href={`tab1/logo/PAPELERIAS?lat=${lati}`+`&longs=${long}`+`&idcategori=5`+`&filter=0`} color="white" expand="full" fill="clear" size='large'><IonCol class="logo"><FaPencilRuler size="40"></FaPencilRuler><b className='Namelogo'>Papelerias</b></IonCol></IonButton> 
-        <IonButton href={`tab1/logo/FERRETERIAS?lat=${lati}`+`&longs=${long}`+`&idcategori=6`+`&filter=0`} color="white" expand="full" fill="clear" size='large'><IonCol class="logo"><FaBriefcase size="40"></FaBriefcase><b className='Namelogo'>Ferreterias</b></IonCol></IonButton> 
-        <IonButton href={`tab1/logo/VETERINARIAS?lat=${lati}`+`&longs=${long}`+`&idcategori=7`+`&filter=0`}color="white" expand="full" fill="clear" size='large'><IonCol class="logo"><MdPets size="40"></MdPets><b className='Namelogo'>Veterinarias</b></IonCol></IonButton> 
-        <IonButton href="/tab1/MAS" color="white" expand="full" fill="clear" size='large'><IonCol class="logo"><AiOutlineQuestionCircle size="50"></AiOutlineQuestionCircle><b className='Namelogo'>Otras</b></IonCol></IonButton>
+        <IonButton href={`tab1/logo/CAFETERIAS?lat=${lati}`+`&longs=${long}`+`&idcategori=4`+`&filter=0`} color="white" expand="full" fill="clear" size='large'><IonCol class="logo"><FiCoffee size="35"></FiCoffee><b className='Namelogo'>Cafeterias</b></IonCol></IonButton> 
+        <IonButton href={`tab1/logo/PAPELERIAS?lat=${lati}`+`&longs=${long}`+`&idcategori=5`+`&filter=0`} color="white" expand="full" fill="clear" size='large'><IonCol class="logo"><FaPencilRuler size="33"></FaPencilRuler><b className='Namelogo'>Papelerias</b></IonCol></IonButton> 
+        <IonButton href={`tab1/logo/FERRETERIAS?lat=${lati}`+`&longs=${long}`+`&idcategori=6`+`&filter=0`} color="white" expand="full" fill="clear" size='large'><IonCol class="logo"><FaBriefcase size="35"></FaBriefcase><b className='Namelogo'>Ferreterias</b></IonCol></IonButton> 
+        <IonButton href={`tab1/logo/VETERINARIAS?lat=${lati}`+`&longs=${long}`+`&idcategori=7`+`&filter=0`}color="white" expand="full" fill="clear" size='large'><IonCol class="logo"><MdPets size="35"></MdPets><b className='Namelogo'>Veterinarias</b></IonCol></IonButton> 
+        <IonButton href="/tab1/MAS" color="white" expand="full" fill="clear" size='large'><IonCol class="logo"><AiOutlineQuestionCircle size="37"></AiOutlineQuestionCircle><b className='Namelogo'>Otras</b></IonCol></IonButton>
       </IonRow>
       }
       {ini=="MAS" &&

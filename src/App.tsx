@@ -82,19 +82,19 @@ const App: React.FC = () => (
         
         <IonTabBar slot="bottom" className="abajo">
           <IonTabButton tab="tab1" href="/tab1/" className="abajo">
-            <AiOutlineHome size="32"></AiOutlineHome>
+            <AiOutlineHome size="35"></AiOutlineHome>
             <IonLabel>Inicio</IonLabel>
           </IonTabButton>
           <IonTabButton tab="tab2" href="/todos/0" className="abajo">
-            <AiTwotoneTags size="32"></AiTwotoneTags>
+            <AiTwotoneTags size="35"></AiTwotoneTags>
             <IonLabel>Ofertas</IonLabel>
           </IonTabButton>
           <IonTabButton tab="tab4" href="/tab4/" className="abajo">
-            <MdEvent size="32"></MdEvent>
+            <MdEvent size="35"></MdEvent>
             <IonLabel>Eventos</IonLabel>
           </IonTabButton>
           <IonTabButton tab="tab3" href="/tab3/" className="abajo">
-            <CgProfile size="32"></CgProfile>
+            <CgProfile size="35"></CgProfile>
             <IonLabel>My</IonLabel>
           </IonTabButton>
 

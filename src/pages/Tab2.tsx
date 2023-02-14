@@ -15,6 +15,16 @@ import { BsPatchCheckFill}from "react-icons/bs";
 import { image } from 'ionicons/icons';
 
 
+import { CgLayoutGridSmall } from "react-icons/cg";
+import { IoBeer } from "react-icons/io5";
+import { FiCoffee} from "react-icons/fi";
+import { FaBed} from "react-icons/fa";
+import { BsSearch} from "react-icons/bs";
+import { FaPencilRuler} from "react-icons/fa";
+import { FaBriefcase} from "react-icons/fa";
+import { MdPets} from "react-icons/md";
+import { AiOutlineQuestionCircle} from "react-icons/ai";
+import { MdOutlineStorefront} from "react-icons/md";
 
 const initialDb=[
   {
@@ -47,6 +57,7 @@ const Tab2= (el:any) => {
   let cuenta2=dbdesc0?.length || 0;
   let cuenta3=dbprom0?.length || 0;
   let history=useHistory();
+  console.log(history)
   const [range, setCurrentRange] = useState('');
   const [fil, setfiltro] = useState('Descuentos');
   const[error,setError]=useState(null);
@@ -60,7 +71,7 @@ const Tab2= (el:any) => {
     setLati(crd.latitude);
 
     let gun=`${urlcercaPromo}${lati}/${long}/2/${filter}/`;
-    
+    console.log(gun)
       helphttp()
       .get(gun).then((res)=>{
         if(!res.err){
@@ -161,9 +172,21 @@ const Tab2= (el:any) => {
       <IonCol class="x3"><b className="x3">MyUby</b></IonCol>
       </IonRow>  
       </IonHeader>
+      
 
       <IonContent fullscreen>
-
+      <IonRow>
+        <IonRow className='logosRow'>
+          <IonButton href={`todos/0`} color="white" expand="full" fill="clear" size='large' ><IonCol class="logo" ><CgLayoutGridSmall size="50"></CgLayoutGridSmall><b className='Namelogo'>Todos</b></IonCol></IonButton> 
+          <IonButton href={`tab1/logo/BARES?lat=${lati}`+`&longs=${long}`+`&idcategori=1`+`&filter=0`} color="white" expand="full" fill="clear" size='large' ><IonCol class="logo" ><IoBeer size="35"></IoBeer><b className='Namelogo'>Bares</b></IonCol></IonButton> 
+          <IonButton href={`tab1/logo/RESTAURANTES?lat=${lati}`+`&longs=${long}`+`&idcategori=2`+`&filter=0`} color="white" expand="full" fill="clear" size='large'><IonCol class="logo"><MdOutlineStorefront size="40"></MdOutlineStorefront><b className='Namelogo'>Restaurantes</b></IonCol></IonButton> 
+          <IonButton href={`tab1/logo/ESTADEROS?lat=${lati}`+`&longs=${long}`+`&idcategori=3`+`&filter=0`} color="white" expand="full" fill="clear" size='large'><IonCol class="logo"><FaBed size="40"></FaBed><b className='Namelogo'>Estaderos</b></IonCol></IonButton> 
+          <IonButton href={`tab1/logo/CAFETERIAS?lat=${lati}`+`&longs=${long}`+`&idcategori=4`+`&filter=0`} color="white" expand="full" fill="clear" size='large'><IonCol class="logo"><FiCoffee size="35"></FiCoffee><b className='Namelogo'>Cafeterias</b></IonCol></IonButton> 
+          <IonButton href={`tab1/logo/PAPELERIAS?lat=${lati}`+`&longs=${long}`+`&idcategori=5`+`&filter=0`} color="white" expand="full" fill="clear" size='large'><IonCol class="logo"><FaPencilRuler size="35"></FaPencilRuler><b className='Namelogo'>Papelerias</b></IonCol></IonButton> 
+        </IonRow>
+        
+      </IonRow>
+      
       <IonRow class="tituloTodos">
       
           <h3 className="tituloTodos" ><b>Productos con:</b></h3>
@@ -172,13 +195,13 @@ const Tab2= (el:any) => {
      
 
       <IonRow class='slider'>
-        <IonSegment color="primary" value={fil} onIonChange={(e) => pushRange(`${e.detail.value}`)}>
+        <IonSegment color="tertiary" value={fil} onIonChange={(e) => pushRange(`${e.detail.value}`)}>
           <IonSegmentButton class='seccion' value="Descuentos">
-            <HiReceiptPercent size="25"></HiReceiptPercent>
+            <HiReceiptPercent size="20"></HiReceiptPercent>
             <IonLabel class='subseccion'>Descuentos</IonLabel>
           </IonSegmentButton>
           <IonSegmentButton class='seccion' value="Promociones">
-          <BsPatchCheckFill size="25"></BsPatchCheckFill>
+          <BsPatchCheckFill size="20"></BsPatchCheckFill>
             <IonLabel class='subseccion'>Promociones</IonLabel>
           </IonSegmentButton>
         </IonSegment>
@@ -201,6 +224,7 @@ const Tab2= (el:any) => {
           </IonSelect>
         </IonCol>
      </IonRow>
+     
 
       <IonRow class="categoria">
 
