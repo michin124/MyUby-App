@@ -13,7 +13,7 @@ import { helphttp } from './helphttp';
 type Mapmarker=google.maps.Marker
 const containerStyle = {
   width: '350px',
-  height: '230px'
+  height: '230px',
 };
 const initialDbt=[
   {
@@ -37,11 +37,12 @@ function EvenMap(props:any) {
   const Categorias=props.Categorias
   const mapRef=useRef(null)
   const [clicks, setClicks] = React.useState<google.maps.LatLng[]>([]);
- 
+  let long=0
+  let lati=0
   
   const cent=({
-    lat:props.latitude,
-    lng:props.Longitude})
+    lat:lati,
+    lng:long})
 
  
   
@@ -56,6 +57,26 @@ function EvenMap(props:any) {
   })
   const onLoad = React.useCallback(function callback(map) {
     mapRef.current = map;
+    navigator.geolocation.getCurrentPosition(
+      (pos:any)=>{
+        const crd = pos.coords;
+        long=crd.longitude;
+        lati=crd.latitude;
+        console.log(map);
+        
+        //let gMap = new google.maps.Map(document.getElementById('mapita')??new Element()); 
+        console.log(map)
+        // map.setZoom(50);      // This will trigger a zoom_changed on the map
+        map.setCenter(new google.maps.LatLng(lati, long));
+        // map.setMapTypeId(google.maps.MapTypeId.ROADMAP);
+      },
+      function(err){ console.warn(`ERROR(${err.code}): ${err.message}`)},
+      {
+        enableHighAccuracy:true,
+        timeout:10000,
+        maximumAge:0
+      }
+    )
   }, [])
 
   
@@ -90,7 +111,7 @@ function EvenMap(props:any) {
   return isLoaded ? (
     <div>
       <GoogleMap
-      center={cent}
+      id='mapita'
       onLoad={onLoad} 
       zoom={17.5}
       mapContainerStyle={containerStyle}

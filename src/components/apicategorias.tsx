@@ -55,21 +55,33 @@ const initialDb=[
     const [dbelegs0,setdbelg0]=useState(initialDb)
     const [dbpetf0,setdbpetf0]=useState(initialDb)
 
+    //distancia
+    const [dbcerdis0,setdbcerdis0]=useState(initialDb)
+    const [dbpromdis0,setdbpromdis0]=useState(initialDb)
+    const [dbdescdis0,setdbdescdis0]=useState(initialDb)
+    const [dbdomdis0,setdbdomdis0]=useState(initialDb)
+    const [dbpresbajdis0,setdbpresbajdis0]=useState(initialDb)
+    const [dbpresjusdis0,setdbpresjusdis0]=useState(initialDb)
+    const [dbjoyasdis0,setdbjoyasdis0]=useState(initialDb)
+    const [dbelegsdis0,setdbelgdis0]=useState(initialDb)
+    const [dbpetfdis0,setdbpetfdis0]=useState(initialDb)
+
 
     const[error,setError]=useState(null);
     let api=helphttp();
 
-    //apicerca
-    let urlCerca="http://127.0.0.1:8000/Tiendasback/TiendaDirCat/"
+  //apicerca
+  let urlCerca="http://127.0.0.1:8000/Tiendasback/TiendaDirCat/"
 
     useEffect(()=>{
     let guno=`${urlCerca}${lat}/${long}/${idcategori}/${filter}/`;
-    
+    console.log(guno)
       helphttp()
       .get(guno).then((res)=>{
           if(!res.err){
-            setdbcer0(res.companies)
-           console.log(dbcer0)
+            setdbcer0(res.tiendas)
+            console.log(res)
+            setdbcerdis0(res.distancia)
             setError(null)
           }else{
             setdbcer0([])
@@ -89,7 +101,8 @@ const initialDb=[
       
       .get(gun).then((res)=>{
           if(!res.err){
-            setdbprom0(res.companies)
+            setdbprom0(res.tiendas)
+            setdbpromdis0(res.distancia)
             setError(null)
           }else{
             setdbprom0([])
@@ -108,7 +121,8 @@ const initialDb=[
       helphttp()
       .get(gus).then((res)=>{
           if(!res.err){
-            setdbdesc0(res.companies)
+            setdbdesc0(res.tiendas)
+            setdbdescdis0(res.distancia)
             setError(null)
           }else{
             setdbdesc0([])
@@ -126,7 +140,8 @@ const initialDb=[
     helphttp()
     .get(gus).then((res)=>{
         if(!res.err){
-          setdbdom0(res.CatDom)
+          setdbdom0(res.tiendas)
+          setdbdomdis0(res.distancia)
           setError(null)
         }else{
           setdbdom0([])
@@ -144,7 +159,8 @@ let gus=`${urlcercaPresbaj}${lat}/${long}/${idcategori}/2/${filter}/`;
   helphttp()
   .get(gus).then((res)=>{
       if(!res.err){
-        setdbpresbaj0(res.CatDom)
+        setdbpresbaj0(res.tiendas)
+        setdbpresbajdis0(res.distancia)
         setError(null)
       }else{
         setdbpresbaj0([])
@@ -162,7 +178,8 @@ let gus=`${urlcercaPresbaj}${lat}/${long}/${idcategori}/1/${filter}/`;
   helphttp()
   .get(gus).then((res)=>{
       if(!res.err){
-        setdbpresjus0(res.CatDom)
+        setdbpresjus0(res.tiendas)
+        setdbpresjusdis0(res.distancia)
         setError(null)
       }else{
         setdbpresjus0([])
@@ -177,10 +194,12 @@ let urlcercajoyas="http://127.0.0.1:8000/Tiendasback/TiendaDirCatJoy/"
 
 useEffect(()=>{
 let gus=`${urlcercajoyas}${lat}/${long}/${idcategori}/1/${filter}/`;
+console.log(gus)
   helphttp()
   .get(gus).then((res)=>{
       if(!res.err){
-        setdbjoyas0(res.CatDom)
+        setdbjoyas0(res.tiendas)
+        setdbjoyasdis0(res.distancia)
         setError(null)
       }else{
         setdbjoyas0([])
@@ -198,7 +217,8 @@ useEffect(()=>{
   helphttp()
   .get(gus).then((res)=>{
       if(!res.err){
-        setdbelg0(res.CatDom)
+        setdbelg0(res.tiendas)
+        setdbelgdis0(res.distancia)
         setError(null)
       }else{
         setdbelg0([])
@@ -216,7 +236,8 @@ let gus=`${urlpetf}${lat}/${long}/${idcategori}/1/${filter}/`;
   helphttp()
   .get(gus).then((res)=>{
       if(!res.err){
-        setdbpetf0(res.CatDom)
+        setdbpetf0(res.tiendas)
+        setdbpetfdis0(res.distancia)
         setError(null)
       }else{
         setdbpetf0([])
@@ -236,14 +257,23 @@ let gus=`${urlpetf}${lat}/${long}/${idcategori}/1/${filter}/`;
             <Categoria
               
               data={dbcer0}
+              datadis={dbcerdis0}
               dataprom={dbprom0}
+              datapromdis={dbpromdis0}
               datadesc={dbdesc0}
+              datadescdis={dbdescdis0}
               dbdom0={dbdom0}
+              dbdomdis0={dbdomdis0}
               dbpresbaj0={dbpresbaj0}
+              dbpresbajdis0={dbpresbajdis0}
               dbpresjus0={dbpresjus0}
+              dbpresjusdis0={dbpresjusdis0}
               dbpetf0={dbpetf0}
+              dbpetfdis0={dbpetfdis0}
               dbelegs0={dbelegs0}
+              dbelegsdis0={dbelegsdis0}
               dbjoyas0={dbjoyas0}
+              dbjoyasdis0={dbjoyasdis0}
               
               
              />

@@ -10,9 +10,10 @@ ion-header {
 
 .header2{
     display: grid;
-    grid-template:  auto/10px auto auto;
+    height: 100%;
+    grid-template:  auto/auto;
     color:#ffffff;
-    border-bottom: 2px solid rgb(202, 153, 153);
+    border-bottom: 1px solid rgb(202, 153, 153);
     border-bottom-left-radius: 5mm  ;
     border-bottom-right-radius: 5mm  ;
     background: #E06C7B;
@@ -32,57 +33,65 @@ ion-header {
 }
 .x3{
     text-align: center;
-    margin-top: 2%;
-    margin-bottom: 2%;
+    align-items: center;
+    margin-top: 0%;
+    margin-bottom: 0%;
     justify-content: right;
     font-size: 30px;
     
-    grid-column: 1/4;
-    grid-row: 0/3;
     font-family: "Lucida Handwriting",cursive;
     
 }
-.buscador{
-    margin-top: 10px;
-    border: 2px solid #5c1914ef;
-    border-radius: 5mm;
-    color: rgb(0, 0, 0);
+
+
+ion-searchbar.buscador {
+    --color: #000000;
+    --placeholder-color: #000000;
+    --icon-color: #E06C7B;
+    --clear-button-color: #E06C7B;
+    --border-radius: 20px;
     
-    margin-left: 30px;
-    margin-right: 30px;
-    display: grid;
-    grid-template:  40px/220px  10px;
-    text-align: center;
-    justify-content: center;
-    background: #ffffffef;
-    font-size: 20px;
-}
-.lupa{
-    text-align: left;
-    margin-left: -10px;
-    justify-content: left;
-    color:rgb(0, 0, 0);
-}
+    margin-bottom: -20px;
+    margin-left: 0%;
+    margin-right: 10%;
+    
+  }
+  ion-searchbar.ios.buscador {
+    --cancel-button-color: #E06C7B;
+  }
+  
+  ion-searchbar.md.buscador {
+    --cancel-button-color: #E06C7B;
+  }
 
 .titulo1{
+    
     font-family: Calibri, Candara, Segoe, Segoe UI, Optima, Arial, sans-serif;
     color: #000000;
     text-align: left;
     margin-left: 5%;
     justify-content: left;
-    margin-bottom: 10px;
+    margin-top: 5px;
+    
     
 }
 
 
+
+
 .titulo2{
+    margin-top: 10px;
     font-family: Calibri, Candara, Segoe, Segoe UI, Optima, Arial, sans-serif;
     text-align: left;
     margin-left: 5%;
     justify-content: left;
-    color: #000000ef;
+    color: #E06C7B;
     
 
+}
+.Tit2{
+    font-size: 25px;
+    
 }
 @media only screen and (max-width: 500px) {
     /* For mobile phones: */
@@ -91,33 +100,30 @@ ion-header {
     }
   }
 .logos{
-    border: 2px solid #5c1914ef;
-    border-radius: 5mm;
-    color: #ffffff;
-    background: linear-gradient(to bottom, rgb(255, 255, 255), rgb(255, 231, 231));
-    margin-left: 10%;
-    margin-right: 10%;
-    font-size: 45px;
-   
+    border: 2px solid #000000;
+    border-radius: 3mm;
+    background: linear-gradient(to bottom, rgb(255, 255, 255), rgb(255, 237, 237));
+    margin-left: 5%;
+    margin-right: 5%;
     display: grid;
     grid-template:  auto  auto/ auto  auto  auto  auto;
     overflow: hidden;
     overflow-x:scroll;
     padding-left: 0%;
     padding-right: 0%;
+    margin-top: -5px;
     
 }
 .logoslist
 {
     background-color:#e06c7bb2;
-    
     color: #fc1403;
     text-align: center;
     justify-content: center;
-    border: 2px solid #000000ef;
-    border-radius: 5mm;
-    margin-left: 10%;
-    margin-right: 10%;
+    border: 2px dotted #000000ef;
+    border-radius: 3mm;
+    margin-left: 5%;
+    margin-right: 5%;
     padding: 10px;
     overflow: hidden;
     overflow-y:scroll;
@@ -133,8 +139,6 @@ ion-header {
     background-color: rgb(248, 236, 236);
     width:200px;
     height: 30px;
-    padding: auto;
-    border: 2px solid rgb(248, 236, 236);
     border-radius: 5mm;
     margin-bottom: -0.1px;
 }
@@ -145,6 +149,15 @@ ion-header {
     color: rgb(0, 0, 0);
 }
 
+
+.logoI{
+    display: grid;
+    grid-template:  45px  10px/ 40px;
+    color: #E06C7B;
+    justify-content: center;
+    justify-items: center;
+
+}
 .logo{
     display: grid;
     grid-template:  40px  10px/ 40px;
@@ -152,6 +165,27 @@ ion-header {
     justify-content: center;
     justify-items: center;
 }
+.MapaRow1{
+    border-top: 2px dotted #E06C7B;
+    justify-content:center;
+    text-align: center;
+}
+.mapa1{
+    margin-top: -1%;
+    justify-content:center;
+    text-align: center;
+    display: grid;
+    grid-template: 5% 95% / 100% ;
+    margin-bottom: 1%;
+}
+.mapas1{
+    text-align: center;
+    justify-content: center;
+    height: 310px;
+    
+    
+}
+
 .Namelogo{
     
     font-size: 10px;

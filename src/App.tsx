@@ -53,6 +53,7 @@ import Apicategorias from './components/apicategorias';
 import Apisobretienda from './components/apisobretienda';
 import Apiofertas from './components/apiofertas';
 import Tab4 from './pages/Tab4';
+import Tab5 from './pages/Tab5';
 
 setupIonicReact();
 
@@ -62,6 +63,7 @@ const App: React.FC = () => (
       <IonTabs>
         <IonRouterOutlet>
           <Route path="/todos/:filtro" component={Apiofertas} exact={true} />
+          <Route path="/todos/" component={Apiofertas} exact={true} />
           <Route path="/necesitasa" component={necesitasa} />
           <Route path="/log" component={Inicion} />
           <Route path="/tab3" component={Tab3} exact={true} />
@@ -72,7 +74,9 @@ const App: React.FC = () => (
           <Route path="/tab1/logo/:categori" component={Apicategorias}/>
           <Route path="/mydatos" component={mydatos} />
           <Route path="/inicio" component={inicio} />
-          <Route path="/tab4" component={Tab4} exact={true} />
+          <Route path="/tab4/:filterN" component={Tab4} exact={true} />
+          <Route path="/tab4/" component={Tab4} exact={true} />
+          <Route path="/tab5/" component={Tab5} exact={true} />
           <Route path="/tab3">
             <Tab3 />
           </Route>
@@ -85,7 +89,7 @@ const App: React.FC = () => (
             <AiOutlineHome size="35"></AiOutlineHome>
             <IonLabel>Inicio</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="tab2" href="/todos/0" className="abajo">
+          <IonTabButton tab="tab2" href="/todos/" className="abajo">
             <AiTwotoneTags size="35"></AiTwotoneTags>
             <IonLabel>Ofertas</IonLabel>
           </IonTabButton>
