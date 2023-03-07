@@ -175,6 +175,7 @@ let urlcercaPresjus="http://127.0.0.1:8000/Tiendasback/TiendaDirCatDest/"
 
 useEffect(()=>{
 let gus=`${urlcercaPresbaj}${lat}/${long}/${idcategori}/1/${filter}/`;
+console.log(gus)
   helphttp()
   .get(gus).then((res)=>{
       if(!res.err){

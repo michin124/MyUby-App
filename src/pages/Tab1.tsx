@@ -22,6 +22,7 @@ import { useParams } from 'react-router';
 import { Console } from 'console';
 import { useHistory, useLocation} from 'react-router';
 import { reload } from 'ionicons/icons';
+import EvenMap from '../helpers/mapsEvent';
 
 
 
@@ -43,11 +44,12 @@ const Tab1= (el:any) => {
     const crd = pos.coords;
     setLong(crd.longitude)
     setLati(crd.latitude)
+   
   }
   function error(err:any) {
     console.warn(`ERROR(${err.code}): ${err.message}`);
   } 
-  navigator.geolocation.getCurrentPosition(success, error, options)
+  setTimeout(function es(){navigator.geolocation.getCurrentPosition(success, error, options)},1000)
   
 
 //mapear las tiendas de otros
@@ -55,11 +57,15 @@ const Tab1= (el:any) => {
     const [text, setText] = useState<string>();
     let { ini }:any =useParams();
     const otros=[];
-    {for(let i = 7; i < el.data.length; i++) {
-      otros[i]=el.data[i]
-      
-     } }
-  
+    if(el.data.length>0){
+      {for(let i = 7; i < el.data.length; i++) {
+        otros[i]=el.data[i]
+        
+       } }
+    
+
+    }
+    
   
   
   return (
@@ -111,7 +117,6 @@ const Tab1= (el:any) => {
           {otros.map((info:any) => {
             
             let url=`tab1/logo/${info.tipocategoria}?lat=${lati}`+`&longs=${long}`+`&idcategori=${info.id}`+`&filter=0`;
-            {console.log(url)}
             return(<>
             
             <IonButton href={url} class="blist" color="white" expand="full" fill="clear"  size='large'><p>{info.tipocategoria}</p></IonButton>
@@ -132,18 +137,13 @@ const Tab1= (el:any) => {
       <IonRow class='MapaRow1'>
         <IonRow class="mapa1">
           <IonCol class="mapas1">
-          {lati==undefined &&
-            
-            <MyComponent refresh={true} reload={true}
-            />
-            
-          }
-          {lati!=undefined &&
-            
+          
+          
+          
             <MyComponent latitude={lati} Longitude={long} Categorias={''}
             />
             
-          }
+          
           
           </IonCol>
   

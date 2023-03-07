@@ -91,7 +91,6 @@ const Tab4= (el:any) => {
   let UrlI='http://127.0.0.1:8000/media/images/'
   ///ruta imagenes
   let filters=query.get("filter")||0
-  
   let cuenta2=dbdesc0?.length || 0;
   let cuenta3=dbprom0?.length || 0;
   let history=useHistory();
@@ -99,7 +98,8 @@ const Tab4= (el:any) => {
   const [fil, setfiltro] = useState('Descuentos');
   const[error,setError]=useState(null);
   let idcategori=query.get("idcategori")||0;
-  
+  let count=0;
+  let numero;
   let cuenta=0
   let filtro=1
   const dis:any=[];
@@ -112,6 +112,18 @@ const Tab4= (el:any) => {
   let urlcercajoyas="http://127.0.0.1:8000/Eventos/EventoDirCatJoy/"
   let urlpetf="http://127.0.0.1:8000/Eventos/EventoDirCatPet/"
   let urlgratis="http://127.0.0.1:8000/Eventos/EventoDirCatGratis/"
+  function ActualPosition(pos:any){
+    
+    navigator.geolocation.getCurrentPosition(success,function(err){ console.warn(`ERROR(${err.code}): ${err.message}`)},options)
+    window.location.reload()
+  }
+  
+  const success=(pos:any)=> {
+    const crd = pos.coords;
+    setLong(crd.longitude)
+    setLati(crd.latitude)
+    console.log(lati,long)
+  }
   function onCordOkay(pos:any){
     if(filterN==undefined)
     {
@@ -217,11 +229,13 @@ const Tab4= (el:any) => {
   }
   const options = {
     enableHighAccuracy:true,
-    timeout:10000,
+    timeout:6000,
     maximumAge:0,
-    frequency:60000,
   };
+  
 
+
+  setTimeout(ActualPosition, 600000)
   useEffect(()=>{
     navigator.geolocation.getCurrentPosition(onCordOkay,function(err){ console.warn(`ERROR(${err.code}): ${err.message}`)},options)
 
@@ -245,8 +259,7 @@ const Tab4= (el:any) => {
     
   }
     
-  let count=0;
-  let numero
+  
   if(count==4){
     count=0;
   }
@@ -432,6 +445,7 @@ const Tab4= (el:any) => {
       <IonRow class='MapaRow'>
         <IonRow class="mapa">
           <IonCol class="mapasEve">
+            
             <EvenMap latitude={lati} Longitude={long} Categorias={''}/>
           
           </IonCol>

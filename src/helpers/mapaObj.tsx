@@ -3,7 +3,7 @@ import {useState, useCallback} from 'react';
 import React, { useMemo, useRef } from 'react'
 import { useEffect } from 'react';
 import { GoogleMap, LoadScript ,StreetViewService,useJsApiLoader, GoogleMarkerClusterer} from '@react-google-maps/api';
-import { laptop, options } from 'ionicons/icons';
+import { laptop, options, timer } from 'ionicons/icons';
 import { MdPets} from "react-icons/md";
 import { isLatLngLiteral } from "@googlemaps/typescript-guards";
 import { Wrapper, Status } from "@googlemaps/react-wrapper";
@@ -13,7 +13,8 @@ import { helphttp } from './helphttp';
 type Mapmarker=google.maps.Marker
 const containerStyle = {
   width: '350px',
-  height: '230px',
+  height: '370px',
+ marginTop:'10px'
 };
 const initialDbt=[
   {
@@ -33,23 +34,20 @@ const initialDbt=[
   }
 ]
 
-
-
-function EvenMap(props:any) {
-
- 
-
+function MapaObj(props:any) {
+  console.log(props)
   const Categorias=props.Categorias
-  const mapRef=useRef(null)
+  const mapRef=useRef('')
   const [clicks, setClicks] = React.useState<google.maps.LatLng[]>([]);
   let long=0
   let lati=0
   
   const cent=({
-    lat:lati,
-    lng:long})
+    lat:parseFloat(props.latitude),
+    lng:parseFloat(props.Longitude)})
 
-
+ 
+  
 
     
 
@@ -59,21 +57,21 @@ function EvenMap(props:any) {
     googleMapsApiKey: "AIzaSyAoKzza6IcVFgGB8tYVQDL1PaG1eQXAez4",
     
   })
-
-  
   const onLoad = React.useCallback(function callback(map) {
     mapRef.current = map;
+    
+    
     navigator.geolocation.getCurrentPosition(
       (pos:any)=>{
         const crd = pos.coords;
         long=crd.longitude;
         lati=crd.latitude;
         console.log(map);
-        //let gMap = new google.maps.Map(document.getElementById('mapita')??new Element()); 
         
+        //let gMap = new google.maps.Map(document.getElementById('mapita')??new Element()); 
+        console.log(map)
         // map.setZoom(50);      // This will trigger a zoom_changed on the map
-        map.setCenter(new google.maps.LatLng(lati, long))
-       
+        map.setCenter(new google.maps.LatLng(cent));
         // map.setMapTypeId(google.maps.MapTypeId.ROADMAP);
       },
       function(err){ console.warn(`ERROR(${err.code}): ${err.message}`)},
@@ -89,38 +87,11 @@ function EvenMap(props:any) {
     const [dbt,setdbt]=useState(initialDbt)
     const[errort,setErrort]=useState(null);
     
- 
+    let api=helphttp();
    
     let urltiendas="http://127.0.0.1:8000/Tiendasback/Tiendas/"
 
-    
-    
 
-
-    setTimeout(CurrentP,2000)
-
-    function CurrentP(){
-  
-      navigator.geolocation.getCurrentPosition(
-        (pos:any)=>{
-          const crd = pos.coords;
-          cent.lat=crd.longitude;
-          cent.lng=crd.latitude;
-          
-         
-          // map.setMapTypeId(google.maps.MapTypeId.ROADMAP);
-        },
-        function(err){ console.warn(`ERROR(${err.code}): ${err.message}`)},
-        {
-          enableHighAccuracy:true,
-          timeout:8000,
-          maximumAge:0
-        }
-      )
-      console.log(cent)
-   }
-
-    
     
   
    useEffect(()=>{
@@ -182,4 +153,4 @@ function EvenMap(props:any) {
   
 }
 
-export default EvenMap
+export default MapaObj

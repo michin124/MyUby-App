@@ -34,23 +34,36 @@ const initialDbt=[
 ]
 
 function MyComponent(props:any) {
-  const Categorias=props.Categorias
+  console.log(props)
+  var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
+ 
+  const [lati,setLati]=React.useState(1)  
+  const [long,setLong]=React.useState(1)  
+  const options = {
+    //enableHighAccuracy: true,
+    timeout: 10000,
+    maximumAge: 0
+  };
+  const success=(pos:any)=> {
+    const crd = pos.coords;
+    setLong(crd.longitude)
+    setLati(crd.latitude) 
+  }
+  function error(err:any) {
+    console.warn(`ERROR(${err.code}): ${err.message}`);
+  } 
+  navigator.geolocation.getCurrentPosition(success, error, options)
   const mapRef=useRef(null)
   const [clicks, setClicks] = React.useState<google.maps.LatLng[]>([]);
   let [center, setCenter] = React.useState<google.maps.LatLngLiteral>({
-    lat: 4.578283266357103,
-    lng: -74.11971172280586,
+    lat: parseFloat(props.latitude),
+    lng: parseFloat(props.Longitude),
     
   });
   
-  const cent=({
-    lat:props.latitude,
-    lng:props.Longitude})
+
 
  
-  
-
-    
 
   const onClick = (e: google.maps.MapMouseEvent) => {
     // avoid directly mutating state
@@ -66,6 +79,27 @@ function MyComponent(props:any) {
 
   function handleLoad(map:any) {
     mapRef.current = map;
+
+    mapRef.current = map;
+    navigator.geolocation.getCurrentPosition(
+      (pos:any)=>{
+        const crd = pos.coords;
+        
+       
+        //let gMap = new google.maps.Map(document.getElementById('mapita')??new Element()); 
+        
+        // map.setZoom(50);      // This will trigger a zoom_changed on the map
+        map.setCenter(new google.maps.LatLng(crd.latitude, crd.longitude))
+        
+        // map.setMapTypeId(google.maps.MapTypeId.ROADMAP);
+      },
+      function(err){ console.warn(`ERROR(${err.code}): ${err.message}`)},
+      {
+        enableHighAccuracy:true,
+        timeout:8000,
+        maximumAge:0
+      }
+    )
   }
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
@@ -78,17 +112,43 @@ function MyComponent(props:any) {
   }, [])
 
   
-    const [dbt,setdbt]=useState(initialDbt)
-    const[errort,setErrort]=useState(null);
-    
-    let api=helphttp();
-   
-    let urltiendas="http://127.0.0.1:8000/Tiendasback/Tiendas/"
-
-
-    
+  const [dbt,setdbt]=useState(initialDbt)
+  const[errort,setErrort]=useState(null);
   
-   useEffect(()=>{
+  let api=helphttp();
+ 
+  let urltiendas="http://127.0.0.1:8000/Tiendasback/Tiendas/"
+
+
+  
+  const Categorias=props.Categorias
+  useEffect(()=>{
+
+    navigator.geolocation.getCurrentPosition(
+      (pos:any)=>{
+        const crd = pos.coords;
+        setCenter({
+          lat: parseFloat(crd.latitude),
+          lng: parseFloat(crd.longitude),
+          
+        })
+       
+        //let gMap = new google.maps.Map(document.getElementById('mapita')??new Element()); 
+        
+        // map.setZoom(50);      // This will trigger a zoom_changed on the map
+        
+        
+        // map.setMapTypeId(google.maps.MapTypeId.ROADMAP);
+      },
+      function(err){ console.warn(`ERROR(${err.code}): ${err.message}`)},
+      {
+        enableHighAccuracy:true,
+        timeout:8000,
+        maximumAge:0
+      }
+    )
+
+    
     let guno=`${urltiendas}${Categorias}`;
       helphttp()
       .get(guno).then((res)=>{
@@ -102,14 +162,13 @@ function MyComponent(props:any) {
         }
       })
   },[urltiendas]);
-  
-  
-
+   
+   
 
   return isLoaded ? (
     <div>
       <GoogleMap
-      center={cent}
+      center={center}
       onClick={onClick}
       onLoad={handleLoad} 
       zoom={16}
@@ -119,27 +178,28 @@ function MyComponent(props:any) {
       options={{
         mapId:"3653ed0218e9613",
         maxZoom:19,
-        minZoom:16.5,
+        minZoom:1,
         mapTypeControl:false
       }}
       >
-        {<Marker position={cent} animation={google.maps.Animation.BOUNCE} opacity={0.8}/>}
         
         {dbt.map((info:any) => {
 
           
-            const cento=({
-              lat:parseFloat(info.lat),
-              lng:parseFloat(info.lng)})
-            
-            
-            
-            return(<>
-           
-              {<Marker position={cento} opacity={0.8}/>}
-              
-            </>)
+        const cento=({
+          lat:parseFloat(info.lat),
+          lng:parseFloat(info.lng)})
+
+
+
+        return(<>
+
+          {<Marker position={cento} opacity={0.8}/>}
+          {<Marker position={center} animation={google.maps.Animation.BOUNCE} opacity={1} icon={iconBase + 'parking_lot_maps.png'}/>}
+        
           
+        </>)
+
         })} 
         
       </GoogleMap>
@@ -147,5 +207,6 @@ function MyComponent(props:any) {
   ): <></>
   
 }
+  
 
 export default MyComponent
