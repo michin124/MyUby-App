@@ -23,7 +23,7 @@
     margin-left: 5px;
     margin-top: -10px;
     font-family: monospace;
-    color: #E06C7B;
+    color: #e15669;
 }
 .MapaRow{
     
@@ -56,7 +56,7 @@
     
 }
 .map2{
-    border-top: 2px dotted #E06C7B;
+    border-top: 2px dotted #e15669;
     width: 100%;
     text-align: center;
     
@@ -80,7 +80,7 @@
 .filtro2{
     
     background: #ffffffdf;
-    border: 2px solid #e06c7bdf;
+    border: 2px solid #e15669df;
     color: rgb(0, 0, 0);
     border-radius: 20px;
     height: 30px;
@@ -90,8 +90,8 @@
 .alert-radio-group.sc-ion-alert-md, .alert-checkbox-group.sc-ion-alert-md {
     position: relative;
     max-height: 266px;
-    border-top: 2px solid #e06c7bdf;
-    border-bottom: 2px solid #e06c7bdf;
+    border-top: 2px solid #e15669df;
+    border-bottom: 2px solid #e15669df;
     overflow: auto;
 }
 .alert-head.sc-ion-alert-md {
@@ -101,7 +101,7 @@
     padding-bottom:0px;
     text-align: start;
     height: 30px;
-    background-color: #e06c7bdf;
+    background-color: #e15669df;
 }
 .alert-button-group.sc-ion-alert-md {
     
@@ -117,14 +117,14 @@
 }
 ion-select::part(icon) {
     
-    color: #e06c7bdf;
+    color: #e15669df;
     opacity: 1;
     
     
   }
 ion-select::part(text) {
 
-color: #e06c7bdf;
+color: #e15669df;
 font-size: medium;
 
 }
@@ -133,8 +133,8 @@ font-size: medium;
 /*filtro 1 */
 .filtro1{
     background: #ffffffdf;
-    border: 2px solid #e06c7bdf;
-    color: #e06c7bdf;
+    border: 2px solid #e15669df;
+    color: #e15669df;
     border-radius: 20px;
     height: 30px;
     width: 90%;
@@ -144,7 +144,7 @@ font-size: medium;
 
 
 ion-select {
-    --placeholder-color: #e06c7bdf;
+    --placeholder-color: #e15669df;
     --placeholder-opacity: 1; 
 }
 
@@ -194,7 +194,7 @@ ion-select {
     text-align: center;
     width: 100%;
     color: #ffffff;
-    background-color: #e06c7b;
+    background-color: #e15669;
 }
 .TarjetTTitT{
     text-transform: capitalize;
@@ -202,7 +202,7 @@ ion-select {
     align-items: center;
     padding: 0;
     margin-top: -5px;
-    border: 1px solid #e06c7bdf;
+    border: 1px solid #e15669df;
     width: 100%;
     
 }

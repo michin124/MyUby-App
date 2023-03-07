@@ -43,7 +43,7 @@
 .SegmentP{
     width: 100%;
     border-radius: 10px;
-    border: 3px double #E06C7B;
+    border: 3px double #e15669;
     height: 30px;
     
 }
@@ -136,7 +136,7 @@ ion-segment {
     border-radius: 5mm;
 }
 .descuentos{
-    background-color: #e06c7bdf;
+    background-color: #e15669df;
     width: 100px;
     height: 35px;
     margin-top: -2px;
@@ -147,7 +147,7 @@ ion-segment {
     border-radius: 5mm;
 }
 .promociones{
-    background-color: #e06c7bdf;
+    background-color: #e15669df;
     margin-left: 10px;
     width: 100px;
     height: 35px;
@@ -171,7 +171,7 @@ ion-segment {
 .filtroT{
     justify-content: center;
     background: #ffffffdf;
-    border: 2px solid #e06c7bdf;
+    border: 2px solid #e15669df;
     color: rgb(0, 0, 0);
     border-radius: 20px;
     height: 30px;
@@ -229,7 +229,7 @@ ion-segment {
     justify-content: center;
     align-items: center;
     padding: 0;
-    border-bottom: 2px solid #E06C7B;
+    border-bottom: 2px solid #e15669;
     width: 100%;
     
 }
@@ -240,7 +240,7 @@ ion-segment {
 .cardPOrg{
     
     text-align: left;
-    color:#E06C7B;
+    color:#e15669;
     background-color: rgb(255, 255, 255);
 
 }

@@ -16,7 +16,7 @@ ion-header {
     border-bottom: 1px solid rgb(202, 153, 153);
     border-bottom-left-radius: 5mm  ;
     border-bottom-right-radius: 5mm  ;
-    background: #E06C7B;
+    background: #e15669;
 }
 .x{
     grid-row: 1/2;
@@ -47,8 +47,8 @@ ion-header {
 ion-searchbar.buscador {
     --color: #000000;
     --placeholder-color: #000000;
-    --icon-color: #E06C7B;
-    --clear-button-color: #E06C7B;
+    --icon-color: #e15669;
+    --clear-button-color: #e15669;
     --border-radius: 20px;
     
     margin-bottom: -20px;
@@ -57,11 +57,11 @@ ion-searchbar.buscador {
     
   }
   ion-searchbar.ios.buscador {
-    --cancel-button-color: #E06C7B;
+    --cancel-button-color: #e15669;
   }
   
   ion-searchbar.md.buscador {
-    --cancel-button-color: #E06C7B;
+    --cancel-button-color: #e15669;
   }
 
 .titulo1{
@@ -85,7 +85,7 @@ ion-searchbar.buscador {
     text-align: left;
     margin-left: 5%;
     justify-content: left;
-    color: #E06C7B;
+    color: #e15669;
     
 
 }
@@ -116,7 +116,7 @@ ion-searchbar.buscador {
 }
 .logoslist
 {
-    background-color:#e06c7bb2;
+    background-color:#e15669b2;
     color: #fc1403;
     text-align: center;
     justify-content: center;
@@ -153,7 +153,7 @@ ion-searchbar.buscador {
 .logoI{
     display: grid;
     grid-template:  45px  10px/ 40px;
-    color: #E06C7B;
+    color: #e15669;
     justify-content: center;
     justify-items: center;
 
@@ -161,12 +161,12 @@ ion-searchbar.buscador {
 .logo{
     display: grid;
     grid-template:  40px  10px/ 40px;
-    color: #E06C7B;
+    color: #e15669;
     justify-content: center;
     justify-items: center;
 }
 .MapaRow1{
-    border-top: 2px dotted #E06C7B;
+    border-top: 2px dotted #e15669;
     justify-content:center;
     text-align: center;
 }
@@ -193,7 +193,7 @@ ion-searchbar.buscador {
 
 }
 .logoCategoria{
-    color: #E06C7B;
+    color: #e15669;
 }
 
 

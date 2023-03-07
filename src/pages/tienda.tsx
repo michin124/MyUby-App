@@ -1,10 +1,10 @@
-import {IonSegment, IonSegmentButton,IonText, IonContent, IonHeader,IonButton,IonThumbnail , IonPage, IonTitle, IonToolbar,IonInput, IonItem, IonLabel, IonList, IonItemDivider, IonGrid, IonRow, IonCol, IonImg } from '@ionic/react';
+import {IonSegment,IonSelect, IonSelectOption, IonSegmentButton,IonText, IonContent, IonHeader,IonButton,IonThumbnail , IonPage, IonTitle, IonToolbar,IonInput, IonItem, IonLabel, IonList, IonItemDivider, IonGrid, IonRow, IonCol, IonImg } from '@ionic/react';
 import ExploreContainer from '../components/ExploreContainer';
 import { IoBeer, IoNavigate} from "react-icons/io5";
 import React, { useState } from 'react';
 import { IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle } from '@ionic/react';
 import MapaObj from '../helpers/mapaObj';
-
+import MapaObj2 from '../helpers/mapaObj2';
 
 import { MdSchedule} from "react-icons/md";
 
@@ -55,8 +55,12 @@ import { Navigation } from 'swiper'
 
 const Tienda= (el:any=0) => {
   console.log(el)
+  const [range, setCurrentRange] = useState('');
   const[necesidad,pushNecesidad]=useState('Productos')
   const[ubicacion,pushUbicacion]=useState('Ubicacion')
+  const pushFilt = (msg: any) => {
+    setCurrentRange(msg); 
+  };
   //productos por condicion
   const otrosDesc:any=[];
   const otrosProm:any=[];
@@ -161,12 +165,12 @@ const Tienda= (el:any=0) => {
               
               {cuenta>0&&
                 <IonRow className='FilaMenu'>
-                  <IonButton className='buttonMenu' color="white" fill="clear" ><IonRow className='menuT' style={{justifyContent:'center'}}><BiFoodMenu size={'50'} style={{color:'#E06C7B',justifyContent:'center',}}></BiFoodMenu><IonTitle className='MenuTit' style={{color:'#E06C7B'}} >Menú</IonTitle></IonRow></IonButton>
+                  <IonButton className='buttonMenu' color="white" fill="clear" ><IonRow className='menuT' style={{justifyContent:'center'}}><BiFoodMenu size={'50'} style={{color:'#e15669',justifyContent:'center',}}></BiFoodMenu><IonTitle className='MenuTit' style={{color:'#e15669'}} >Menú</IonTitle></IonRow></IonButton>
                 </IonRow>
               }
               {cuenta==0&&
                 <IonRow className='FilaMenu'>
-                  <IonButton className='buttonMenu2' color="white" fill="clear" ><IonRow className='menuT2' style={{justifyContent:'center'}}><BiFoodMenu size={'60'} style={{color:'#E06C7B',justifyContent:'center',}}></BiFoodMenu><IonTitle style={{color:'#E06C7B'}}>Menú</IonTitle></IonRow></IonButton>
+                  <IonButton className='buttonMenu2' color="white" fill="clear" ><IonRow className='menuT2' style={{justifyContent:'center'}}><BiFoodMenu size={'60'} style={{color:'#e15669',justifyContent:'center',}}></BiFoodMenu><IonTitle style={{color:'#e15669'}}>Menú</IonTitle></IonRow></IonButton>
                 </IonRow>
               }
 
@@ -676,8 +680,42 @@ const Tienda= (el:any=0) => {
                 {ubicacion=='Ubicacion'&&
                   <IonRow className='mapaObj' style={{width:'100%'}}>
                   
-                    <IonText style={{textAlign:'left',marginLeft:'5%'}}>Acontinuacion se presenta la ubicacion actual de la tienda</IonText>
+                    <IonText style={{textAlign:'left',marginLeft:'5%',marginTop:'5px'}}>A continuacion se presenta la ubicacion de la tienda</IonText>
                     <MapaObj  latitude={lat} Longitude={lng}/>
+                  </IonRow>
+                 
+
+                }
+                {ubicacion=='Ir'&&
+                  <IonRow className='mapaObj2' style={{width:'100%'}}>
+                  
+                    <IonText style={{textAlign:'left',marginLeft:'5%',marginTop:'5px'}}>A continuacion se marca la ruta para llegar desde tu posicion actual</IonText>
+                    <IonRow className='filtroMap'>
+                      <IonCol className='colFilterOneT'>
+                            <h4 className='TitleF' style={{width:'100%', marginLeft:'-5%'}}>Transporte:</h4>
+                          <IonSelect className='filtroT' ok-text="Okay" onIonChange={(ev) => pushFilt(`${ev.detail.value}`)}>
+                            <IonSelectOption className='select' value="TRANSIT">Bus</IonSelectOption>
+                            <IonSelectOption className='select' value="DRIVING">Manejando</IonSelectOption>
+                            <IonSelectOption className='select' value="WALKING">Caminando</IonSelectOption>
+                            
+                            
+                            
+                          </IonSelect>
+                        </IonCol>
+                    </IonRow>
+                    {range==""&&
+                      <MapaObj2  latitude={lat} Longitude={lng} transport={1}/>
+                    }
+                    {range=="TRANSIT"&&
+                      <MapaObj2  latitude={lat} Longitude={lng} transport={1}/>
+                    }
+                    {range=="DRIVING"&&
+                      <MapaObj2  latitude={lat} Longitude={lng} transport={2}/>
+                    }
+                    {range=="WALKING"&&
+                      <MapaObj2  latitude={lat} Longitude={lng} transport={3}/>
+                    }
+                    
                   </IonRow>
                  
 

@@ -41,13 +41,13 @@ ion-card-header.ios {
     width: 100%;
     height: 25px;
     color: rgb(255, 255, 255);
-    background-color:#E06C7B;
+    background-color:#e15669;
 }
 .TarjetETitE{
     justify-content: center;
     align-items: center;
     padding: 0;
-    border-bottom: 2px solid #E06C7B;
+    border-bottom: 2px solid #e15669;
     width: 100%;
     
 }
@@ -59,7 +59,7 @@ ion-card-header.ios {
     text-transform: capitalize;
     text-align: left;
     width: 100%;
-    color:#E06C7B;
+    color:#e15669;
     background-color: rgb(255, 255, 255);
 
 }
