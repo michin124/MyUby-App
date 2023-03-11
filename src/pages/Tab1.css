@@ -1,12 +1,22 @@
 
+ion-header {
+    display: block;
+    position:unset;
+    -ms-flex-order: -1;
+    order: -1;
+    width: 100%;
+    z-index: 10;
+}
+
 .header2{
     display: grid;
-    grid-template:  auto/10px auto auto;
+    height: 100%;
+    grid-template:  auto/auto;
     color:#ffffff;
-    border-bottom: 2px solid rgb(202, 153, 153);
+    border-bottom: 1px solid rgb(202, 153, 153);
     border-bottom-left-radius: 5mm  ;
     border-bottom-right-radius: 5mm  ;
-    background: #E06C7B;
+    background: #e15669;
 }
 .x{
     grid-row: 1/2;
@@ -22,54 +32,66 @@
     margin-left:15% ;
 }
 .x3{
-    text-align: right;
-    justify-content: right;
-    margin-left:-20px ;
-    grid-column: 3/4;
-    grid-row: 1/2;
-    font-family: "Arial",serif;
-    
-}
-.buscador{
-    margin-top: 10px;
-    border: 2px solid #5c1914ef;
-    border-radius: 5mm;
-    color: rgb(0, 0, 0);
-    
-    margin-left: 30px;
-    margin-right: 30px;
-    display: grid;
-    grid-template:  40px/220px  10px;
     text-align: center;
-    justify-content: center;
-    background: #ffffffef;
-    font-size: 20px;
-}
-.lupa{
-    text-align: left;
-    margin-left: -10px;
-    justify-content: left;
-    color:rgb(0, 0, 0);
+    align-items: center;
+    margin-top: 0%;
+    margin-bottom: 0%;
+    justify-content: right;
+    font-size: 30px;
+    
+    font-family: "Lucida Handwriting",cursive;
+    
 }
 
+
+ion-searchbar.buscador {
+    --color: #000000;
+    --placeholder-color: #000000;
+    --icon-color: #e15669;
+    --clear-button-color: #e15669;
+    --border-radius: 20px;
+    
+    margin-bottom: -20px;
+    margin-left: 0%;
+    margin-right: 10%;
+    
+  }
+  ion-searchbar.ios.buscador {
+    --cancel-button-color: #e15669;
+  }
+  
+  ion-searchbar.md.buscador {
+    --cancel-button-color: #e15669;
+  }
+
 .titulo1{
+    
     font-family: Calibri, Candara, Segoe, Segoe UI, Optima, Arial, sans-serif;
     color: #000000;
     text-align: left;
     margin-left: 5%;
     justify-content: left;
-    margin-bottom: 10px;
+    margin-top: 5px;
+    
     
 }
 
+
+
+
 .titulo2{
+    margin-top: 10px;
     font-family: Calibri, Candara, Segoe, Segoe UI, Optima, Arial, sans-serif;
     text-align: left;
     margin-left: 5%;
     justify-content: left;
-    color: #000000ef;
+    color: #e15669;
     
 
+}
+.Tit2{
+    font-size: 25px;
+    
 }
 @media only screen and (max-width: 500px) {
     /* For mobile phones: */
@@ -78,34 +100,30 @@
     }
   }
 .logos{
-    border: 2px solid #5c1914ef;
-    border-radius: 5mm;
-    color: #ffffff;
-    background: linear-gradient(to bottom, rgb(255, 255, 255), rgb(255, 231, 231));
-    margin-left: 10%;
-    margin-right: 10%;
-    font-size: 45px;
-    text-align: center;
-    justify-content: center;
+    border: 2px solid #000000;
+    border-radius: 3mm;
+    background: linear-gradient(to bottom, rgb(255, 255, 255), rgb(255, 237, 237));
+    margin-left: 5%;
+    margin-right: 5%;
     display: grid;
     grid-template:  auto  auto/ auto  auto  auto  auto;
     overflow: hidden;
     overflow-x:scroll;
-    padding-left: 30%;
-    padding-right: 5%;
+    padding-left: 0%;
+    padding-right: 0%;
+    margin-top: -5px;
     
 }
 .logoslist
 {
-    background-color:#e06c7bb2;
-    
+    background-color:#e15669b2;
     color: #fc1403;
     text-align: center;
     justify-content: center;
-    border: 2px solid #000000ef;
-    border-radius: 5mm;
-    margin-left: 10%;
-    margin-right: 10%;
+    border: 2px dotted #000000ef;
+    border-radius: 3mm;
+    margin-left: 5%;
+    margin-right: 5%;
     padding: 10px;
     overflow: hidden;
     overflow-y:scroll;
@@ -121,8 +139,6 @@
     background-color: rgb(248, 236, 236);
     width:200px;
     height: 30px;
-    padding: auto;
-    border: 2px solid rgb(248, 236, 236);
     border-radius: 5mm;
     margin-bottom: -0.1px;
 }
@@ -133,9 +149,52 @@
     color: rgb(0, 0, 0);
 }
 
-.logo{
-    
-    color: #E06C7B;
+
+.logoI{
+    display: grid;
+    grid-template:  45px  10px/ 40px;
+    color: #e15669;
+    justify-content: center;
+    justify-items: center;
+
 }
+.logo{
+    display: grid;
+    grid-template:  40px  10px/ 40px;
+    color: #e15669;
+    justify-content: center;
+    justify-items: center;
+}
+.MapaRow1{
+    border-top: 2px dotted #e15669;
+    justify-content:center;
+    text-align: center;
+}
+.mapa1{
+    margin-top: -1%;
+    justify-content:center;
+    text-align: center;
+    display: grid;
+    grid-template: 5% 95% / 100% ;
+    margin-bottom: 1%;
+}
+.mapas1{
+    text-align: center;
+    justify-content: center;
+    height: 310px;
+    
+    
+}
+
+.Namelogo{
+    
+    font-size: 10px;
+    color: #000000;
+
+}
+.logoCategoria{
+    color: #e15669;
+}
+
 
 

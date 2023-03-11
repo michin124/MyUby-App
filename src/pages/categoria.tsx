@@ -13,7 +13,7 @@ import { FaBriefcase} from "react-icons/fa";
 import { MdPets} from "react-icons/md";
 
 import { MdOutlineStorefront} from "react-icons/md";
-
+import { IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle } from '@ionic/react';
 
 import './categoria.css';
 import { useHistory, useLocation, useParams } from 'react-router';
@@ -23,6 +23,7 @@ import { refresh } from 'ionicons/icons';
 
 
 const Categoria= (el:any) => {
+  console.log(el)
   const [range, setCurrentRange] = useState('');
   const [filter, setCurrentFilter] = useState('');
   let history =useHistory()
@@ -37,8 +38,9 @@ const Categoria= (el:any) => {
   let Nfiltro1=query.get("namefiltro1")||"Todas";
   let Nfiltro2=query.get("namefiltro2")||"Seleccionar";
   const otros=[];
+  const dis:any=[];
   let filtro=1
-
+  let count=0;
   if(range=='')
   {
     if(Nfiltro1!=undefined)
@@ -108,9 +110,10 @@ const Categoria= (el:any) => {
     
     filtro=1
     cuenta=el.data?.length || 0;
-    {if(el.data?.length>1){
-      for(let i = 0; i < (el.data?.length)/2; i++) {
+    {if(el.data?.length>=1){
+      for(let i = 0; i < (el.data?.length); i++) {
         otros[i]=el.data[i]
+        dis[i]=el.datadis[i]
       }
      } 
     }
@@ -122,9 +125,10 @@ const Categoria= (el:any) => {
     
     filtro=1
     cuenta=el.data?.length || 0;
-    {if(el.data?.length>1){
-      for(let i = 0; i < (el.data?.length)/2; i++) {
+    {if(el.data?.length>=1){
+      for(let i = 0; i < (el.data?.length); i++) {
         otros[i]=el.data[i]
+        dis[i]=el.datadis[i]
       }
      } 
     }
@@ -135,9 +139,10 @@ const Categoria= (el:any) => {
     
     filtro=1
     cuenta=el.data?.length || 0;
-    {if(el.data?.length>1){
-      for(let i = 0; i < (el.data?.length)/2; i++) {
+    {if(el.data?.length>=1){
+      for(let i = 0; i < (el.data?.length); i++) {
         otros[i]=el.data[i]
+        dis[i]=el.datadis[i]
       }
      } 
     }
@@ -148,9 +153,10 @@ const Categoria= (el:any) => {
     
     filtro=2
     cuenta=el.dataprom?.length || 0;
-    {if(el.dataprom?.length>1){
-      for(let i = 0; i < (el.dataprom?.length)/2; i++) {
+    {if(el.dataprom?.length>=1){
+      for(let i = 0; i < (el.dataprom?.length); i++) {
         otros[i]=el.dataprom[i]
+        dis[i]=el.datapromdis[i]
       }
      } 
     }
@@ -158,12 +164,14 @@ const Categoria= (el:any) => {
     
   }
   if(filter=="Descuentos"){
-    
+    console.log(otros,'a')
     filtro=3
     cuenta=el.datadesc?.length || 0;
-    {if(el.datadesc?.length>1){
-      for(let i = 0; i < (el.datadesc?.length)/2; i++) {
+    {if(el.datadesc?.length>=1){
+      for(let i = 0; i < (el.datadesc?.length); i++) {
         otros[i]=el.datadesc[i]
+        
+        dis[i]=el.datadescdis[i]
       }
      } 
     }
@@ -174,9 +182,10 @@ const Categoria= (el:any) => {
     
     filtro=4
     cuenta=el.dbdom0?.length || 0;
-    {if(el.dbdom0?.length>1){
-      for(let i = 0; i < (el.dbdom0?.length)/2; i++) {
+    {if(el.dbdom0?.length>=1){
+      for(let i = 0; i < (el.dbdom0?.length); i++) {
         otros[i]=el.dbdom0[i]
+        dis[i]=el.dbdomdis0[i]
       }
      } 
     }
@@ -187,9 +196,10 @@ const Categoria= (el:any) => {
     
     filtro=5
     cuenta=el.dbpresbaj0?.length || 0;
-    {if(el.dbpresbaj0?.length>1){
-      for(let i = 0; i < (el.dbpresbaj0?.length)/2; i++) {
+    {if(el.dbpresbaj0?.length>=1){
+      for(let i = 0; i < (el.dbpresbaj0?.length); i++) {
         otros[i]=el.dbpresbaj0[i]
+        dis[i]=el.dbpresbajdis0[i]
       }
      } 
     }
@@ -200,9 +210,10 @@ const Categoria= (el:any) => {
     
     filtro=6
     cuenta=el.dbpresjus0?.length || 0;
-    {if(el.dbpresjus0?.length>1){
-      for(let i = 0; i < (el.dbpresjus0?.length)/2; i++) {
+    {if(el.dbpresjus0?.length>=1){
+      for(let i = 0; i < (el.dbpresjus0?.length); i++) {
         otros[i]=el.dbpresjus0[i]
+        dis[i]=el.dbpresjusdis0[i]
       }
      } 
     }
@@ -213,9 +224,11 @@ const Categoria= (el:any) => {
     
     filtro=7
     cuenta=el.dbpetf0?.length || 0;
-    {if(el.dbpetf0?.length>1){
-      for(let i = 0; i < (el.dbpetf0?.length)/2; i++) {
+    {if(el.dbpetf0?.length>=1){
+      for(let i = 0; i < (el.dbpetf0?.length); i++) {
         otros[i]=el.dbpetf0[i]
+        
+        dis[i]=el.dbpetfdis0[i]
       }
      } 
     }
@@ -226,9 +239,10 @@ const Categoria= (el:any) => {
     
     filtro=8
     cuenta=el.dbelegs0?.length || 0;
-    {if(el.dbelegs0?.length>1){
-      for(let i = 0; i < (el.dbelegs0?.length)/2; i++) {
+    {if(el.dbelegs0?.length>=1){
+      for(let i = 0; i < (el.dbelegs0?.length); i++) {
         otros[i]=el.dbelegs0[i]
+        dis[i]=el.dbelegsdis0[i]
       }
      } 
     }
@@ -239,9 +253,10 @@ const Categoria= (el:any) => {
     
     filtro=9
     cuenta=el.dbjoyas0?.length || 0;
-    {if(el.dbjoyas0?.length>1){
-      for(let i = 0; i < (el.dbjoyas0?.length)/2; i++) {
+    {if(el.dbjoyas0?.length>=1){
+      for(let i = 0; i < (el.dbjoyas0?.length); i++) {
         otros[i]=el.dbjoyas0[i]
+        dis[i]=el.dbjoyasdis0[i]
       }
      } 
     }
@@ -252,49 +267,39 @@ const Categoria= (el:any) => {
 
 
 
-
- 
- 
-  
-
- 
-  
-  
-
-
   return (
     <IonPage>
       
       <IonHeader class='header'>
       <IonRow class='header2'>
-      <IonCol class="x"><FcGlobe size="50"></FcGlobe></IonCol>
-      <IonCol class="x2"><h2>ADRESS</h2></IonCol>
-      <IonCol class="x3"><h2>MYUBY</h2></IonCol>
+      {/* <IonCol class="x"><FcGlobe size="50"></FcGlobe></IonCol>
+      <IonCol class="x2"><h2>ADRESS</h2></IonCol> */}
+      <IonCol class="x3"><b className="x3">MyUby</b></IonCol>
       </IonRow>  
       </IonHeader>
       <IonContent fullscreen>
 
       <IonRow class ="tipol">
       {categori=="BARES" &&
-         <IonCol class="logo1" ><IoBeer size="100"></IoBeer></IonCol>
+         <IonCol class="logoCategoria" ><IoBeer size="100"></IoBeer></IonCol>
       }
         {categori=="RESTAURANTES" &&
-         <IonCol class="logo1" ><MdOutlineStorefront size="90"></MdOutlineStorefront></IonCol>
+         <IonCol class="logoCategoria" ><MdOutlineStorefront size="90"></MdOutlineStorefront></IonCol>
       }
       {categori=="ESTADEROS" &&
-         <IonCol class="logo1" ><FaBed size="90"></FaBed></IonCol>
+         <IonCol class="logoCategoria" ><FaBed size="90"></FaBed></IonCol>
       }
       {categori=="PAPELERIAS" &&
-         <IonCol class="logo1" ><FaPencilRuler size="90"></FaPencilRuler></IonCol>
+         <IonCol class="logoCategoria" ><FaPencilRuler size="90"></FaPencilRuler></IonCol>
       }
       {categori=="FERRETERIAS" &&
-         <IonCol class="logo1" ><FaBriefcase size="90"></FaBriefcase></IonCol>
+         <IonCol class="logoCategoria" ><FaBriefcase size="90"></FaBriefcase></IonCol>
       }
       {categori=="VETERINARIAS" &&
-         <IonCol class="logo1" ><MdPets size="90"></MdPets></IonCol>
+         <IonCol class="logoCategoria" ><MdPets size="90"></MdPets></IonCol>
       }
       {categori=="CAFETERIAS" &&
-         <IonCol class="logo1" ><FiCoffee size="90"></FiCoffee></IonCol>
+         <IonCol class="logoCategoria" ><FiCoffee size="90"></FiCoffee></IonCol>
       }
       
       </IonRow>
@@ -303,22 +308,6 @@ const Categoria= (el:any) => {
       </IonRow>
       
       <IonRow class='selector'>
-          
-        <IonCol className='colFilterOne'>
-          <IonCol >
-            <IonLabel>Rango:</IonLabel>
-          </IonCol>
-          
-          <IonSelect placeholder={Nfiltro1} className='filtro1' ok-text="Okay" onIonChange={(e) => pushRange(`${e.detail.value}`)}>
-            <IonSelectOption className='select' value="Todas">Todas</IonSelectOption>
-            <IonSelectOption className='select' value="Menos de 1km">Menos de 1km</IonSelectOption>
-            <IonSelectOption className='select' value="De 1 a 3km">De 1 a 3km</IonSelectOption>
-            <IonSelectOption className='select' value="De 3 a 6km">De 3 a 6km</IonSelectOption>
-            <IonSelectOption className='select' value="De 6 a 10km">De 6 a 10km</IonSelectOption>
-            <IonSelectOption className='select' value="Mas de 10km">Mas de 10km</IonSelectOption>
-            
-          </IonSelect>
-        </IonCol>
         <IonCol className='colFiltertwo'>
           <IonCol >
             <IonLabel>Tiendas con:</IonLabel>
@@ -335,49 +324,78 @@ const Categoria= (el:any) => {
             <IonSelectOption className='select' value="Joyas">Joyas</IonSelectOption>
           </IonSelect>
         </IonCol>
-        
-       
-        
-        
-
-
-      </IonRow>
-      
-      
-      <IonRow class="categoria">
-      {cuenta>0&&
+        <IonCol className='colFilterOne'>
+          <IonCol >
+            <IonLabel>Rango:</IonLabel>
+          </IonCol>
           
-          cuenta>0 ?(otros.map((info:any) => {
+          <IonSelect placeholder={Nfiltro1} className='filtro1' ok-text="Okay" onIonChange={(e) => pushRange(`${e.detail.value}`)}>
+            <IonSelectOption className='select' value="Todas">Todas</IonSelectOption>
+            <IonSelectOption className='select' value="Menos de 1km">Menos de 1km</IonSelectOption>
+            <IonSelectOption className='select' value="De 1 a 3km">De 1 a 3km</IonSelectOption>
+            <IonSelectOption className='select' value="De 3 a 6km">De 3 a 6km</IonSelectOption>
+            <IonSelectOption className='select' value="De 6 a 10km">De 6 a 10km</IonSelectOption>
+            <IonSelectOption className='select' value="Mas de 10km">Mas de 10km</IonSelectOption>
             
-            let url=`/productostienda?idcategori=${idcategori}`+`&idtienda=${info.id}`;
-            return(<>
-
-              {info.foto!='' &&
-              <IonRow>
-                <IonCol class="Categorias" ><IonRow ><IonButton href={url} className='fototiendas' expand="full" fill="clear" size='large'><img src={`${UrlI}${info.foto}`} sizes={'100'} alt="Logo" /></IonButton></IonRow><IonRow  class="nombre">{info.nombretienda}</IonRow></IonCol>
-
-              </IonRow>
-                }
-            </>)
-          
-          })):
-          (
-            <h2 className='errorcategorias'>Ups parece que no tienes {categori} cerca tuyo....</h2>
-          )
-
-          
-        
-
-      }
-        
+          </IonSelect>
+        </IonCol>
       </IonRow>
-      {cuenta>1&&
+      
+        <IonRow class="categoriaT">
+        {cuenta>0&&
+            
+            cuenta>0 ?(otros.map((info:any) => {
+              count+=1;
+              let url=`/productostienda?idcategori=${idcategori}`+`&idtienda=${info.id}`;
+              return(<>
+
+                {info.foto!='' &&
+                <IonRow class='RTiendas'>
+                    <IonCard href={url} class='cardT' button={true} >
+                      <img className='imgTiend' src={`${UrlI}${info.foto}`} style={{width:'100%',height:'110px',alignContent:'center',alignItems:'center'}}/>
+                      <IonCardHeader class='TarjetTTitT'>
+                        <IonCardTitle class='TarjetTTit'><b>{info.nombretienda}</b></IonCardTitle>
+                      </IonCardHeader>
+                      <IonRow class='footerT' >
+                        <IonCol class='cardTDis'>
+                          {dis[count-1]>1&&
+                            <b className='bxT'>
+                              {'Esta a '+Math.trunc(dis[count-1])+'Km'}
+                            </b>
+                          }
+                          {dis[count-1]<1&&   
+                            <b className='bxT'>
+                              {'Esta a '+Math.trunc(dis[count-1]*1000)+'mts'}
+                            </b>
+                          }
+                        </IonCol>
+                      </IonRow> 
+                    </IonCard>
+                </IonRow>
+                  }
+              </>)
+            
+            })):
+            (
+              <h2 className='errorcategorias'>Ups parece que no tienes {categori} cerca tuyo....</h2>
+            )
+
+            
+          
+
+        }
+          
+        </IonRow>
+          
+      
+      
+      {cuenta>=1&&
         <IonRow class='MapaRow'>
             <IonRow class="titulo3">
               <h3><b>{categori}</b><b> EN EL MAPA</b> </h3>
             </IonRow>
 
-
+          <IonRow class='map2'>
             <IonRow class="mapa">
               <IonCol class="mapas">
                 <Mapcat  latitud={lat} Longitud={long} Categorias={idcategori} Filtro={filtro} todos={el.data} prom={el.dataprom} desc={el.datadesc} domi={el.dbdom0} menos={el.dbpresbaj0} just={el.dbpresjus0} pet={el.dbpetf0} eleg={el.dbelegs0} joy={el.dbjoyas0}
@@ -386,6 +404,9 @@ const Categoria= (el:any) => {
               </IonCol>
 
             </IonRow>
+            
+          </IonRow>
+            
         </IonRow>
       }
 

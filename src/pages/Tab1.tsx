@@ -1,11 +1,10 @@
 import { IonContent, IonHeader, IonPage, IonTitle,IonToggle,IonRadio,IonCheckbox, IonToolbar,IonButton,IonInput, IonItem, IonLabel, IonList, IonItemDivider, IonGrid, IonRow, IonCol } from '@ionic/react';
 import ExploreContainer from '../components/ExploreContainer';
-import { IoBeer } from "react-icons/io5";
 import React, { useState ,useRef } from 'react';
 import { Wrapper, Status } from "@googlemaps/react-wrapper";
 import { LoadScript, GoogleMap, Marker } from "@react-google-maps/api";
 
-
+import { IoBeer } from "react-icons/io5";
 import MyComponent from '../helpers/maps';
 import { FcGlobe} from "react-icons/fc";
 import { FiCoffee} from "react-icons/fi";
@@ -16,12 +15,14 @@ import { FaBriefcase} from "react-icons/fa";
 import { MdPets} from "react-icons/md";
 import { AiOutlineQuestionCircle} from "react-icons/ai";
 import { MdOutlineStorefront} from "react-icons/md";
+import { IonSearchbar } from '@ionic/react';
 
 import './Tab1.css';
 import { useParams } from 'react-router';
 import { Console } from 'console';
 import { useHistory, useLocation} from 'react-router';
 import { reload } from 'ionicons/icons';
+import EvenMap from '../helpers/mapsEvent';
 
 
 
@@ -43,11 +44,12 @@ const Tab1= (el:any) => {
     const crd = pos.coords;
     setLong(crd.longitude)
     setLati(crd.latitude)
+   
   }
   function error(err:any) {
     console.warn(`ERROR(${err.code}): ${err.message}`);
   } 
-  navigator.geolocation.getCurrentPosition(success, error, options)
+  setTimeout(function es(){navigator.geolocation.getCurrentPosition(success, error, options)},1000)
   
 
 //mapear las tiendas de otros
@@ -55,11 +57,15 @@ const Tab1= (el:any) => {
     const [text, setText] = useState<string>();
     let { ini }:any =useParams();
     const otros=[];
-    {for(let i = 7; i < el.data.length; i++) {
-      otros[i]=el.data[i]
-      
-     } }
-  
+    if(el.data.length>0){
+      {for(let i = 7; i < el.data.length; i++) {
+        otros[i]=el.data[i]
+        
+       } }
+    
+
+    }
+    
   
   
   return (
@@ -69,18 +75,15 @@ const Tab1= (el:any) => {
       
       <IonHeader class='header'>
       <IonRow class='header2'>
-      <IonCol class="x"><FcGlobe size="50"></FcGlobe></IonCol>
-      <IonCol class="x2"><h2>ADRESS</h2></IonCol>
-      <IonCol class="x3"><h2>MYUBY</h2></IonCol>
+      {/* <IonCol class="x"><FcGlobe size="50"></FcGlobe></IonCol>
+      <IonCol class="x2"><h2>ADRESS</h2></IonCol> */}
+      <IonCol class="x3"><b className="x3">MyUby</b></IonCol>
       </IonRow>  
       </IonHeader>
 
 
       <IonContent fullscreen>
-      <IonRow class="buscador">
-        <IonCol size="large"className="ion-align-self-center" ><IonInput value={text} placeholder="¿QUE NECESITAS?" onIonChange={e => setText(e.detail.value!)}></IonInput></IonCol>
-        <IonCol class="lupa"><BsSearch size="30"></BsSearch></IonCol>
-      </IonRow>
+      <IonSearchbar placeholder="Buscar" animated={true} showCancelButton="focus" class='buscador'></IonSearchbar>
      
       {ini==null &&
         <IonRow class="titulo1">
@@ -97,14 +100,14 @@ const Tab1= (el:any) => {
       {ini==null &&
       
       <IonRow class="logos">
-        <IonButton href={`tab1/logo/BARES?lat=${lati}`+`&longs=${long}`+`&idcategori=1`+`&filter=0`} color="white" expand="full" fill="clear" size='large'><IonCol class="logo" ><IoBeer size="50"></IoBeer></IonCol></IonButton> 
-        <IonButton href={`tab1/logo/RESTAURANTES?lat=${lati}`+`&longs=${long}`+`&idcategori=2`+`&filter=0`} color="white" expand="full" fill="clear" size='large'><IonCol class="logo"><MdOutlineStorefront size="50"></MdOutlineStorefront></IonCol></IonButton> 
-        <IonButton href={`tab1/logo/ESTADEROS?lat=${lati}`+`&longs=${long}`+`&idcategori=3`+`&filter=0`} color="white" expand="full" fill="clear" size='large'><IonCol class="logo"><FaBed size="50"></FaBed></IonCol></IonButton> 
-        <IonButton href={`tab1/logo/CAFETERIAS?lat=${lati}`+`&longs=${long}`+`&idcategori=4`+`&filter=0`} color="white" expand="full" fill="clear" size='large'><IonCol class="logo"><FiCoffee size="50"></FiCoffee></IonCol></IonButton> 
-        <IonButton href={`tab1/logo/PAPELERIAS?lat=${lati}`+`&longs=${long}`+`&idcategori=5`+`&filter=0`} color="white" expand="full" fill="clear" size='large'><IonCol class="logo"><FaPencilRuler size="50"></FaPencilRuler></IonCol></IonButton> 
-        <IonButton href={`tab1/logo/FERRETERIAS?lat=${lati}`+`&longs=${long}`+`&idcategori=6`+`&filter=0`} color="white" expand="full" fill="clear" size='large'><IonCol class="logo"><FaBriefcase size="50"></FaBriefcase></IonCol></IonButton> 
-        <IonButton href={`tab1/logo/VETERINARIAS?lat=${lati}`+`&longs=${long}`+`&idcategori=7`+`&filter=0`}color="white" expand="full" fill="clear" size='large'><IonCol class="logo"><MdPets size="50"></MdPets></IonCol></IonButton> 
-        <IonButton href="/tab1/MAS" color="white" expand="full" fill="clear" size='large'><IonCol class="logo"><AiOutlineQuestionCircle size="50"></AiOutlineQuestionCircle></IonCol></IonButton>
+        <IonButton href={`tab1/logo/BARES?lat=${lati}`+`&longs=${long}`+`&idcategori=1`+`&filter=0`} color="white" expand="full" fill="clear" size='large' ><IonCol  class="logoI" ><IoBeer size="45"></IoBeer><b className='Namelogo'>Bares</b></IonCol></IonButton> 
+        <IonButton href={`tab1/logo/RESTAURANTES?lat=${lati}`+`&longs=${long}`+`&idcategori=2`+`&filter=0`} color="white" expand="full" fill="clear" size='large'><IonCol class="logoI"><MdOutlineStorefront size="45"></MdOutlineStorefront><b className='Namelogo'>Restaurantes</b></IonCol></IonButton> 
+        <IonButton href={`tab1/logo/ESTADEROS?lat=${lati}`+`&longs=${long}`+`&idcategori=3`+`&filter=0`} color="white" expand="full" fill="clear" size='large'><IonCol class="logoI"><FaBed size="45"></FaBed><b className='Namelogo'>Estaderos</b></IonCol></IonButton> 
+        <IonButton href={`tab1/logo/CAFETERIAS?lat=${lati}`+`&longs=${long}`+`&idcategori=4`+`&filter=0`} color="white" expand="full" fill="clear" size='large'><IonCol class="logoI"><FiCoffee size="45"></FiCoffee><b className='Namelogo'>Cafeterias</b></IonCol></IonButton> 
+        <IonButton href={`tab1/logo/PAPELERIAS?lat=${lati}`+`&longs=${long}`+`&idcategori=5`+`&filter=0`} color="white" expand="full" fill="clear" size='large'><IonCol class="logoI"><FaPencilRuler size="39"></FaPencilRuler><b className='Namelogo'>Papelerias</b></IonCol></IonButton> 
+        <IonButton href={`tab1/logo/FERRETERIAS?lat=${lati}`+`&longs=${long}`+`&idcategori=6`+`&filter=0`} color="white" expand="full" fill="clear" size='large'><IonCol class="logoI"><FaBriefcase size="40"></FaBriefcase><b className='Namelogo'>Ferreterias</b></IonCol></IonButton> 
+        <IonButton href={`tab1/logo/VETERINARIAS?lat=${lati}`+`&longs=${long}`+`&idcategori=7`+`&filter=0`}color="white" expand="full" fill="clear" size='large'><IonCol class="logoI"><MdPets size="40"></MdPets><b className='Namelogo'>Veterinarias</b></IonCol></IonButton> 
+        <IonButton href="/tab1/MAS" color="white" expand="full" fill="clear" size='large'><IonCol class="logoI"><AiOutlineQuestionCircle size="40"></AiOutlineQuestionCircle><b className='Namelogo'>Otras</b></IonCol></IonButton>
       </IonRow>
       }
       {ini=="MAS" &&
@@ -114,7 +117,6 @@ const Tab1= (el:any) => {
           {otros.map((info:any) => {
             
             let url=`tab1/logo/${info.tipocategoria}?lat=${lati}`+`&longs=${long}`+`&idcategori=${info.id}`+`&filter=0`;
-            {console.log(url)}
             return(<>
             
             <IonButton href={url} class="blist" color="white" expand="full" fill="clear"  size='large'><p>{info.tipocategoria}</p></IonButton>
@@ -130,23 +132,18 @@ const Tab1= (el:any) => {
       
      
       <IonRow class="titulo2">
-      <h3><b>Tienes cerca:</b></h3>
+      <b className='Tit2'>Tienes cerca:</b>
       </IonRow>
-      <IonRow class='MapaRow'>
-        <IonRow class="mapa">
-          <IonCol class="mapas">
-          {lati==undefined &&
-            
-            <MyComponent refresh={true} reload={true}
-            />
-            
-          }
-          {lati!=undefined &&
-            
+      <IonRow class='MapaRow1'>
+        <IonRow class="mapa1">
+          <IonCol class="mapas1">
+          
+          
+          
             <MyComponent latitude={lati} Longitude={long} Categorias={''}
             />
             
-          }
+          
           
           </IonCol>
   

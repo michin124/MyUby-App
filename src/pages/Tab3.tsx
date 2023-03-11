@@ -14,9 +14,8 @@ const Tab3: React.FC = () => {
     <IonPage>
       <IonHeader class='header'>
       <IonRow class='header2'>
-      <IonCol class="x"><FcGlobe size="50"></FcGlobe></IonCol>
-      <IonCol class="x2"><h2>ADRESS</h2></IonCol>
-      <IonCol class="x3"><h2>MYUBY</h2></IonCol>
+      
+      <IonCol class="x3"><b className="x3">MyUby</b></IonCol>
       </IonRow>  
       </IonHeader>
       <IonContent fullscreen>
@@ -31,6 +30,8 @@ const Tab3: React.FC = () => {
         
         <IonRow class='datos'>
         <IonButton class="mydatos" href="/mydatos" color="white" expand="full" fill="clear" size='large'><h1>MYDATOS</h1></IonButton>
+        <IonButton class="configuracion" href="/log" color="white" expand="full" fill="clear" size='large'><h1>login</h1></IonButton>
+        
         <IonButton class="configuracion" href="/configuracion" color="white" expand="full" fill="clear" size='large'><p>CONFIGURACION</p></IonButton>
         <IonButton class="tengounatienda" href="inicio" color="white" expand="full" fill="clear" size='large'><p>TENGO UNA TIENDA</p></IonButton>
         <IonButton class="politicasdeprivacidad" href="/politicasdeprivacidad" color="white" expand="full" fill="clear" size='large'><p>POLITICAS DE PRIVACIDAD</p></IonButton>
