@@ -30,6 +30,8 @@ const Tab3: React.FC = () => {
         
         <IonRow class='datos'>
         <IonButton class="mydatos" href="/mydatos" color="white" expand="full" fill="clear" size='large'><h1>MYDATOS</h1></IonButton>
+        <IonButton class="configuracion" href="/log" color="white" expand="full" fill="clear" size='large'><h1>login</h1></IonButton>
+        
         <IonButton class="configuracion" href="/configuracion" color="white" expand="full" fill="clear" size='large'><p>CONFIGURACION</p></IonButton>
         <IonButton class="tengounatienda" href="inicio" color="white" expand="full" fill="clear" size='large'><p>TENGO UNA TIENDA</p></IonButton>
         <IonButton class="politicasdeprivacidad" href="/politicasdeprivacidad" color="white" expand="full" fill="clear" size='large'><p>POLITICAS DE PRIVACIDAD</p></IonButton>

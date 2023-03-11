@@ -1,7 +1,7 @@
 import { IonContent, IonHeader, IonPage, IonTitle,IonToggle,IonRadio,IonCheckbox, IonToolbar,IonButton,IonInput, IonItem, IonLabel, IonList, IonItemDivider, IonGrid, IonRow, IonCol } from '@ionic/react';
 import ExploreContainer from '../components/ExploreContainer';
 import { IoBeer } from "react-icons/io5";
-import React, { useState } from 'react';import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
+import React, { useEffect, useState } from 'react';import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
 import { Wrapper, Status } from "@googlemaps/react-wrapper";
 
 
@@ -22,20 +22,29 @@ import { useParams } from 'react-router';
 import { Console } from 'console';
 import { useHistory, useLocation} from 'react-router';
 
-
+import {gapi} from 'gapi-script'
 import GoogleLogin from 'react-google-login';
 
 
 
 function Inicio(){
 
+    
+    const clientId="957251710032-hav1c3vgbvnlvqlai24imnpovpkepvpi.apps.googleusercontent.com"
+    useEffect(()=>{
+      gapi.load("client:auth2",()=>{
+        gapi.auth2.init({clientId:clientId})
+      })
+    },[])
     const responseGoogle=(respuesta:any)=>{
+      console.log(respuesta)
         
     }
   return(
     <div>
-    <br /><GoogleLogin
-    clientId="957251710032-5t7lrcoqmo22k21oa7so3cqu7lr5r3ea.apps.googleusercontent.com"
+    
+    <GoogleLogin
+    clientId={clientId}
     buttonText="Login"
     onSuccess={responseGoogle}
     onFailure={responseGoogle}
