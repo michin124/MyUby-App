@@ -296,7 +296,7 @@ const Tienda= (el:any=0) => {
               
               }
 
-              {console.log(NumProm)}
+            
               {NumProm>=1&&
                 
                 
