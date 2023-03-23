@@ -18,6 +18,32 @@
   background:white ;
   border-radius: 25px;
 }
+#Sregister{
+    padding-top: 60px;
+    padding-bottom: 40px;
+    padding-left: 5%;
+    padding-right: 5%;
+    height: 75%;
+    width: 90%;
+    
+    overflow: hidden;
+    overflow-y:scroll;
+    margin: 50px auto;
+    background:white ;
+    border-radius: 20px;
+}
+
+#register{
+    padding-left: 1%;
+    
+    padding-right: 1%;
+    width: 80%;
+    height: 60%;
+    margin: 100px auto;
+    background:white ;
+    border-radius: 25px;
+}
+
 
 #headerTitle{
 
@@ -28,7 +54,7 @@
   margin: 0;
   font-size: 2rem;
   margin-top: -10px;
-  margin-bottom: -50px;
+  margin-bottom: -25px;
 }
 
 .rows{
@@ -54,12 +80,34 @@
     box-shadow: inset 0px -3px 0px 0px rgba(0, 0, 0, 0.378);
     transition: box-shadow 0.2s ease-in;
 }
+.FormIn{
+    color: black;
+    margin-top: 0px;
+    margin-bottom: 5px;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0)   ;
+    box-sizing: border-box;
+    border: none;
+    font-size: 1rem;
+    padding-left: 1.5rem;
+    padding-bottom: 1rem;
+    box-shadow: inset 0px -3px 0px 0px rgba(0, 0, 0, 0.378);
+    transition: box-shadow 0.2s ease-in;
+}
+
+.FormIn:focus{
+  box-shadow: inset 0px -3px 0px 0px rgba(225, 66, 66, 0.426);
+  outline: none;
+}
 
 .rows input:focus{
    box-shadow: inset 0px -3px 0px 0px rgba(225, 66, 66, 0.426);
    outline: none;
 }
-
+.FormIn input::-webkit-input-placeholder{
+  opacity: 0.4;
+  transition: opacity 0.25s ease-out;
+}
 .rows input::-webkit-input-placeholder{
   opacity: 0.4;
   transition: opacity 0.25s ease-out;
@@ -72,11 +120,15 @@
 
 .rows label{
   align-self: start;
-  padding-left: 4.5rem;
+  padding-left: 0rem;
   padding-bottom: 0.5rem;
   color: rgba(0, 0, 0, 0.9);
 }
 
+#buttonR{
+    background-color: #3b5998;
+    width: 100%;
+}
 .rows button{
   border-radius: 25px;
   width: 80%;
@@ -107,6 +159,24 @@
     height: 3rem;
     font-size: 25px
 }
+#button2{
+    margin-top: -30px;
+    margin-bottom: 20px;
+    display: grid;
+    grid-template: 50% 50%/100%;
+    
+}
+.buttonalert{
+    font-size: 13px;
+    margin-left: 20%;
+   
+}
+.buttonalert2{
+    font-size: 13px;
+    
+    text-align: center;
+   
+}
 
 .othersM{
    margin-top: 2px;
@@ -131,6 +201,11 @@
     background-color: rgba(241, 241, 241, 0.512);
     width: 3rem;
     height: 3rem;
+}
+.doble{
+    font-size: 13px;
+    display: grid;
+    grid-template: 75% 25%/100%;
 }
 
 #iconGroup{

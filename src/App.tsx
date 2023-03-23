@@ -52,8 +52,10 @@ import Apinicio from './components/apinicio';
 import Apicategorias from './components/apicategorias';
 import Apisobretienda from './components/apisobretienda';
 import Apiofertas from './components/apiofertas';
+import RegisterForm from './pages/Register';
 import Tab4 from './pages/Tab4';
 import Tab5 from './pages/Tab5';
+import { register } from './serviceWorkerRegistration';
 
 setupIonicReact();
 
@@ -62,6 +64,7 @@ const App: React.FC = () => (
     <IonReactRouter>
       <IonTabs>
         <IonRouterOutlet>
+          <Route path="/Register/" component={RegisterForm} exact={true} />
           <Route path="/todos/:filtro" component={Apiofertas} exact={true} />
           <Route path="/todos/" component={Apiofertas} exact={true} />
           <Route path="/necesitasa" component={necesitasa} />

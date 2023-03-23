@@ -34,7 +34,7 @@ const inicio: React.FC = () => {
     
     
           <IonContent fullscreen>
-            <h1>Ejercicio</h1>
+           
             <hr />
             
             <hr />

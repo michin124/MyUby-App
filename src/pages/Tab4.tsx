@@ -122,7 +122,7 @@ const Tab4= (el:any) => {
     const crd = pos.coords;
     setLong(crd.longitude)
     setLati(crd.latitude)
-    console.log(lati,long)
+   
   }
   function onCordOkay(pos:any){
     if(filterN==undefined)
@@ -180,7 +180,7 @@ const Tab4= (el:any) => {
     
   ////apijoyas
   let guJoy=`${urlcercajoyas}${lati}/${long}/${filterN}/1/${filters}/`;
-  console.log(guJoy)
+ 
   helphttp()
   .get(guJoy).then((res)=>{
       if(!res.err){
@@ -195,12 +195,12 @@ const Tab4= (el:any) => {
     })
   /////apigratis
   let guGratis=`${urlgratis}${lati}/${long}/${filterN}/1/${filters}/`;
-  console.log(guGratis)
+ 
   helphttp()
   .get(guGratis).then((res)=>{
       if(!res.err){
         setdbgrat0(res.companies)
-        console.log(res)
+       
         setdbgratdis0(res.distancia)
         setError(null)
       }else{
@@ -212,7 +212,7 @@ const Tab4= (el:any) => {
   
   /////apipetfriend
   let guPet=`${urlpetf}${lati}/${long}/${filterN}/1/${filters}/`;
-  console.log(guPet)
+  
   helphttp()
   .get(guPet).then((res)=>{
       if(!res.err){

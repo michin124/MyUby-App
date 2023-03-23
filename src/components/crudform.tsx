@@ -120,7 +120,7 @@ const CrudForm = (props:any) =>{
         .then((res) => res.json())
         .then((data) => console.log(data))
         .catch((err) => console.error(err));
-        console.log(form)
+       
         props.createData(form);
      
     }else{
@@ -225,7 +225,7 @@ const CrudForm = (props:any) =>{
                 <input type="reset" value="limpiar" onClick={handlereset}/>
               </form>
              
-              {console.log(imagen)}
+              
               <h2>CRUDD APP</h2>
 
              

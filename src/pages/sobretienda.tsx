@@ -19,7 +19,6 @@ const Sobretienda= (el:any) => {
   let { categori }:any =useParams();
   let {nombretienda,foto,telefono,direccion,horario,domicilio,parqueadero,especialidad,id}=el.data[0];
 
-console.log(el)
   let url1=`/productostienda?idtienda=${el.idtienda}`
   let url2=`/infotienda?idtienda=${el.idtienda}`
   

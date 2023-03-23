@@ -35,7 +35,7 @@ const initialDbt=[
 ]
 
 function MapaObj(props:any) {
-  console.log(props)
+  
   const Categorias=props.Categorias
   const mapRef=useRef('')
   const [clicks, setClicks] = React.useState<google.maps.LatLng[]>([]);
@@ -66,10 +66,10 @@ function MapaObj(props:any) {
         const crd = pos.coords;
         long=crd.longitude;
         lati=crd.latitude;
-        console.log(map);
+       
         
         //let gMap = new google.maps.Map(document.getElementById('mapita')??new Element()); 
-        console.log(map)
+       
         // map.setZoom(50);      // This will trigger a zoom_changed on the map
         map.setCenter(new google.maps.LatLng(cent));
         // map.setMapTypeId(google.maps.MapTypeId.ROADMAP);

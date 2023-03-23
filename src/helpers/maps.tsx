@@ -34,7 +34,7 @@ const initialDbt=[
 ]
 
 function MyComponent(props:any) {
-  console.log(props)
+ 
   var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
  
   const [lati,setLati]=React.useState(1)  

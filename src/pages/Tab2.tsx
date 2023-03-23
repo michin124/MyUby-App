@@ -53,7 +53,8 @@ const Tab2= (el:any) => {
   const [dbpromNam0,setdbpromNam0]=useState(initialDb)
   const [dbdescNam0,setdbdescNam0]=useState([])
 
-
+  const cat = localStorage.getItem("myCat");
+  console.log(cat)
 
   let {search}=useLocation();
   let query=new URLSearchParams(search);
@@ -64,8 +65,8 @@ const Tab2= (el:any) => {
   let UrlI='http://127.0.0.1:8000/media/images/'
   //numero de categoria
   let { filtro }:any =useParams()||query.get("filtro");
-  let cuenta2=dbdesc0?.length || 0;
-  let cuenta3=dbprom0?.length || 0;
+  let cuenta2=dbdesc0?.length||0;
+  let cuenta3=dbprom0?.length||0;
   let history=useHistory();
   const [range, setCurrentRange] = useState('');
   //Variable encargada del slider
@@ -95,6 +96,7 @@ const Tab2= (el:any) => {
     helphttp()
     .get(gus).then((res)=>{
       if(!res.err){
+        
         setdbdesc0(res.productos)
         setdbdescDis0(res.distancia)
         setdbdescNam0(res.nombreT)
@@ -145,17 +147,22 @@ const Tab2= (el:any) => {
     }
     } 
   }
-  
+  let mi=dbdesc0?.length
   {if(dbdesc0?.length>=1){
     for(let i = 0; i < (dbdesc0?.length); i++) {
+      
+      
       otrosDesc[i]=dbdesc0[i]
       otrosDescDis[i]=dbdescDis0[i]
       otrosDescNam[i]=dbdescNam0[i]||'name'
-
+      
+     
     }
+    
     } 
   }
-
+  
+  
   useEffect(()=>{
     
     navigator.geolocation.getCurrentPosition(onCordOkay,function(err){ console.warn(`ERROR(${err.code}): ${err.message}`)}, {enableHighAccuracy: true,timeout: 6000, maximumAge: 0})
@@ -171,7 +178,7 @@ const Tab2= (el:any) => {
 
   let count=0;
   let numero
-  
+  let cuentaN=cuenta2
 
   const pushRange = (msg: any) => {
     setfiltro(msg);

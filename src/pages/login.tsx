@@ -1,4 +1,4 @@
-import { IonContent, IonHeader, IonPage, IonTitle,IonToggle,IonRadio,IonCheckbox, IonToolbar,IonButton,IonInput, IonItem, IonLabel, IonList, IonItemDivider, IonGrid, IonRow, IonCol } from '@ionic/react';
+import {IonSegment,IonSelect, IonSelectOption, IonSegmentButton,IonText, IonContent, IonHeader,IonButton,IonThumbnail , IonPage, IonTitle, IonToolbar,IonInput, IonItem, IonLabel, IonList, IonItemDivider, IonGrid, IonRow, IonCol, IonImg } from '@ionic/react';
 import ExploreContainer from '../components/ExploreContainer';
 import { IoBeer } from "react-icons/io5";
 import React, { useEffect, useState } from 'react';import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
@@ -36,6 +36,7 @@ class LoginForm extends React.Component{
           <Form />
           <label style={{color:'black',marginLeft:'10%'}}>Puedes entrar con:</label>
           <OtherMethods />
+          <RegisterButton></RegisterButton>
         </div>
       </IonPage>
       
@@ -64,6 +65,15 @@ const FormInput = (props:any) => (
 const FormButton = (props:any) => (
   <div id="button" className="rows">
     <button>{props.title}</button>
+  </div>
+);
+const RegisterButton = (props:any) => (
+
+  <div id="button2" className="rows">
+    <IonText class='buttonalert' style={{color:'#222222',widht:'10px'}}>
+      Si no te has registrado hazlo
+    </IonText>
+    <IonButton href='/Register' style={{marginLeft:'1%',marginRight:'1%'}}> Resgistrate </IonButton>
   </div>
 );
 

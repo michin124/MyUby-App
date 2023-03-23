@@ -75,12 +75,12 @@ const initialDb=[
 
     useEffect(()=>{
     let guno=`${urlCerca}${lat}/${long}/${idcategori}/${filter}/`;
-    console.log(guno)
+    
       helphttp()
       .get(guno).then((res)=>{
           if(!res.err){
             setdbcer0(res.tiendas)
-            console.log(res)
+           
             setdbcerdis0(res.distancia)
             setError(null)
           }else{
@@ -175,7 +175,7 @@ let urlcercaPresjus="http://127.0.0.1:8000/Tiendasback/TiendaDirCatDest/"
 
 useEffect(()=>{
 let gus=`${urlcercaPresbaj}${lat}/${long}/${idcategori}/1/${filter}/`;
-console.log(gus)
+
   helphttp()
   .get(gus).then((res)=>{
       if(!res.err){
@@ -195,7 +195,7 @@ let urlcercajoyas="http://127.0.0.1:8000/Tiendasback/TiendaDirCatJoy/"
 
 useEffect(()=>{
 let gus=`${urlcercajoyas}${lat}/${long}/${idcategori}/1/${filter}/`;
-console.log(gus)
+
   helphttp()
   .get(gus).then((res)=>{
       if(!res.err){
