@@ -26,6 +26,13 @@ import { FaBriefcase} from "react-icons/fa";
 import { MdPets} from "react-icons/md";
 import { AiOutlineQuestionCircle} from "react-icons/ai";
 import { MdOutlineStorefront} from "react-icons/md";
+import { Capacitor } from '@capacitor/core';
+
+
+
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, Keyboard, Pagination, Scrollbar, Zoom } from 'swiper';
+
 
 const initialDb=[
   {
@@ -53,8 +60,7 @@ const Tab2= (el:any) => {
   const [dbpromNam0,setdbpromNam0]=useState(initialDb)
   const [dbdescNam0,setdbdescNam0]=useState([])
 
-  const cat = localStorage.getItem("myCat");
-  console.log(cat)
+ 
 
   let {search}=useLocation();
   let query=new URLSearchParams(search);
@@ -81,7 +87,7 @@ const Tab2= (el:any) => {
   let urlcercaDesc="http://127.0.0.1:8000/Tiendasback/TiendaProduct/"
   let urlcercaPromo="http://127.0.0.1:8000/Tiendasback/TiendaProduct/"
   function onCordOkay(pos:any){
-    
+
     const crd = pos.coords;
     
     let long=crd.longitude
@@ -232,6 +238,50 @@ const Tab2= (el:any) => {
       
 
       <IonContent fullscreen>
+      <IonRow>
+      <IonRow class='products'>
+          <IonRow className='titulProT'>
+            <IonTitle style={{fontSize:'21px'}}>Productos recomendados:</IonTitle>
+          </IonRow>
+          
+        <IonRow class="Tiendap">
+          
+        <Swiper
+          slidesPerView={1}
+          effect={"coverflow"}
+          grabCursor={true}
+          centeredSlides={true}
+          className={'productosT'}
+          spaceBetween={-0}
+          pagination={true}
+          modules={[ Pagination]}
+          style={{height:'200px',width:'100%'}}
+        >
+          
+            
+            
+            
+
+              
+              
+                <IonRow>
+                  <SwiperSlide style={{height:'200px',width:'100%'}}>
+                    
+
+                  </SwiperSlide>
+                  
+                  
+                </IonRow>
+                
+              
+              
+             
+
+          </Swiper>
+        </IonRow>
+        </IonRow>
+      </IonRow>
+      
       <IonRow>
         <IonRow className='logosRow'>
           <IonButton className='logu' href={`todos/0`} expand="full" fill="clear" size='large'><IonCol class="logo" ><CgLayoutGridSmall size="50"></CgLayoutGridSmall><b className='Namelogo'>Todos</b></IonCol></IonButton> 

@@ -29,8 +29,8 @@ const initialDb=[
   }
 ]
 
-const Mydatos: React.FC = () => {
-
+const Mytiendas= () => {
+    console.log('au')
     const [db,setdb]=useState(initialDb)
     const UserId = localStorage.getItem("UserId");
     let urlUser="http://127.0.0.1:8000/Users/UserAgg/"
@@ -59,32 +59,35 @@ const Mydatos: React.FC = () => {
       </IonRow>  
       </IonHeader>
       <IonContent fullscreen>
+      <IonRow style={{marginLeft:'2%',marginTop:'10PX'}}>
+          <IonTitle>Hola</IonTitle>
+        
+        </IonRow>
+        <IonRow style={{marginLeft:'2%'}}>
+        <IonTitle><b> {db[0].Nombre}</b></IonTitle>
+        <IonRow style={{marginLeft:'0%',marginTop:'0'}} >
+            <br /><IonTitle>ID#:{db[0].IC}</IonTitle>
+        </IonRow>
+        </IonRow>
+        <br />
+        <br />
         <IonRow>
-          <h2>Hola  {db[0].Nombre}</h2>
-        </IonRow>
-        <IonRow class="fotop1">
-          <IonRow class="fotop">
-          <CgProfile size="100"></CgProfile>
-          </IonRow>
-        </IonRow>
-        
-        
-            <IonRow class="MYD">
-                <h1>MYDATOS</h1><br /><h2>ID#:{db[0].IC}</h2>
-            </IonRow>
+        <IonTitle style={{fontSize:'20px',borderBottom:' 3px dotted #e15669',borderTop:' 3px dotted #dadadaef'}}>Estas son tus tiendas</IonTitle>
 
-            <IonRow class="MYN">
-                <h2>Nombre: {db[0].Nombre}</h2>
-            </IonRow>
-            <IonRow class="MYN">
-                <h2>Correo: {db[0].Correo}</h2>
-            </IonRow>
-            <IonRow class="MYN">
-                <h2>Sexo: {db[0].Genero}</h2>
-            </IonRow>
-            <IonRow class="MYN">
-                <h2>Ciudad: {db[0].Ciudad}</h2>
-            </IonRow>
+
+        </IonRow>
+        <br />
+        <IonRow>
+        <IonTitle style={{fontSize:'20px',borderBottom:' 3px dotted #e15669',borderTop:' 3px dotted #dadadaef'}}>Estos son tus eventos</IonTitle>
+
+
+        </IonRow>
+        
+        
+        
+            
+
+            
        
         
       </IonContent>
@@ -95,4 +98,4 @@ const Mydatos: React.FC = () => {
   );
 };
 
-export default Mydatos;
+export default Mytiendas;

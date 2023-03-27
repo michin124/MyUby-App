@@ -1,9 +1,9 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
-  appName: 'proboso',
-  webDir: 'build',
+  appId: 'com.example.app',
+  appName: 'myuby',
+  webDir: 'public',
   bundledWebRuntime: false
 };
 

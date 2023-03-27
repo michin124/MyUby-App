@@ -49,12 +49,15 @@ const initialDb=[
 let valid = false;
 
 const RegisterForm= () =>{
+  let History=useHistory();
   let {search}=useLocation();
   let query=new URLSearchParams(search);
   let name=query.get("name");
   let email=query.get("email");
+  let IdConfirm=query.get("id");
   const initialDb2={
       id:null,
+      IdConfirm:IdConfirm,
       Nombre: name,
       foto: "",
       telefono: "",
@@ -67,6 +70,7 @@ const RegisterForm= () =>{
       confirm:"",
       imagen:undefined
   };
+  const [idConfirm,setIdConfirm]=useState(false)
     const [imagen, setImagen] = useState<File>();
     const[form,setForm]=useState(initialDb2)
     const [db,setdb]=useState(initialDb)
@@ -108,10 +112,25 @@ const RegisterForm= () =>{
   }
   
   const handlesubmit = (e:any) =>{
-    {window.location.reload()}
+    
     e.preventDefault();
     
     if(!form.Password)
+    {
+      alert("datos incompletos");
+      return;
+    }
+    if(!form.Edad)
+    {
+      alert("datos incompletos");
+      return;
+    }
+    if(!form.Departamento)
+    {
+      alert("datos incompletos");
+      return;
+    }
+    if(!form.Ciudad)
     {
       alert("datos incompletos");
       return;
@@ -125,7 +144,11 @@ const RegisterForm= () =>{
       
         
         createData(form);
-        localStorage.setItem("myCat", "Michi");
+        localStorage.setItem("UserId", form.id!);
+        window.location.reload();
+        window.location.replace('http://localhost:3000/tab1/');
+       
+
     }
     
     
@@ -145,17 +168,18 @@ const RegisterForm= () =>{
   
 
 
- 
+  
     
     
-    //filtro encargado del rango para la peticion 
-    let succes=query.get("succes");
     
-    const [info,setInfo]:any=useState()
-    
+  //filtro encargado del rango para la peticion 
+  let succes=query.get("succes");
+  
+  const [info,setInfo]:any=useState()
   
 
-    const clientId="957251710032-hav1c3vgbvnlvqlai24imnpovpkepvpi.apps.googleusercontent.com"
+
+  const clientId="957251710032-hav1c3vgbvnlvqlai24imnpovpkepvpi.apps.googleusercontent.com"
   useEffect(()=>{
     gapi.load("client:auth2",()=>{
       gapi.auth2.init({clientId:clientId})
@@ -163,22 +187,95 @@ const RegisterForm= () =>{
   },[])
   
   const responseFacebook = (response:any) => {
-    console.log(response);
+    
+    let urlConfirm="http://127.0.0.1:8000/Users/UserConf/"
+    ////Confirmar si no hay un usuario con ese face pa
+
+    
+    let gus=`${urlConfirm}${response.userID}`;
+    helphttp()
+    .get(gus).then((res)=>{
+        if(!res.err){
+          setIdConfirm(res.Valid)
+          console.log(res,'aqui')
+          if(res.Valid==true)
+          {
+            History.push({search:`&succes=${res.Valid}&name=${response.name}`+`&email=${response.email}`+`&id=${response.userID}`})
+            {window.location.reload()}
+
+          }
+          if(res.Valid==false)
+          {
+            
+            localStorage.setItem("UserId", res.UserId.IC);
+            window.location.reload();
+            window.location.replace('http://localhost:3000/tab1/');
+            
+            
+
+          }
+          
+   
+        }else{
+          setIdConfirm(false)
+        
+        }  
+      })
+        
+    
+    
+   
+    setInfo(response.profileObj)
+    
+    
+    valid=true
+    
+    
   }
 
+ 
 
-
-  let History=useHistory();
  
   
   const responseGoogleG=(respuesta:any)=>{
+    let urlConfirm="http://127.0.0.1:8000/Users/UserConf/"
+    ////Confirmar si no hay un usuario con ese google pa
+    let gus=`${urlConfirm}${respuesta.googleId}`;
+    helphttp()
+    .get(gus).then((res)=>{
+        if(!res.err){
+          setIdConfirm(res.Valid)
+          console.log(res,'aqui')
+          if(res.Valid==true)
+          {
+            History.push({search:`&succes=${res.Valid}&name=${respuesta.profileObj.name}`+`&email=${respuesta.profileObj.email}`+`&id=${respuesta.googleId}`})
+            {window.location.reload()}
+
+          }
+          if(res.Valid==false)
+          {
+            
+            localStorage.setItem("UserId", res.UserId.IC);
+            window.location.reload();
+            window.location.replace('http://localhost:3000/tab1/');
+            
+            
+
+          }
+          
+   
+        }else{
+          setIdConfirm(false)
+        
+        }  
+      })
     
-    History.push({search:`&succes=true&name=${respuesta.profileObj.name}`+`&email=${respuesta.profileObj.email}`})
     
     console.log(respuesta)
     setInfo(respuesta.profileObj)
     console.log(info)
     valid=true
+    
     
   }
   
@@ -333,39 +430,39 @@ const RegisterForm= () =>{
             {succes=='false'&&
                 
                 <div  id="register">
-                    <FormHeader style={{marginBottom:'0px'}} className='tituloR' title="Registrate" />
-            
-                    <label style={{color:'black',marginLeft:'5%'}}>Te pedes registar con:</label>
-                    <IonRow className='othersM'>
-                    <IonCol className='doble' style={{color:'black'}} >
-                    <FacebookLogin
-    
-                        appId="200639832610056"
-                        autoLoad={false}
-                        textButton=""
-                        icon="fa-facebook"
-                        fields="name,email,picture"
-                        cssClass='facebookIcon'
-                        callback={responseFacebook}/>Facebook
-                    </IonCol>
-      
-                    <IonCol>
-                        <GoogleLogin
-                            style={{height:'10px',background:'blue'}}
-                            render={renderProps => (
-                            <button id='googleIcon' onClick={renderProps.onClick} disabled={renderProps.disabled}><img src={GoogleI} style={{height:'50px',width:'55px',marginBottom:'-5px'}} /> Google</button>
-                            )}
-                            clientId={clientId}
-                            
-                            onSuccess={responseGoogleG}
-                            onFailure={responseGoogleE}
-                            cookiePolicy={'single_host_origin'}
-                        />
-  
-                    </IonCol>
-                    </IonRow>
-                    
-                    <RegisterButton></RegisterButton>
+                  <FormHeader style={{marginBottom:'0px'}} className='tituloR' title="Registrate" />
+
+                  <label style={{color:'black',marginLeft:'5%'}}>Te pedes registar con:</label>
+                  <IonRow className='othersM'>
+                  <IonCol className='doble' style={{color:'black'}} >
+                  <FacebookLogin
+
+                      appId="200639832610056"
+                      autoLoad={false}
+                      textButton=""
+                      icon="fa-facebook"
+                      fields="name,email,picture"
+                      cssClass='facebookIcon'
+                      callback={responseFacebook}/>Facebook
+                  </IonCol>
+
+                  <IonCol>
+                      <GoogleLogin
+                          style={{height:'10px',background:'blue'}}
+                          render={renderProps => (
+                          <button id='googleIcon' onClick={renderProps.onClick} disabled={renderProps.disabled}><img src={GoogleI} style={{height:'50px',width:'55px',marginBottom:'-5px'}} /> Google</button>
+                          )}
+                          clientId={clientId}
+                          
+                          onSuccess={responseGoogleG}
+                          onFailure={responseGoogleE}
+                          cookiePolicy={'single_host_origin'}
+                      />
+
+                  </IonCol>
+                  </IonRow>
+                  
+                  <RegisterButton></RegisterButton>
                     
                 </div>
 
