@@ -68,7 +68,7 @@ function EvenMap(props:any) {
         const crd = pos.coords;
         long=crd.longitude;
         lati=crd.latitude;
-        console.log(map);
+        
         //let gMap = new google.maps.Map(document.getElementById('mapita')??new Element()); 
         
         // map.setZoom(50);      // This will trigger a zoom_changed on the map
@@ -117,7 +117,7 @@ function EvenMap(props:any) {
           maximumAge:0
         }
       )
-      console.log(cent)
+      
    }
 
     

@@ -31,6 +31,7 @@ const Tab1= (el:any) => {
   const [lati,setLati]=React.useState('')  
   const [long,setLong]=React.useState('')  
   const [refresh, setRefresh] = React.useState(0)
+  
   function refreshPage() {
     window.location.reload();
   }

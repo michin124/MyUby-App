@@ -12,36 +12,54 @@ import { Console } from 'console';
 import { image } from 'ionicons/icons';
 import { helphttp } from '../helpers/helphttp';
 
+import { useHistory, useLocation} from 'react-router';
 
 
-const guerrero={
- 
-  id: null,
-  nombretienda: "",
-  foto: "",
-  telefono: "",
-  direccion: "",
-  horario: "",
-  domicilio: false,
-  parqueadero:false ,
-  especialidad: "",
-  lat:0,
-  lng:0,
-  descripcion:"",
-  categoria:"",
-  imagen:undefined
-};
 
 
 
 const CrudForm = (props:any) =>{
+  let History=useHistory();
+  
+  let {search}=useLocation();
+  let query=new URLSearchParams(search);
+  let idUs=query.get("idUs");
+  console.log(idUs)
+  const guerrero={
  
-
+    id: null,
+    nombretienda: "",
+    foto: "",
+    telefono: "",
+    direccion: "",
+    horario: "",
+    domicilio: false,
+    parqueadero:false ,
+    especialidad: "",
+    lat:0,
+    lng:0,
+    descripcion:"",
+    categoria:"",
+    imagen:undefined,
+    IdUser:idUs
+  };
+  console.log(guerrero)
+  let api=helphttp();
+  const [imagen, setImagen] = useState<File>();
+  let url='http://localhost:8000/images/'
   const mapRef:any = useRef(null);
+  const[form,setForm]=useState(guerrero)
+
+  ///map
   const [position, setPosition] = useState({
     lat: 4.578283266357103,
     lng: -74.11971172280586
   });
+  function Center() {
+    if (!mapRef.current) return;
+    const newPoso = mapRef.current.getCenter().toJSON();
+    
+  }
   const containerStyle = {
     width: '350px',
     height: '300px'
@@ -49,7 +67,6 @@ const CrudForm = (props:any) =>{
   function handleLoad(map:any) {
     mapRef.current = map;
   }
-
   function handleCenterChanged() {
     if (!mapRef.current) return;
     const newPos = mapRef.current.getCenter().toJSON();
@@ -57,24 +74,16 @@ const CrudForm = (props:any) =>{
     
     
   }
-  function Center() {
-    if (!mapRef.current) return;
-    const newPoso = mapRef.current.getCenter().toJSON();
-    
-  }
 
-  let api=helphttp();
-    
-  let url='http://localhost:8000/images/'
+  
+  
 
 
-
-  const [imagen, setImagen] = useState<File>();
   const subirImagenes=(e:any)=>{
     setImagen(e)
 
   }
-  const[form,setForm]=useState(guerrero)
+  
  
   useEffect(()=>{
     
@@ -88,7 +97,7 @@ const CrudForm = (props:any) =>{
   },[props.dataToedit])
 
 
-
+//crud
 
   const handlechange=(e:any)=>{
     setForm({
@@ -120,15 +129,17 @@ const CrudForm = (props:any) =>{
         .then((res) => res.json())
         .then((data) => console.log(data))
         .catch((err) => console.error(err));
-        console.log(form)
+       
         props.createData(form);
-     
+        console.log(form)
     }else{
       props.updateData(form);
     }
     
     
     handlereset(e);
+    History.push({search:`&succes=true`})
+            
 
     
   }
@@ -225,7 +236,7 @@ const CrudForm = (props:any) =>{
                 <input type="reset" value="limpiar" onClick={handlereset}/>
               </form>
              
-              {console.log(imagen)}
+              
               <h2>CRUDD APP</h2>
 
              

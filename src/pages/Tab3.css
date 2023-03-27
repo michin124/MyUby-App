@@ -1,154 +1,40 @@
+.cuadro{
+    justify-content: center;
+}
+
 .datos{
-    margin-top: 20px;
-    margin-left: 20px;
-    margin-right: 20px;
-    color: aqua;
-    text-align: center;
+    
+    
+    align-items: center;
+    text-align: left;
     justify-content: center;
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.618), 50%, rgba(255, 110, 110, 0.366));
-   
-    border: 2px solid #fafafaef;
-    border-radius: 5mm;
+    background: red;
+    
+    height: 100%;
     display: grid;
-    grid-template: 70px 31px 31px 32px 32px/auto;
+    width: 100%;
 }
-
-.mydatos{
-    text-align: center;
-    justify-content: center;
-    margin-top: 0px;
-    color: rgb(255, 255, 243);
-    border: 2px solid rgba(122, 37, 37, 0.765);
-    background-color: #e06c76c3;
-    border-radius: 5mm;
-    height: 60px;
+.DatosB{
     
-    font-family: Calibri, Candara, Segoe, Segoe UI, Optima, Arial, sans-serif;
-}
-.mydatos h1{
-    margin-left: 10px;
-    font-size: 30px;
-}
-.fotop1{
-    text-align: center;
-    justify-content: center;
-}
-.fotop{
-    text-align: center;
-    color: white;
-    justify-content: center;
-    border: 2px solid #5c1914ef;
-    background-color: rgb(143, 248, 229);
-    border-radius: 100mm;
-    height: 100px;
-    width: 100px;
-    
-}
-
-.configuracion{
-    color: rgb(255, 255, 255);
-    border: 2px solid rgb(164, 114, 114);
-    background-color: rgb(255, 255, 255);
-    border-radius: 5mm;
-    height: 30px;
-    
-    font-size: 15px;
-   
-}
-.configuracion p,.tengounatienda p,.politicasdeprivacidad p,.terminos p,.cerrarsesion .p,.necesitasa p  {
     color: rgb(0, 0, 0);
-}
-.tengounatienda{
-    color: red;
-    
-    border-top: 10px;
-    border: 2px solid rgb(164, 114, 114);
-    background-color: rgb(255, 255, 255);
-    border-radius: 5mm;
-    height: 30px;
-    font-size: 15px;
-    
-}
-.politicasdeprivacidad{
-    color: red;
-    border: 2px solid rgb(164, 114, 114);
-    background-color: rgb(255, 255, 255);
-    border-radius: 5mm;
-    height: 30px;
-    font-size: 15px;    
-}
-.terminos,.necesitasa{
-    color: red;
-    border: 2px solid rgb(164, 114, 114);
-    background-color: rgb(255, 255, 255);
-    border-radius: 5mm;
-    height: 30px;
-    font-size: 15px;
-}
-.cerrarsesion{
-    color: red;
-    
-    margin-left: 40px;
-    margin-right: 40px;
-    border: 2px solid rgba(122, 37, 37, 0.765);
-    background-color: #e06c6cc3;
-    border-radius: 5mm;
-    height: 30px;
-    font-size: 55px;
-}
-
-.cerrarsesion .p{
-    font-family: monospace;
-    font-size: 90px;
-    height: 30px;
-    color:red
+    width: 100%;
+    border-bottom: 1px ridge #dadadaef;
+    font-size: 12px;
+    font-family: Verdana, Arial, Helvetica, SERIF;
+    height: 32px;
+    margin-top: -0px;
 
 }
-
-
-
-.MYD{
+.cuadroPage{
+    align-items: center;
     justify-content: center;
-    border: 2px solid #5c1914ef;
-    border-radius: 5mm;
-    display: grid;
-    grid-template:10px 10px/auto;
-    margin: 10px;
-}
-.MYD h2{
-    margin-top: 25px;
+    text-align: center;
 }
 
-.MYN{
-    
-    border: 2px solid #5c1914ef;
-    border-radius: 5mm;
-    margin: 10px;
-    
-    padding-left: 10px;
-}
-
-
-.nece{
-    justify-content: center;
-    display: grid;
-    grid-template: 50px 10px auto /auto;
-
-}
-
-.tap3ne{
-   
-    
-    border: 2px solid #5c1914ef;
-    border-radius: 5mm;
-    
-    
-    padding-left: 10px;
-}
-
-.tap3ne a{
-    margin-top: 15px;
-    margin-left: 10px;
-    background-color: rgb(255, 255, 255);
-    color: black;
+.congratulations{
+    border-radius: 10000px;
+    margin-top: -5px;
+    height: 40px;
+    width: 150px;
+    background-color: #72cb10;
 }

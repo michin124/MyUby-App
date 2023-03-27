@@ -54,7 +54,7 @@ import { Navigation } from 'swiper'
 
 
 const Tienda= (el:any=0) => {
-  console.log(el)
+  
   const [range, setCurrentRange] = useState('');
   const[necesidad,pushNecesidad]=useState('Productos')
   const[ubicacion,pushUbicacion]=useState('Ubicacion')
@@ -74,7 +74,6 @@ const Tienda= (el:any=0) => {
   let BancolombiaV=el.data[0].Bancolombia
   let DaviPlata=el.data[0].DaviPlata
   let NequiV=el.data[0].Nequi
-
   let CreditoC=el.data[0].Tcredito
 
   let UrlI='http://127.0.0.1:8000/media/images/'
@@ -296,7 +295,7 @@ const Tienda= (el:any=0) => {
               
               }
 
-              {console.log(NumProm)}
+            
               {NumProm>=1&&
                 
                 

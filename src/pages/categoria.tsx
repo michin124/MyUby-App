@@ -23,7 +23,7 @@ import { refresh } from 'ionicons/icons';
 
 
 const Categoria= (el:any) => {
-  console.log(el)
+  
   const [range, setCurrentRange] = useState('');
   const [filter, setCurrentFilter] = useState('');
   let history =useHistory()
@@ -164,7 +164,7 @@ const Categoria= (el:any) => {
     
   }
   if(filter=="Descuentos"){
-    console.log(otros,'a')
+    
     filtro=3
     cuenta=el.datadesc?.length || 0;
     {if(el.datadesc?.length>=1){

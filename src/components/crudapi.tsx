@@ -7,32 +7,16 @@ import { IoBeer } from "react-icons/io5";
 import { FcGlobe} from "react-icons/fc";
 import { CgProfile } from "react-icons/cg";
 
+
+import { BsFillEmojiSunglassesFill } from "react-icons/bs";
 import { RiStarSFill, RiStarSLine } from "react-icons/ri";
 import CrudForm from './crudform';
 import CrudTabla from './crudtabla';
 import { Console } from 'console';
 import { helphttp } from '../helpers/helphttp';
 import { options } from 'ionicons/icons';
+import { useHistory, useLocation} from 'react-router';
 
-const initialDb=[
-  {
-    id: 1,
-    nombretienda: "asdf",
-    foto: "asd",
-    telefono: "asd",
-    direccion: "asd",
-    horario: "asd",
-    domicilio: "asd",
-    parqueadero:"asd" ,
-    especialidad: "asd",
-    lat:0,
-    lng:0,
-    descripcion:"",
-    categoria:"",
-    imagen:undefined
-      
-  }
-]
 const initialDb1=[
   {
     id: 0,
@@ -43,10 +27,32 @@ const initialDb1=[
 
 
 
-  function CrudAppi ()
+  const CrudAppi= (props:any) =>
   {
+    let {search}=useLocation();
+    let query=new URLSearchParams(search);
+    let valid=query.get("succes")||false;
+    const initialDb=[
+      {
+        id: null,
+        nombretienda: "asdf",
+        foto: "asd",
+        telefono: "asd",
+        direccion: "asd",
+        horario: "asd",
+        domicilio: "asd",
+        parqueadero:"asd" ,
+        especialidad: "asd",
+        lat:0,
+        lng:0,
+        descripcion:"",
+        categoria:"",
+        imagen:undefined
+          
+      }
+    ]
 
-
+    let History=useHistory();
     const mapRef:any = useRef(null);
     const [position, setPosition] = useState({
       lat: 4.578283266357103,
@@ -56,11 +62,12 @@ const initialDb1=[
       width: '350px',
       height: '300px'
     };
-    function handleLoad(map:any) {
+   
+    const handleLoad = (map:any) => {
       mapRef.current = map;
     }
   
-    function handleCenterChanged() {
+    const handleCenterChanged = () => {
       if (!mapRef.current) return;
       const newPos = mapRef.current.getCenter().toJSON();
       setPosition(newPos);
@@ -120,7 +127,8 @@ const initialDb1=[
     
   },[url]);
 
-   
+
+            
 
 //crear nuevo registro
 const createData = (data:any) => {
@@ -216,33 +224,44 @@ const deleteData = (id:any) => {
 
     return(
           <div>
-            
-            <h2>CRUDD APP</h2> 
-            
-              <CrudForm 
-                center={{ lat: 4.578283266357103, lng: -74.11971172280586 }}
-                data1={db1}
-                data={db}
-                createData={createData} 
-                updateData={updateData}
-                dataToedit={dataToedit}
-                setDataToedit={setDataToedit}
-              />
-            
-            
-            
-            
-            <CrudTabla  
+            {valid==false&&
+              <IonRow>
+                <h2>CRUDD APP</h2> 
+                
+                <CrudForm 
+                  center={{ lat: 4.578283266357103, lng: -74.11971172280586 }}
+                  data1={db1}
+                  data={db}
+                  createData={createData} 
+                  updateData={updateData}
+                  dataToedit={dataToedit}
+                  setDataToedit={setDataToedit}
+                  id={props.id[0].id}
+                />
+             <CrudTabla  
             data={db}
             setDataToedit={setDataToedit}
             deleteData={deleteData}/>
+
+              </IonRow>
+
+
+            }
+            {valid!=false&&
+            <IonRow style={{alignItems:'center',justifyContent:'center'}}>
+              <BsFillEmojiSunglassesFill style={{marginTop:'30%',color:'yellow'}} size={'100px'}></BsFillEmojiSunglassesFill>
+              <h1 style={{fontSize:'25px',marginLeft:'5%',marginTop:'0%',marginRight:'5%',textAlign:'center'}}>Gracias por subir tu tienda a la familia MyUby, puedes administrar tus tiendas </h1>
+              <IonButton href={`/mytiendas/`} className='congratulations' style={{backGround:'blue'}}  >Aqui</IonButton>
+            </IonRow>
+              
+            }
+            
+            
+            
+            
+           
           </div>
           
     );
-};
-function pepito(el:any)
-{
-
 }
 export default CrudAppi;
-export {pepito};

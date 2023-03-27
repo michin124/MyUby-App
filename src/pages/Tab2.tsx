@@ -26,6 +26,13 @@ import { FaBriefcase} from "react-icons/fa";
 import { MdPets} from "react-icons/md";
 import { AiOutlineQuestionCircle} from "react-icons/ai";
 import { MdOutlineStorefront} from "react-icons/md";
+import { Capacitor } from '@capacitor/core';
+
+
+
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, Keyboard, Pagination, Scrollbar, Zoom } from 'swiper';
+
 
 const initialDb=[
   {
@@ -53,7 +60,7 @@ const Tab2= (el:any) => {
   const [dbpromNam0,setdbpromNam0]=useState(initialDb)
   const [dbdescNam0,setdbdescNam0]=useState([])
 
-
+ 
 
   let {search}=useLocation();
   let query=new URLSearchParams(search);
@@ -64,8 +71,8 @@ const Tab2= (el:any) => {
   let UrlI='http://127.0.0.1:8000/media/images/'
   //numero de categoria
   let { filtro }:any =useParams()||query.get("filtro");
-  let cuenta2=dbdesc0?.length || 0;
-  let cuenta3=dbprom0?.length || 0;
+  let cuenta2=dbdesc0?.length||0;
+  let cuenta3=dbprom0?.length||0;
   let history=useHistory();
   const [range, setCurrentRange] = useState('');
   //Variable encargada del slider
@@ -80,7 +87,7 @@ const Tab2= (el:any) => {
   let urlcercaDesc="http://127.0.0.1:8000/Tiendasback/TiendaProduct/"
   let urlcercaPromo="http://127.0.0.1:8000/Tiendasback/TiendaProduct/"
   function onCordOkay(pos:any){
-    
+
     const crd = pos.coords;
     
     let long=crd.longitude
@@ -95,6 +102,7 @@ const Tab2= (el:any) => {
     helphttp()
     .get(gus).then((res)=>{
       if(!res.err){
+        
         setdbdesc0(res.productos)
         setdbdescDis0(res.distancia)
         setdbdescNam0(res.nombreT)
@@ -145,17 +153,22 @@ const Tab2= (el:any) => {
     }
     } 
   }
-  
+  let mi=dbdesc0?.length
   {if(dbdesc0?.length>=1){
     for(let i = 0; i < (dbdesc0?.length); i++) {
+      
+      
       otrosDesc[i]=dbdesc0[i]
       otrosDescDis[i]=dbdescDis0[i]
       otrosDescNam[i]=dbdescNam0[i]||'name'
-
+      
+     
     }
+    
     } 
   }
-
+  
+  
   useEffect(()=>{
     
     navigator.geolocation.getCurrentPosition(onCordOkay,function(err){ console.warn(`ERROR(${err.code}): ${err.message}`)}, {enableHighAccuracy: true,timeout: 6000, maximumAge: 0})
@@ -171,7 +184,7 @@ const Tab2= (el:any) => {
 
   let count=0;
   let numero
-  
+  let cuentaN=cuenta2
 
   const pushRange = (msg: any) => {
     setfiltro(msg);
@@ -225,6 +238,50 @@ const Tab2= (el:any) => {
       
 
       <IonContent fullscreen>
+      <IonRow>
+      <IonRow class='products'>
+          <IonRow className='titulProT'>
+            <IonTitle style={{fontSize:'21px'}}>Productos recomendados:</IonTitle>
+          </IonRow>
+          
+        <IonRow class="Tiendap">
+          
+        <Swiper
+          slidesPerView={1}
+          effect={"coverflow"}
+          grabCursor={true}
+          centeredSlides={true}
+          className={'productosT'}
+          spaceBetween={-0}
+          pagination={true}
+          modules={[ Pagination]}
+          style={{height:'200px',width:'100%'}}
+        >
+          
+            
+            
+            
+
+              
+              
+                <IonRow>
+                  <SwiperSlide style={{height:'200px',width:'100%'}}>
+                    
+
+                  </SwiperSlide>
+                  
+                  
+                </IonRow>
+                
+              
+              
+             
+
+          </Swiper>
+        </IonRow>
+        </IonRow>
+      </IonRow>
+      
       <IonRow>
         <IonRow className='logosRow'>
           <IonButton className='logu' href={`todos/0`} expand="full" fill="clear" size='large'><IonCol class="logo" ><CgLayoutGridSmall size="50"></CgLayoutGridSmall><b className='Namelogo'>Todos</b></IonCol></IonButton> 
