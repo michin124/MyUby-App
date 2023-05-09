@@ -54,7 +54,7 @@ function MapaObj(props:any) {
  
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
-    googleMapsApiKey: "AIzaSyAoKzza6IcVFgGB8tYVQDL1PaG1eQXAez4",
+    googleMapsApiKey: "",
     
   })
   const onLoad = React.useCallback(function callback(map) {
