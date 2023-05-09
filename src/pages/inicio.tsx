@@ -73,7 +73,7 @@ const Inicio: React.FC = () => {
             <hr />
             
             <hr />
-            <LoadScript googleMapsApiKey="AIzaSyAoKzza6IcVFgGB8tYVQDL1PaG1eQXAez4">
+            <LoadScript googleMapsApiKey="">
                 <Crudapi id={db}/>
             </LoadScript>
             
